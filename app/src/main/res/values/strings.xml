@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">WineUp</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="main_title">Главная</string>
+    <string name="catalog_title">Каталог</string>
+    <string name="favorites_title">Избранное</string>
+    <string name="profile_title">Профиль</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
