@@ -1,17 +1,18 @@
-package com.itmo.wineup.features.favorites
+package com.itmo.wineup.features.profile.presentation
 
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.itmo.wineup.R
 
-class FavoritesFragment : Fragment() {
+class ProfileFragment : Fragment() {
 
     companion object {
-        fun newInstance() = FavoritesFragment()
+        fun newInstance() =
+            ProfileFragment()
     }
 
     override fun onCreateView(
@@ -19,14 +20,14 @@ class FavoritesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_favorites, container, false)
+        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 
-    private lateinit var viewModel: FavoritesViewModel
+    private lateinit var viewModel: ProfileViewModel
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel = ViewModelProvider(requireActivity()).get(FavoritesViewModel::class.java)
+        viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
     }
 
 }

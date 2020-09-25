@@ -1,4 +1,4 @@
-package com.itmo.wineup.features.catalog
+package com.itmo.wineup.features.catalog.presentation
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,14 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.itmo.wineup.R
-import com.itmo.wineup.features.favorites.FavoritesFragment
-import com.itmo.wineup.features.favorites.FavoritesViewModel
 
 
 class CatalogFragment : Fragment() {
 
     companion object {
-        fun newInstance() = CatalogFragment()
+        fun newInstance() =
+            CatalogFragment()
     }
 
     override fun onCreateView(

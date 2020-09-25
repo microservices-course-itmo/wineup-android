@@ -1,4 +1,4 @@
-package com.itmo.wineup.features.favorites
+package com.itmo.wineup.features.favorites.presentation
 
 import androidx.lifecycle.ViewModel
 
