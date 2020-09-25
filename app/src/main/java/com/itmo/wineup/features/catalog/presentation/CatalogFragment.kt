@@ -1,12 +1,16 @@
 package com.itmo.wineup.features.catalog.presentation
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.RecyclerView
 import com.itmo.wineup.R
+import com.itmo.wineup.features.catalog.models.VineModel
+import com.itmo.wineup.features.catalog.presentation.adapters.VinesAdapter
 
 
 class CatalogFragment : Fragment() {
@@ -16,6 +20,12 @@ class CatalogFragment : Fragment() {
             CatalogFragment()
     }
 
+    private lateinit var viewModel: CatalogViewModel
+
+    private lateinit var recyclerView: RecyclerView
+
+    private val adapter = VinesAdapter(mutableListOf())
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -24,11 +34,16 @@ class CatalogFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_catalog, container, false)
     }
 
-    private lateinit var viewModel: CatalogViewModel
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recyclerView = view.findViewById(R.id.vineListRecycler)
+        recyclerView.adapter = adapter
         viewModel = ViewModelProvider(requireActivity()).get(CatalogViewModel::class.java)
+        viewModel.vineList.observe(viewLifecycleOwner, Observer(this::renderVineList))
+    }
+
+    private fun renderVineList(vineList: List<VineModel>) {
+        adapter.updateList(vineList)
     }
 
 }
