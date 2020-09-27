@@ -1,4 +1,4 @@
-package com.itmo.wineup.features.main
+package com.itmo.wineup.features.main.presentation
 
 import androidx.lifecycle.ViewModel
 
