@@ -10,4 +10,6 @@ data class WineModel(
     val rate: Float,
     val price: Int,
     val discount: Int,
+    val imageUrl: String,
+    val tradeMarkUrl: String
 )
