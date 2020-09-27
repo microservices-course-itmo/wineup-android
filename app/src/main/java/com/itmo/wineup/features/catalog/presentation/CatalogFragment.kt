@@ -9,7 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.itmo.wineup.R
-import com.itmo.wineup.features.catalog.models.VineModel
+import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.features.catalog.presentation.adapters.VinesAdapter
 
 
@@ -42,7 +42,7 @@ class CatalogFragment : Fragment() {
         viewModel.vineList.observe(viewLifecycleOwner, Observer(this::renderVineList))
     }
 
-    private fun renderVineList(vineList: List<VineModel>) {
+    private fun renderVineList(vineList: List<WineModel>) {
         adapter.updateList(vineList)
     }
 

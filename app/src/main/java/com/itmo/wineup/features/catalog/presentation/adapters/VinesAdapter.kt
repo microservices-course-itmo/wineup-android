@@ -4,13 +4,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.itmo.wineup.R
-import com.itmo.wineup.features.catalog.models.VineModel
+import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.features.catalog.presentation.adapters.view_holders.VineViewHolder
 
-class VinesAdapter(private var vinesList: MutableList<VineModel>) :
+class VinesAdapter(private var vinesList: MutableList<WineModel>) :
     RecyclerView.Adapter<VineViewHolder>() {
 
-    fun updateList(newVines: List<VineModel>) {
+    fun updateList(newVines: List<WineModel>) {
         vinesList.apply {
             clear()
             addAll(newVines)
@@ -22,8 +22,7 @@ class VinesAdapter(private var vinesList: MutableList<VineModel>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VineViewHolder =
         VineViewHolder(
-            //todo change layout to R.layout.item_vine, it's just for testing recycler
-            LayoutInflater.from(parent.context).inflate(R.layout.test_item_vine, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_vine, parent, false)
         )
 
     override fun onBindViewHolder(

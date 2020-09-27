@@ -4,14 +4,14 @@ import android.view.View
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.itmo.wineup.R
-import com.itmo.wineup.features.catalog.models.VineModel
+import com.itmo.wineup.features.catalog.models.WineModel
 
 class VineViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
-    ////todo remove, just for testing Recycler
-    private val testText = itemView.findViewById<TextView>(R.id.testText)
+    private val wineName = itemView.findViewById<TextView>(R.id.productName)
 
-    fun bind(vine: VineModel) {
-        testText.text = vine.name
+    fun bind(wine: WineModel) {
+        wineName.text = wine.name
+
     }
 }
