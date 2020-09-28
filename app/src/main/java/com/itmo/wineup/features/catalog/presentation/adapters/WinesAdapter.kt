@@ -5,10 +5,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.WineModel
-import com.itmo.wineup.features.catalog.presentation.adapters.view_holders.VineViewHolder
+import com.itmo.wineup.features.catalog.presentation.adapters.view_holders.WineViewHolder
 
-class VinesAdapter(private var vinesList: MutableList<WineModel>) :
-    RecyclerView.Adapter<VineViewHolder>() {
+class WinesAdapter(private var vinesList: MutableList<WineModel>) :
+    RecyclerView.Adapter<WineViewHolder>() {
 
     fun updateList(newVines: List<WineModel>) {
         vinesList.apply {
@@ -20,13 +20,13 @@ class VinesAdapter(private var vinesList: MutableList<WineModel>) :
 
     override fun getItemCount(): Int = vinesList.size
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VineViewHolder =
-        VineViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.item_vine, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WineViewHolder =
+        WineViewHolder(
+            LayoutInflater.from(parent.context).inflate(R.layout.item_wine, parent, false)
         )
 
     override fun onBindViewHolder(
-        holder: VineViewHolder,
+        holder: WineViewHolder,
         position: Int,
     ) = holder.bind(vinesList[position])
 

@@ -10,7 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.WineModel
-import com.itmo.wineup.features.catalog.presentation.adapters.VinesAdapter
+import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
 
 
 class CatalogFragment : Fragment() {
@@ -24,7 +24,7 @@ class CatalogFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
 
-    private val adapter = VinesAdapter(mutableListOf())
+    private val adapter = WinesAdapter(mutableListOf())
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,7 +39,7 @@ class CatalogFragment : Fragment() {
         recyclerView = view.findViewById(R.id.vineListRecycler)
         recyclerView.adapter = adapter
         viewModel = ViewModelProvider(requireActivity()).get(CatalogViewModel::class.java)
-        viewModel.vineList.observe(viewLifecycleOwner, Observer(this::renderVineList))
+        viewModel.wineList.observe(viewLifecycleOwner, Observer(this::renderVineList))
     }
 
     private fun renderVineList(vineList: List<WineModel>) {

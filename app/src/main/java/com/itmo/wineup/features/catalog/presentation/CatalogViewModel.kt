@@ -2,17 +2,17 @@ package com.itmo.wineup.features.catalog.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.itmo.wineup.features.catalog.domain.GetVineListUseCase
+import com.itmo.wineup.features.catalog.domain.GetWineListUseCase
 import com.itmo.wineup.features.catalog.models.WineModel
 
 class CatalogViewModel: ViewModel() {
 
-    private val getVineListUseCase = GetVineListUseCase()
+    private val getWineListUseCase = GetWineListUseCase()
 
-    val vineList = MutableLiveData<List<WineModel>>()
+    val wineList = MutableLiveData<List<WineModel>>()
 
     init {
-        vineList.value = getVineListUseCase.invoke()
+        wineList.value = getWineListUseCase.invoke()
     }
 
 }
