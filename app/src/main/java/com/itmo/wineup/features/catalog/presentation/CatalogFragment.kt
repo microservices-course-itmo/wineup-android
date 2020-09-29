@@ -1,5 +1,6 @@
 package com.itmo.wineup.features.catalog.presentation
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +8,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
+import com.itmo.wineup.features.catalog.presentation.filters.FilterColorActivity
+import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_catalog.*
 
 
 class CatalogFragment : Fragment() {
@@ -40,6 +45,9 @@ class CatalogFragment : Fragment() {
         recyclerView.adapter = adapter
         viewModel = ViewModelProvider(requireActivity()).get(CatalogViewModel::class.java)
         viewModel.wineList.observe(viewLifecycleOwner, Observer(this::renderVineList))
+        searchView.setOnClickListener{
+            findNavController().navigate(R.id.filterCountriesActivity)
+        }
     }
 
     private fun renderVineList(vineList: List<WineModel>) {
