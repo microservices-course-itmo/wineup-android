@@ -3,6 +3,7 @@ package com.itmo.wineup.features.catalog.presentation.filters
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import com.itmo.wineup.R
 
 class FilterColorActivity : AppCompatActivity() {
@@ -16,4 +17,6 @@ class FilterColorActivity : AppCompatActivity() {
         super.finish()
         overridePendingTransition(0, R.anim.noanimation)
     }
+
+    fun onCheckboxClicked(view: View) {}
 }

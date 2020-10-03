@@ -11,5 +11,127 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/Color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/filterColor"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:padding="12dp"
+                >
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Сбросить"
+                android:textSize="12sp"
+                android:textColor="@color/design_default_color_primary"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:padding="12dp">
+            </TextView>
+            <View
+                android:id="@+id/view1"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/Color">
+            </View>
+            <CheckBox android:id="@+id/whiteWine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Белое"
+                android:textSize="16sp"
+                android:onClick="onCheckboxClicked"
+                app:layout_constraintTop_toBottomOf="@+id/view1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/view2"
+                android:layout_margin="12dp"
+                android:paddingStart="32dp" />
+            <View
+                android:id="@+id/view2"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@color/black_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/whiteWine"
+                app:layout_constraintBottom_toTopOf="@+id/redWine">
+
+            </View>
+            <CheckBox android:id="@+id/redWine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Красное"
+                android:textSize="16sp"
+                android:onClick="onCheckboxClicked"
+                android:buttonTint="@color/design_default_color"
+                app:layout_constraintTop_toBottomOf="@+id/view2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/view3"
+                android:layout_margin="12dp"
+                android:paddingStart="32dp"
+                android:checked="true"/>
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@color/black_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/redWine"
+                app:layout_constraintBottom_toTopOf="@id/pinkWine">
+
+            </View>
+            <CheckBox android:id="@+id/pinkWine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Розовое"
+                android:textSize="16sp"
+                android:onClick="onCheckboxClicked"
+                app:layout_constraintTop_toBottomOf="@+id/view3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/view4"
+                android:layout_margin="12dp"
+                android:paddingStart="32dp"/>
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="12dp"
+                android:background="@color/black_10"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/pinkWine"
+                app:layout_constraintBottom_toTopOf="@+id/confirm_button">
+
+            </View>
+            <Button
+                android:id="@+id/confirm_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/view4"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_margin="12dp"
+                android:text="Применить"
+                android:textColor="@color/white"
+                android:background="@color/black_10">
+            </Button>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
