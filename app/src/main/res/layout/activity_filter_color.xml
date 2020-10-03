@@ -18,7 +18,7 @@
                 android:id="@+id/Color"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/filterColor"
+                android:text="@string/filter_color"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintTop_toTopOf="parent"
@@ -29,7 +29,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Сбросить"
+                android:text="@string/filter_reset"
                 android:textSize="12sp"
                 android:textColor="@color/design_default_color_primary"
                 app:layout_constraintTop_toTopOf="parent"
@@ -45,10 +45,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Color">
             </View>
-            <CheckBox android:id="@+id/whiteWine"
+            <CheckBox android:id="@+id/whiteWineCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Белое"
+                android:text="@string/filter_white_wine"
                 android:textSize="16sp"
                 android:onClick="onCheckboxClicked"
                 app:layout_constraintTop_toBottomOf="@+id/view1"
@@ -65,17 +65,17 @@
                 android:background="@color/black_10"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/whiteWine"
-                app:layout_constraintBottom_toTopOf="@+id/redWine">
+                app:layout_constraintTop_toBottomOf="@+id/whiteWineCheckBox"
+                app:layout_constraintBottom_toTopOf="@+id/redWineCheckBox">
 
             </View>
-            <CheckBox android:id="@+id/redWine"
+            <CheckBox android:id="@+id/redWineCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Красное"
+                android:text="@string/filter_red_wine"
                 android:textSize="16sp"
                 android:onClick="onCheckboxClicked"
-                android:buttonTint="@color/design_default_color"
+                android:buttonTint="@color/red"
                 app:layout_constraintTop_toBottomOf="@+id/view2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintBottom_toTopOf="@id/view3"
@@ -91,14 +91,14 @@
                 android:background="@color/black_10"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/redWine"
-                app:layout_constraintBottom_toTopOf="@id/pinkWine">
+                app:layout_constraintTop_toBottomOf="@+id/redWineCheckBox"
+                app:layout_constraintBottom_toTopOf="@id/pinkWineCheckBox">
 
             </View>
-            <CheckBox android:id="@+id/pinkWine"
+            <CheckBox android:id="@+id/pinkWineCheckBox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Розовое"
+                android:text="@string/filter_pink_wine"
                 android:textSize="16sp"
                 android:onClick="onCheckboxClicked"
                 app:layout_constraintTop_toBottomOf="@+id/view3"
@@ -115,7 +115,7 @@
                 android:background="@color/black_10"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/pinkWine"
+                app:layout_constraintTop_toBottomOf="@+id/pinkWineCheckBox"
                 app:layout_constraintBottom_toTopOf="@+id/confirm_button">
 
             </View>
@@ -128,7 +128,7 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="12dp"
-                android:text="Применить"
+                android:text="@string/filter_confirm"
                 android:textColor="@color/white"
                 android:background="@color/black_10">
             </Button>
