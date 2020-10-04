@@ -15,4 +15,7 @@
     <string name="wine_item_price">%1$d₽</string>
     <string name="wine_item_discount">-%1$d%%</string>
     <string name="hint_search">Поиск</string>
+    <string name="filter_apply">Применить</string>
+    <string name="filter_reset">Сбросить</string>
+    <string name="filter_countries">Страна</string>
 </resources>
