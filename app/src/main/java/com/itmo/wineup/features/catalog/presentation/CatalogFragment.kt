@@ -1,6 +1,7 @@
 package com.itmo.wineup.features.catalog.presentation
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +45,7 @@ class CatalogFragment : Fragment() {
 
     private fun renderVineList(vineList: List<WineModel>) {
         adapter.updateList(vineList)
+        Log.d("test_filter", vineList.toString())
     }
 
 }

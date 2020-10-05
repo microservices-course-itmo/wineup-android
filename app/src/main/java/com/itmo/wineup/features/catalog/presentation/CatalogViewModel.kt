@@ -11,7 +11,7 @@ class CatalogViewModel: ViewModel() {
 
     val wineList = MutableLiveData<List<WineModel>>()
 
-    init {
+    fun setWines() {
         wineList.value = getWineListUseCase.invoke()
     }
 
