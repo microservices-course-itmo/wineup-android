@@ -15,4 +15,11 @@
     <string name="wine_item_price">%1$d₽</string>
     <string name="wine_item_discount">-%1$d%%</string>
     <string name="hint_search">Поиск</string>
+    <string name="filter_price">Цена</string>
+    <string name="filter_reset">Сбросить</string>
+    <string name="from_price">От</string>
+    <string name="to_price">До</string>
+    <string name="item_with_discount">Товар со скидкой</string>
+    <string name="to1500">До 1500</string>
+    <string name="filter_confirm">Применить</string>
 </resources>

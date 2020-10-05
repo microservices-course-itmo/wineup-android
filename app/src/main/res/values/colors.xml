@@ -6,6 +6,7 @@
     <color name="black_overlay">#66000000</color>
     <color name="black_10">#10000000</color>
     <color name="white">#ffffff</color>
-    <color name="red">#F44336</color>
+    <color name="red">#833B4E</color>
     <color name="transparent">#55000000</color>
+    <color name="button_confirm">#c1c6cc</color>
 </resources>
