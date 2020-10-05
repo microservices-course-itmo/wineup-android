@@ -46,7 +46,7 @@ class CatalogFragment : Fragment() {
         viewModel = ViewModelProvider(requireActivity()).get(CatalogViewModel::class.java)
         viewModel.wineList.observe(viewLifecycleOwner, Observer(this::renderVineList))
         searchView.setOnClickListener{
-            findNavController().navigate(R.id.filterSugarActivity)
+            findNavController().navigate(R.id.filterPriceActivity)
         }
     }
 
