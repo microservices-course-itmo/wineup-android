@@ -2,12 +2,15 @@ package com.itmo.wineup.features.catalog.presentation.filters.adapters.view_hold
 
 import android.view.View
 import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.itmo.wineup.R
+import com.itmo.wineup.features.catalog.presentation.filters.*
 
-class FiltersViewHolder(private val item: View) : RecyclerView.ViewHolder(item) {
+class FiltersViewHolder(item: View) : RecyclerView.ViewHolder(item) {
 
     private val filterName = item.findViewById<Button>(R.id.filterName)
 
@@ -15,13 +18,20 @@ class FiltersViewHolder(private val item: View) : RecyclerView.ViewHolder(item) 
         filterName.text = model
         filterName.setOnClickListener {
             when (model) {
-                "Рекомендованные" -> findNavController(item.findFragment()).navigate(R.id.filerRecommendActivity)
-                "Цена" -> findNavController(item.findFragment()).navigate(R.id.filterPriceActivity)
-                "Страна" -> findNavController(item.findFragment()).navigate(R.id.filterCountriesActivity)
-                "Цвет" -> findNavController(item.findFragment()).navigate(R.id.filterColorActivity)
-                "Содержание сахара" -> findNavController(item.findFragment()).navigate(R.id.filterSugarActivity)
+                "Рекомендованные" -> openFilterFragment(FilterRecommendFragment())
+                "Цена" -> openFilterFragment(FilterPriceFragment())
+                "Страна" -> openFilterFragment(FilterCountriesFragment())
+                "Цвет" -> openFilterFragment(FilterColorFragment())
+                "Содержание сахара" -> openFilterFragment(FilterSugarFragment())
             }
 
         }
+    }
+
+    private fun openFilterFragment(fragment: Fragment) {
+        val transaction = (itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.navHostFiltersFragment, fragment)
+        transaction.addToBackStack(null)
+        transaction.commit()
     }
 }
