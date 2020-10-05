@@ -21,4 +21,48 @@
             app:layout_constraintTop_toTopOf="@id/constraint" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="408dp"
+        android:layout_height="265dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="@+id/constraint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="353dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="24dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/recommend_filter_1"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <RadioButton
+        android:id="@+id/radioButton"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/recommend_filter_2"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <RadioButton
+        android:id="@+id/radioButton3"
+        android:layout_width="300dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="6dp"
+        android:text="@string/recommend_filter_3"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/view"
+        app:layout_constraintTop_toBottomOf="@+id/radioButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>

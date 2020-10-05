@@ -15,4 +15,16 @@
     <string name="wine_item_price">%1$d₽</string>
     <string name="wine_item_discount">-%1$d%%</string>
     <string name="hint_search">Поиск</string>
+    <string name="filter_color">Цвет</string>
+    <string name="filter_reset">Сбросить</string>
+    <string name="filter_white_wine">Белое</string>
+    <string name="filter_red_wine">Красное</string>
+    <string name="filter_pink_wine">Розовое</string>
+    <string name="filter_confirm">Применить</string>
+    <string name="filter_apply">Применить</string>
+    <string name="filter_reset">Сбросить</string>
+    <string name="filter_countries">Страна</string>
+    <string name="recommend_filter_1">Рекомендованное</string>
+    <string name="recommend_filter_2">Наиболее вам подходящие</string>
+    <string name="recommend_filter_3">По рейтингу</string>
 </resources>
