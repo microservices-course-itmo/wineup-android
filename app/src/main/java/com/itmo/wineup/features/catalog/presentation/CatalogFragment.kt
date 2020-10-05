@@ -13,10 +13,7 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.itmo.wineup.R
-import com.itmo.wineup.features.catalog.models.Recommendation
-import com.itmo.wineup.features.catalog.models.WineColor
-import com.itmo.wineup.features.catalog.models.WineModel
-import com.itmo.wineup.features.catalog.models.WineSugar
+import com.itmo.wineup.features.catalog.models.*
 import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
 import com.itmo.wineup.features.catalog.presentation.filters.adapters.FiltersAdapter
 
@@ -67,6 +64,7 @@ class CatalogFragment : Fragment() {
         viewModel.wineSugarList.observe(viewLifecycleOwner, Observer(this::sugarFilter))
         viewModel.countriesList.observe(viewLifecycleOwner, Observer(this::countriesFilter))
         viewModel.recommendationList.observe(viewLifecycleOwner, Observer(this:: recommendationFilter))
+        viewModel.priceValue.observe(viewLifecycleOwner, Observer(this:: priceFilter))
         filterAdapter.updateList(getFiltersList())
         viewModel.setWines()
 
@@ -92,6 +90,11 @@ class CatalogFragment : Fragment() {
     private fun recommendationFilter(recommendation: Recommendation) {
         Toast.makeText(context, "Recommendation : $recommendation", Toast.LENGTH_LONG).show()
     }
+
+    private fun priceFilter(price: WinePriceFilter) {
+        Toast.makeText(context, "Price : $price", Toast.LENGTH_LONG).show()
+    }
+
     private fun getFiltersList() = listOf(
         "Все фильтры",
         "Рекомендованные",
