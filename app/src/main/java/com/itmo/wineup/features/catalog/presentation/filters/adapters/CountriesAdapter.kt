@@ -26,10 +26,10 @@ class CountriesAdapter : RecyclerView.Adapter<CountryViewHolder>(), Filterable {
 
     override fun getFilter(): Filter = countryFilter
 
-    fun setData(data: List<String>) {
+    fun setData(data: List<String>, restore: List<String>?) {
         countries.clear()
         for (country in data) {
-            countries.add(CountryModel(country, false))
+            countries.add(CountryModel(country, restore?.contains(country) ?: false))
         }
         filteredResults.clear()
         for (country in countries) {
