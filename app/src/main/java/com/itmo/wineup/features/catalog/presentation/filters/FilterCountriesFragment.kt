@@ -65,7 +65,7 @@ class FilterCountriesFragment : Fragment() {
     }
 
     fun setData(data: List<String>) {
-        recyclerAdapter.setData(data)
+        recyclerAdapter.setData(data, viewModel.countriesList.value)
     }
 
     override fun onPause() {
