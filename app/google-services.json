@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "749692826557",
+    "firebase_url": "https://wineup-android.firebaseio.com",
+    "project_id": "wineup-android",
+    "storage_bucket": "wineup-android.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:749692826557:android:dd58d093244735b38698d4",
+        "android_client_info": {
+          "package_name": "com.itmo.wineup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "749692826557-3jnf8ht79gj98lefk5ovbv5ussvc94m6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyANLtpTENL8gcIVjXyv35CMj8om8vXNlr4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "749692826557-3jnf8ht79gj98lefk5ovbv5ussvc94m6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
