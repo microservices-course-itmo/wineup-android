@@ -8,14 +8,20 @@ class CloudMessagingService : FirebaseMessagingService() {
 
     override fun onNewToken(token: String) {
         Log.d("FCM", "New token acquired: $token")
-        // Send this to server
+        // Send this to server if needed
     }
 
-    override fun onMessageReceived(p0: RemoteMessage) {
-        val message = p0.notification!!.body
-        val title = p0.notification!!.title
-        Log.d("FCM", "$message, $title")
-        // Do stuff when in foreground
-    }
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
+        Log.d("FCM", "Received message from ${remoteMessage.from}")
+        if (remoteMessage.data.isNotEmpty()) {
+            Log.d("FCM", "Payload: ${remoteMessage.data}")
+        }
+        remoteMessage.notification?.let {
+            val message = it.body
+            val title = it.title
+            Log.d("FCM", "$message, $title")
+        }
 
+        // Do stuff when app is in foreground
+    }
 }
