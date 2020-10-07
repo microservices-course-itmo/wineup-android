@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.itmo.wineup.R
-import com.itmo.wineup.features.catalog.presentation.filters.adapters.view_holders.FiltersViewHolder
+import com.itmo.wineup.features.catalog.presentation.filters.adapters.viewholders.FiltersViewHolder
 
 class FiltersAdapter(private var filtersList: MutableList<String>) :
     RecyclerView.Adapter<FiltersViewHolder>() {

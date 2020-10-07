@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_10"
+    tools:context=".features.catalog.presentation.filters.FilterPriceFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="@string/filter_price"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/reset_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                android:text="@string/filter_reset"
+                android:textColor="@color/red"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/min_price_layout"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/max_price_layout"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/price">
+
+                <EditText
+                    android:id="@+id/min_price"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_ruble_currency_sign"
+                    android:hint="@string/from_price"
+                    android:inputType="number"
+                    android:textSize="12sp" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/max_price_layout"
+                android:layout_width="190dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/min_price_layout"
+                app:layout_constraintTop_toBottomOf="@+id/price">
+
+                <EditText
+                    android:id="@+id/max_price"
+                    android:layout_width="190dp"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_ruble_currency_sign"
+                    android:hint="@string/to_price"
+                    android:inputType="number"
+                    android:textSize="12sp"
+
+                    />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/discount_switch"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:checked="true"
+                android:theme="@style/ColorSwitchStyle"
+                android:text="@string/item_with_discount"
+                android:textColor="@color/black_overlay"
+                app:layout_constraintStart_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/min_price_layout" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chips_group"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:theme="@style/Theme.MaterialComponents.Light"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/discount_switch"
+                app:singleLine="true"
+                app:singleSelection="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip1"
+                    style="@style/MyWidget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="До 1500"
+                    android:checkable="true"
+                    android:textColor="@color/chip_colors"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/transparent"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip2"
+                    style="@style/MyWidget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1500-3000"
+                    android:checkable="true"
+                    android:textColor="@color/chip_colors"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/transparent"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip3"
+                    style="@style/MyWidget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/chip_colors"
+                    android:text="3000-5000"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/transparent"
+                    app:chipStrokeWidth="1dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip4"
+                    style="@style/MyWidget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/chip_colors"
+                    android:text="5000-10000"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/transparent"
+                    app:chipStrokeWidth="1dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <Button
+                android:id="@+id/confirm_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:background="@color/button_confirm"
+                android:text="@string/filter_confirm"
+                android:textColor="@color/white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chips_group" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
