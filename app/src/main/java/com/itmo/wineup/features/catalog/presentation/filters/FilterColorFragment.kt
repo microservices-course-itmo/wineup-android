@@ -5,13 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.itmo.wineup.R
+import com.itmo.wineup.features.catalog.models.Recommendation
 import com.itmo.wineup.features.catalog.models.WineColor
 import com.itmo.wineup.features.catalog.presentation.CatalogViewModel
-import kotlinx.android.synthetic.main.activity_filter_color.*
+import kotlinx.android.synthetic.main.fragment_filter_color.*
+import kotlinx.android.synthetic.main.fragment_filter_recommend.*
 
-class FilterColorFragment : Fragment() {
+class FilterColorFragment : BottomSheetDialogFragment(){
 
     private lateinit var viewModel: CatalogViewModel
 
@@ -22,13 +26,15 @@ class FilterColorFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_filter_color, container, false)
+        return inflater.inflate(R.layout.fragment_filter_color, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(CatalogViewModel::class.java)
 
+
+        viewModel.wineColorList.observe(viewLifecycleOwner, Observer(this::setFilter))
         reset_button.setOnClickListener {
             whiteWineCheckBox.isChecked = false
             redWineCheckBox.isChecked = false
@@ -38,13 +44,22 @@ class FilterColorFragment : Fragment() {
         whiteWineCheckBox.setOnClickListener { onCheckboxClicked() }
         redWineCheckBox.setOnClickListener { onCheckboxClicked() }
         pinkWineCheckBox.setOnClickListener { onCheckboxClicked() }
-
+        confirmButton.setOnClickListener {
+            viewModel.wineColorList.value = colors
+            dismiss()
+        }
+    }
+    private fun setFilter(colors: Set<WineColor>){
+        for(color in colors)
+            when(color){
+                WineColor.PINK-> pinkWineCheckBox.isChecked = true
+                WineColor.RED -> redWineCheckBox.isChecked = true
+                WineColor.WHITE -> whiteWineCheckBox.isChecked = true
+            }
     }
 
-    override fun onPause() {
-        viewModel.wineColorList.value = colors
-        super.onPause()
-    }
+
+
 
     private fun onCheckboxClicked() {
         if (whiteWineCheckBox.isChecked) {

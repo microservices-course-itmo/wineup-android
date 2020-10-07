@@ -56,6 +56,18 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         Glide.with(itemView.context)
             .load(model.imageUrl)
             .override(image.width, image.height)
+            .listener(object : RequestListener<Drawable> {
+                override fun onLoadFailed(p0: GlideException?, p1: Any?, p2: Target<Drawable>?, p3: Boolean): Boolean {
+                    Log.d("TEST_img", p0.toString())
+                    return false
+                }
+
+                override fun onResourceReady(p0: Drawable?, p1: Any?, p2: Target<Drawable>?, p3: DataSource?, p4: Boolean): Boolean {
+                    Log.d("TEST_img", "OnResourceReady")
+                    //do something when picture already loaded
+                    return false
+                }
+            })
             .into(image)
 
         Glide.with(itemView.context)

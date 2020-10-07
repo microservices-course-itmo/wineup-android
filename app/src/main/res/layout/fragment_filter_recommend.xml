@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_10"
     tools:context=".features.catalog.presentation.filters.FilterRecommendFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +30,7 @@
         android:layout_height="43dp"
         android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-medium"
-        android:text="@string/recommend_filter_1"
+        android:text="@string/recommended"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -41,6 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
+        android:theme="@style/ColorSwitchStyle"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView">
@@ -49,14 +51,14 @@
             android:id="@+id/recommended"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/recommend_filter_2"
+            android:text="@string/recommend"
             android:textSize="16sp" />
 
         <RadioButton
             android:id="@+id/by_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/recommend_filter_3"
+            android:text="@string/by_rating"
             android:textSize="16sp" />
 
     </RadioGroup>

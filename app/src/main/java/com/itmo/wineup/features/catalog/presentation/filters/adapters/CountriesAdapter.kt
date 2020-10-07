@@ -38,6 +38,7 @@ class CountriesAdapter : RecyclerView.Adapter<CountryViewHolder>(), Filterable {
         notifyDataSetChanged()
     }
 
+
     fun getCheckedCountries() : List<String> {
         val result = mutableListOf<String>()
         for (model in countries) {

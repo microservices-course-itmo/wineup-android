@@ -1,4 +1,4 @@
-package com.itmo.wineup.features.catalog.presentation.filters.adapters.view_holders
+package com.itmo.wineup.features.catalog.presentation.filters.adapters.viewholders
 
 import android.view.View
 import android.widget.Button
@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.findFragment
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.presentation.filters.*
 
@@ -28,10 +29,7 @@ class FiltersViewHolder(item: View) : RecyclerView.ViewHolder(item) {
         }
     }
 
-    private fun openFilterFragment(fragment: Fragment) {
-        val transaction = (itemView.context as AppCompatActivity).supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.navHostFiltersFragment, fragment)
-        transaction.addToBackStack(null)
-        transaction.commit()
+    private fun openFilterFragment(fragment: BottomSheetDialogFragment) {
+        fragment.show((itemView.context as AppCompatActivity).supportFragmentManager, fragment.tag)
     }
 }

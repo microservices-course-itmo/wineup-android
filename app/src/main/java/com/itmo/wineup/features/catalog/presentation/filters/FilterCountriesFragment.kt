@@ -6,14 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.presentation.CatalogViewModel
 import com.itmo.wineup.features.catalog.presentation.filters.adapters.CountriesAdapter
-import kotlinx.android.synthetic.main.activity_filter_countries.*
+import com.itmo.wineup.features.catalog.presentation.filters.models.CountryModel
+import kotlinx.android.synthetic.main.fragment_filter_countries.*
 
-class FilterCountriesFragment : Fragment() {
+class FilterCountriesFragment : BottomSheetDialogFragment() {
 
     private lateinit var viewModel: CatalogViewModel
 
@@ -34,18 +37,17 @@ class FilterCountriesFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.activity_filter_countries, container, false)
+        return inflater.inflate(R.layout.fragment_filter_countries, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(CatalogViewModel::class.java)
-
         with(country_recycler) {
             layoutManager = LinearLayoutManager(context)
             adapter = recyclerAdapter
         }
-        country_fiter_reset_button.setOnClickListener { recyclerAdapter.reset() }
+        resetButton.setOnClickListener { recyclerAdapter.reset() }
         country_searchiew.setOnClickListener { country_searchiew.isIconified = false }
 
         country_searchiew.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -60,17 +62,16 @@ class FilterCountriesFragment : Fragment() {
             }
 
         })
+        confirmButton.setOnClickListener{
+            viewModel.countriesList.value = recyclerAdapter.getCheckedCountries()
+            dismiss()
+        }
 
         setData(stubCountriesList)
     }
 
     fun setData(data: List<String>) {
         recyclerAdapter.setData(data, viewModel.countriesList.value)
-    }
-
-    override fun onPause() {
-        viewModel.countriesList.value = recyclerAdapter.getCheckedCountries()
-        super.onPause()
     }
 
 }

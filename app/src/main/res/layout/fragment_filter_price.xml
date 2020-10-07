@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black_10"
     tools:context=".features.catalog.presentation.filters.FilterPriceFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         app:layout_constraintBottom_toBottomOf="parent">
 
@@ -35,7 +36,7 @@
                 android:padding="12dp"
                 android:text="@string/filter_reset"
                 android:textColor="@color/red"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -53,6 +54,7 @@
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_ruble_currency_sign"
                     android:hint="@string/from_price"
+                    android:inputType="number"
                     android:textSize="12sp" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -71,6 +73,7 @@
                     android:layout_height="wrap_content"
                     android:drawableEnd="@drawable/ic_ruble_currency_sign"
                     android:hint="@string/to_price"
+                    android:inputType="number"
                     android:textSize="12sp"
 
                     />
@@ -82,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:checked="true"
-                android:gravity="left"
+                android:theme="@style/ColorSwitchStyle"
                 android:text="@string/item_with_discount"
                 android:textColor="@color/black_overlay"
                 app:layout_constraintStart_toEndOf="parent"
@@ -91,7 +94,7 @@
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chips_group"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="12dp"
                 android:theme="@style/Theme.MaterialComponents.Light"
                 app:layout_constraintStart_toStartOf="parent"
@@ -101,29 +104,34 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip1"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/MyWidget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="До 1500"
+                    android:checkable="true"
+                    android:textColor="@color/chip_colors"
                     app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/transparent"
                     app:chipStrokeWidth="1dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip2"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/MyWidget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="1500-3000"
+                    android:checkable="true"
+                    android:textColor="@color/chip_colors"
                     app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/transparent"
                     app:chipStrokeWidth="1dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip3"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/MyWidget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/chip_colors"
                     android:text="3000-5000"
                     app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/transparent"
@@ -131,24 +139,16 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip4"
-                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    style="@style/MyWidget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/chip_colors"
                     android:text="5000-10000"
                     app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/transparent"
                     app:chipStrokeWidth="1dp" />
 
             </com.google.android.material.chip.ChipGroup>
-
-            <View
-                android:id="@+id/view1"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/black_10"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chips_group" />
 
             <Button
                 android:id="@+id/confirm_button"
@@ -160,7 +160,8 @@
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/discount_switch" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chips_group" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -19,4 +19,17 @@
         <item name="android:paddingStart">32dp</item>
     </style>
 
+    <style name="MyWidget.MaterialComponents.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <!-- Chip background color selector -->
+        <item name="chipBackgroundColor">@color/white</item>
+        <!-- Border color -->
+        <item name="chipStrokeColor">@color/transparent</item>
+
+        <!-- Chip text color selector -->
+        <item name="android:textColor">@color/chip_colors</item>
+    </style>
+
+    <style name="ColorSwitchStyle">
+        <item name="colorControlActivated">@color/red</item>
+    </style>
 </resources>

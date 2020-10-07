@@ -28,9 +28,9 @@
     <string name="filter_pink_wine">Розовое</string>
     <string name="filter_apply">Применить</string>
     <string name="filter_countries">Страна</string>
-    <string name="recommend_filter_1">Рекомендованное</string>
-    <string name="recommend_filter_2">Наиболее вам подходящие</string>
-    <string name="recommend_filter_3">По рейтингу</string>
+    <string name="recommended">Рекомендованное</string>
+    <string name="recommend">Наиболее вам подходящие</string>
+    <string name="by_rating">По рейтингу</string>
     <string name="filter_dry_wine">Сухое</string>
     <string name="filter_semi_dry_wine">Полусухое</string>
     <string name="filter_semi_sweet_wine">Полусладкое</string>

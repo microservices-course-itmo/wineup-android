@@ -76,23 +76,23 @@ class CatalogFragment : Fragment() {
     }
 
     private fun colorFilter(vineList: Set<WineColor>) {
-        Toast.makeText(context, "Color : $vineList", Toast.LENGTH_LONG).show()
+        //Toast.makeText(context, "Color : $vineList", Toast.LENGTH_LONG).show()
     }
 
     private fun sugarFilter(sugarList: Set<WineSugar>) {
-        Toast.makeText(context, "Sugar : $sugarList", Toast.LENGTH_LONG).show()
+        //Toast.makeText(context, "Sugar : $sugarList", Toast.LENGTH_LONG).show()
     }
 
     private fun countriesFilter(countriesList: List<String>) {
-        Toast.makeText(context, "Countries : $countriesList", Toast.LENGTH_LONG).show()
+        //Toast.makeText(context, "Countries : $countriesList", Toast.LENGTH_LONG).show()
     }
 
     private fun recommendationFilter(recommendation: Recommendation) {
-        Toast.makeText(context, "Recommendation : $recommendation", Toast.LENGTH_LONG).show()
+        //Toast.makeText(context, "Recommendation : $recommendation", Toast.LENGTH_LONG).show()
     }
 
     private fun priceFilter(price: WinePriceFilter) {
-        Toast.makeText(context, "Price : $price", Toast.LENGTH_LONG).show()
+        //Toast.makeText(context, "Price : $price", Toast.LENGTH_LONG).show()
     }
 
     private fun getFiltersList() = listOf(
