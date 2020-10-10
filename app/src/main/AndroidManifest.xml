@@ -12,16 +12,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.auth.AgeAccessErrorActivity"></activity>
-        <activity android:name=".features.auth.AgeAccessActivity">
+        <activity android:name=".features.auth.presentation.CodeInputActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity">
-        </activity>
+
+        <activity android:name=".features.auth.presentation.AgeAccessErrorActivity" />
+        <activity android:name=".features.auth.presentation.AgeAccessActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
