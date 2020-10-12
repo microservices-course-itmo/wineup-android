@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/buttonBack"
         style="@style/Widget.AppCompat.Button"
         android:layout_width="88dp"
         android:layout_height="41dp"

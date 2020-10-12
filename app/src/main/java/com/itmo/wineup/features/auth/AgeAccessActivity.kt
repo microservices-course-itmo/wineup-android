@@ -11,11 +11,11 @@ class AgeAccessActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_age_access)
-        button2.setOnClickListener {
+        buttonYes.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-        button3.setOnClickListener{
+        buttonNo.setOnClickListener{
             val intent = Intent(this, AgeAccessErrorActivity::class.java)
             startActivity(intent)
         }

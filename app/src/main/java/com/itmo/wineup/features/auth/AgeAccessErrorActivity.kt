@@ -10,7 +10,7 @@ class AgeAccessErrorActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_age_access_error)
-        button.setOnClickListener{
+        buttonBack.setOnClickListener{
             onBackPressed()
         }
     }
