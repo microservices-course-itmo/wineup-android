@@ -12,7 +12,7 @@ class AgeAccessActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_age_access)
         buttonYes.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, CodeInputActivity::class.java)
             startActivity(intent)
         }
         buttonNo.setOnClickListener{
