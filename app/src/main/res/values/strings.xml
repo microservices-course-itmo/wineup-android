@@ -35,5 +35,13 @@
     <string name="filter_semi_dry_wine">Полусухое</string>
     <string name="filter_semi_sweet_wine">Полусладкое</string>
     <string name="filter_sweet_wine">Сладкое</string>
+    <string name="wineup">WineUp</string>
+    <string name="age_err_1">Спасибо за честный ответ!</string>
+    <string name="age_err_2">К сожалению наше приложение содержит информацию, не предназначинную для лиц младше 18 :(</string>
+    <string name="age_err_3">Назад</string>
+    <string name="age_access_1">Добро пожаловать!</string>
+    <string name="age_access_2">Вам уже исполнилось 18?</string>
+    <string name="age_access_3">Да!</string>
+    <string name="age_access_4">Нет</string>
 
 </resources>
