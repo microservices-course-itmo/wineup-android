@@ -11,8 +11,7 @@ class AgeAccessErrorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_age_access_error)
         button.setOnClickListener{
-            val intent = Intent(this, AgeAccessActivity::class.java)
-            startActivity(intent)
+            onBackPressed()
         }
     }
 }
