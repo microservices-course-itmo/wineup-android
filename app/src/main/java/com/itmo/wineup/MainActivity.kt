@@ -1,10 +1,12 @@
 package com.itmo.wineup
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.firebase.messaging.FirebaseMessaging
 import com.itmo.wineup.features.catalog.presentation.CatalogFragment
 import com.itmo.wineup.features.catalog.presentation.filters.FilterColorFragment
 import com.itmo.wineup.features.favorites.presentation.FavoritesFragment
@@ -21,6 +23,15 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         //buttonTest.setOnClickListener { openFilterFragment(FilterColorFragment()) }
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.w("FCM", "Fetching token failed.", task.exception)
+            }
+            else {
+                Log.d("FCM", "Token for this app is ${task.result}")
+            }
+        }
     }
 
 
