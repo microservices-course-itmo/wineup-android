@@ -22,6 +22,13 @@ class RegistrationActivity: AppCompatActivity() {
         enter_button.setOnClickListener(View.OnClickListener {
             name = name_input.toString()
             city = city_input.toString()
+            if (name.length in 16 downTo 1){
+                for (char in name){
+                    if (char.isDigit()){
+                        wrong_name.visibility = View.VISIBLE
+                    }
+                }
+            }
         })
     }
 }
