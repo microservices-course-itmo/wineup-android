@@ -35,6 +35,11 @@
     <string name="filter_semi_dry_wine">Полусухое</string>
     <string name="filter_semi_sweet_wine">Полусладкое</string>
     <string name="filter_sweet_wine">Сладкое</string>
+    <string name="enter_code">Введите код подтверждения</string>
+    <string name="back">Назад</string>
+    <string name="wrong_code">Код введен неверно</string>
+    <string name="resend_code">Отправить повторно</string>
+    <string name="timer_test">Отправить повторно через %1$s c</string>
     
     <string name="wineup">WineUp</string>
     <string name="age_err_1">Спасибо за честный ответ!</string>

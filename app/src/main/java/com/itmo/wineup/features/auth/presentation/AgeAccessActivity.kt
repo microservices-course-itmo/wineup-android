@@ -1,4 +1,4 @@
-package com.itmo.wineup.features.auth
+package com.itmo.wineup.features.auth.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -12,7 +12,7 @@ class AgeAccessActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_age_access)
         buttonYes.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, CodeInputActivity::class.java)
             startActivity(intent)
         }
         buttonNo.setOnClickListener{
