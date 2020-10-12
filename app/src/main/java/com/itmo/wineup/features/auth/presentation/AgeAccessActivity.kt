@@ -1,4 +1,4 @@
-package com.itmo.wineup.features.auth
+package com.itmo.wineup.features.auth.presentation
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity

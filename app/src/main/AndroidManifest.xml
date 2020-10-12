@@ -12,6 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+                <activity android:name=".features.auth.presentation.CodeInputActivity">
         <activity android:name=".features.auth.AgeAccessErrorActivity" />
         <activity android:name=".features.auth.AgeAccessActivity">
             <intent-filter>
