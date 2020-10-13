@@ -54,7 +54,7 @@
     <string name="date_format">ДД/ММ/ГГГГ</string>
     <string name="name">Имя</string>
     <string name="example_name">Иван</string>
-    <string name="city">город</string>
+    <string name="city">Город</string>
     <string name="example_city">Москва</string>
     <string name="agreement">Даю согласие на обработку персональных данных</string>
     <string name="enter">Войти</string>

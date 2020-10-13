@@ -1,13 +1,12 @@
 package com.itmo.wineup.features.auth
 
-import android.R.attr.button
+import android.app.DatePickerDialog
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.itmo.wineup.R
 import kotlinx.android.synthetic.main.activity_registration.*
-import java.util.jar.Attributes
+import java.util.*
 
 
 class RegistrationActivity: AppCompatActivity() {
@@ -30,5 +29,17 @@ class RegistrationActivity: AppCompatActivity() {
                 }
             }
         })
+        date_input.setOnClickListener() {
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+            val dateSetListener = DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+                val monthOfYear = monthOfYear + 1
+                date_input.setText("$dayOfMonth.$monthOfYear.$year")
+                //todo send Date to the next screen
+            }
+            val dpd = DatePickerDialog(this, dateSetListener, year, month, day).show()
+        }
     }
 }
