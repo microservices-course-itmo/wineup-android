@@ -12,18 +12,32 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".features.auth.AgeAccessErrorActivity"></activity>
-        <activity android:name=".features.auth.AgeAccessActivity">
-        </activity>
         <activity android:name=".MainActivity">
         </activity>
         <activity android:name=".features.auth.PhoneNumberAccessActivity">
+        <activity android:name=".features.auth.presentation.CodeInputActivity"/>
+        <activity android:name=".features.auth.presentation.AgeAccessErrorActivity" />
+        <activity android:name=".features.auth.presentation.AgeAccessActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".features.auth.RegistrationActivity" />
+
+        <service
+            android:name=".network.firebase.CloudMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <!--Notification icon-->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_like" />
     </application>
 
 </manifest>
