@@ -35,5 +35,10 @@
     <string name="filter_semi_dry_wine">Полусухое</string>
     <string name="filter_semi_sweet_wine">Полусладкое</string>
     <string name="filter_sweet_wine">Сладкое</string>
+    <string name="phoneNumberTestInformation">Введите номер телефона для авторизации</string>
+    <string name="whineUp">WhineUp</string>
+    <string name="enterPhoneNumber">+7 (9xx) xxx-xx-xx</string>
+    <string name="authButton">Войти</string>
+    <string name="withoutAuthButton">ПРОДОЛЖИТЬ БЕЗ АВТОРИЗАЦИИ</string>
 
 </resources>
