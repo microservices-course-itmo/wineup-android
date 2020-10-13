@@ -35,6 +35,11 @@
     <string name="filter_semi_dry_wine">Полусухое</string>
     <string name="filter_semi_sweet_wine">Полусладкое</string>
     <string name="filter_sweet_wine">Сладкое</string>
+    <string name="phoneNumberTestInformation">Введите номер телефона для авторизации</string>
+    <string name="whineUp">WhineUp</string>
+    <string name="enterPhoneNumber">+7 (9xx) xxx-xx-xx</string>
+    <string name="authButton">Войти</string>
+    <string name="withoutAuthButton">ПРОДОЛЖИТЬ БЕЗ АВТОРИЗАЦИИ</string>
     <string name="enter_code">Введите код подтверждения</string>
     <string name="back">Назад</string>
     <string name="wrong_code">Код введен неверно</string>
@@ -49,7 +54,7 @@
     <string name="age_access_2">Вам уже исполнилось 18?</string>
     <string name="age_access_3">Да!</string>
     <string name="age_access_4">Нет</string>
-<string name="data_enter">Введите данные</string>
+    <string name="data_enter">Введите данные</string>
     <string name="birth_date">Дата рождения</string>
     <string name="date_format">ДД/ММ/ГГГГ</string>
     <string name="name">Имя</string>
