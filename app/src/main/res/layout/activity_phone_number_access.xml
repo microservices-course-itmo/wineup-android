@@ -39,31 +39,23 @@
 
         </TextView>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/phoneNumberLayout"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneNumberTextInformation"
-            app:layout_constraintEnd_toEndOf="parent">
-
-            <EditText
+        <EditText
             android:id="@+id/phoneNumberInput"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:hint="@string/enterPhoneNumber"
             android:inputType="phone"
             android:maxLength="11"
+            android:background="@android:color/transparent"
             android:textSize="18sp"
+            android:layout_marginTop="40dp"
+            android:layout_marginStart="64dp"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/black_10"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phoneNumberTextInformation">
+        </EditText>
 
-            </EditText>
-
-        </com.google.android.material.textfield.TextInputLayout>
 
         <View
             android:id="@+id/redLine"
@@ -74,26 +66,24 @@
             android:background="@color/light_red"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phoneNumberLayout">
+            app:layout_constraintTop_toBottomOf="@+id/phoneNumberInput">
 
         </View>
 
-        <com.google.android.material.button.MaterialButton
-            style="@style/MaterialButtonStyle"
+        <Button
             android:id="@+id/authButton"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="50dp"
-            android:background="@color/beige"
+            android:layout_height="35dp"
+            android:layout_marginTop="40dp"
+            android:background="@color/button_background_disabled"
             android:enabled="false"
-            android:text="@string/authButton"
-            android:textSize="18sp"
-            android:textColor="@color/light_red"
+            android:text="@string/enter"
+            android:textColor="@color/button_background_enabled"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/redLine">
 
-        </com.google.android.material.button.MaterialButton>
+        </Button>
 
         <Button
             style="?android:attr/borderlessButtonStyle"

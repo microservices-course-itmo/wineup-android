@@ -10,7 +10,6 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModelProvider
-import com.itmo.wineup.MainActivity
 import com.itmo.wineup.R
 import kotlinx.android.synthetic.main.activity_code_input.*
 import java.util.concurrent.TimeUnit
@@ -51,7 +50,7 @@ class CodeInputActivity : AppCompatActivity() {
         //now only 000000 is right code
         if (viewModel.validateCode(code_edit_text.text.toString())) {
             //todo: navigate to next screen. You need to input your activity name here.
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, RegistrationActivity::class.java))
         } else {
             wrong_code.visibility = View.VISIBLE
         }

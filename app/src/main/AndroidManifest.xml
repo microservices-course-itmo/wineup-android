@@ -12,9 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
-        </activity>
-        <activity android:name=".features.auth.PhoneNumberAccessActivity">
+        <activity android:name=".features.auth.presentation.PhoneNumberAccessActivity"/>
         <activity android:name=".features.auth.presentation.CodeInputActivity"/>
         <activity android:name=".features.auth.presentation.AgeAccessErrorActivity" />
         <activity android:name=".features.auth.presentation.AgeAccessActivity">
@@ -24,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.auth.RegistrationActivity" />
+        <activity android:name=".MainActivity"/>
+        <activity android:name=".features.auth.presentation.RegistrationActivity" />
 
         <service
             android:name=".network.firebase.CloudMessagingService"

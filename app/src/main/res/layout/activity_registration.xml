@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -43,12 +42,13 @@
         app:layout_constraintTop_toBottomOf="@+id/dataEnter" />
 
     <TextView
+        android:id="@id/name_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:layout_marginStart="24dp"
         android:text="@string/name"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:textColor="@color/button_background_enabled"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dataEnter" />
@@ -60,20 +60,20 @@
         android:backgroundTint="@color/button_background_enabled"
         android:hint="@string/example_name"
         android:inputType="textPersonName"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="40dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dataEnter"/>
+        app:layout_constraintTop_toBottomOf="@+id/name_title"/>
 
     <TextView
+        android:id="@+id/date_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="24dp"
         android:text="@string/birth_date"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:textColor="@color/button_background_enabled"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/name_input" />
@@ -83,25 +83,24 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/button_background_enabled"
-        android:layout_marginTop="20dp"
         android:hint="@string/date_format"
         android:inputType="date"
-        android:editable="false"
         android:focusable="false"
         android:clickable="false"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/name_input" />
+        app:layout_constraintTop_toBottomOf="@+id/date_title" />
 
     <TextView
+        android:id="@+id/city_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginStart="24dp"
         android:text="@string/city"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:textColor="@color/button_background_enabled"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_input" />
@@ -113,12 +112,11 @@
         android:backgroundTint="@color/button_background_enabled"
         android:hint="@string/example_city"
         android:inputType="text"
-        android:textSize="12sp"
+        android:textSize="14sp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/date_input"/>
+        app:layout_constraintTop_toBottomOf="@+id/city_title"/>
 
 
 
@@ -129,7 +127,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:text="@string/agreement"
-        android:textSize="10sp"
+        android:textSize="12sp"
         android:theme="@style/CheckBox"
         android:paddingStart="0dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -139,7 +137,7 @@
         android:id="@+id/enter_button"
         android:layout_width="wrap_content"
         android:layout_height="35dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="40dp"
         android:background="@color/button_background_disabled"
         android:enabled="false"
         android:text="@string/enter"
@@ -147,5 +145,5 @@
         app:layout_constraintCircleRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/materialCheckBox" />
+        app:layout_constraintTop_toBottomOf="@id/materialCheckBox"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
