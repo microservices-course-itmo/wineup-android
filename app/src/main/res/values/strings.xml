@@ -35,5 +35,34 @@
     <string name="filter_semi_dry_wine">Полусухое</string>
     <string name="filter_semi_sweet_wine">Полусладкое</string>
     <string name="filter_sweet_wine">Сладкое</string>
+    <string name="phoneNumberTestInformation">Введите номер телефона для авторизации</string>
+    <string name="whineUp">WhineUp</string>
+    <string name="enterPhoneNumber">+7 (9xx) xxx-xx-xx</string>
+    <string name="authButton">Войти</string>
+    <string name="withoutAuthButton">ПРОДОЛЖИТЬ БЕЗ АВТОРИЗАЦИИ</string>
+    <string name="enter_code">Введите код подтверждения</string>
+    <string name="back">Назад</string>
+    <string name="wrong_code">Код введен неверно</string>
+    <string name="resend_code">Отправить повторно</string>
+    <string name="timer_test">Отправить повторно через %1$s c</string>
+
+    <string name="wineup">WineUp</string>
+    <string name="age_err_1">Спасибо за честный ответ!</string>
+    <string name="age_err_2">К сожалению наше приложение содержит информацию, не предназначинную для лиц младше 18 :(</string>
+    <string name="age_err_3">Назад</string>
+    <string name="age_access_1">Добро пожаловать!</string>
+    <string name="age_access_2">Вам уже исполнилось 18?</string>
+    <string name="age_access_3">Да!</string>
+    <string name="age_access_4">Нет</string>
+    <string name="data_enter">Введите данные</string>
+    <string name="birth_date">Дата рождения</string>
+    <string name="date_format">ДД/ММ/ГГГГ</string>
+    <string name="name">Имя</string>
+    <string name="example_name">Иван</string>
+    <string name="city">Город</string>
+    <string name="example_city">Москва</string>
+    <string name="agreement">Даю согласие на обработку персональных данных</string>
+    <string name="enter">Войти</string>
+    <string name="format_error">Формат от 2 до 15 букв, не содержащих символов</string>
 
 </resources>

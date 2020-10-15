@@ -13,4 +13,8 @@
     <color name="checkBox_red">#a22744</color>
     <color name="checkBox_gray">#a9a9a9</color>
     <color name="button_confirm">#c1c6cc</color>
+    <color name="beige">#FFE7E7</color>
+    <color name="light_red">#EB5757</color>
+    <color name="button_background_enabled">#ec5656</color>
+    <color name="button_background_disabled">#fdecec</color>
 </resources>
