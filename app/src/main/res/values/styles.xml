@@ -35,4 +35,8 @@
     <style name="MaterialButtonStyle" parent="Widget.MaterialComponents.Button.UnelevatedButton">
         <item name="backgroundTint">@color/color_states_materialbutton</item>
     </style>
+    <style name="RatingBar" parent="android:style/Widget.Material.RatingBar.Small">
+        <item name="colorControlNormal">@color/red</item>
+        <item name="colorControlActivated">@color/gold</item>
+    </style>
 </resources>
