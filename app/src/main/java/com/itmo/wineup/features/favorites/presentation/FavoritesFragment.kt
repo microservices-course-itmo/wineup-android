@@ -1,5 +1,6 @@
 package com.itmo.wineup.features.favorites.presentation
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -53,9 +54,16 @@ class FavoritesFragment : Fragment() {
 
     private fun setListeners() {
         clear_favorite.setOnClickListener {
-            //todo show alert
-            adapter.updateList(emptyList())
-            //todo: clear favorite list and show screen with "Тут пока пусто"
+            AlertDialog.Builder(requireContext())
+                .setTitle(R.string.clear_alert_title)
+                .setPositiveButton(R.string.yes) { _, _ ->
+                    adapter.updateList(emptyList())
+                    //todo: clear favorite list and show screen with "Тут пока пусто"
+                }
+                .setNegativeButton(R.string.no) { dialogInterface, _ ->
+                    dialogInterface.cancel()
+                }
+                .show()
         }
         sort_by_button.setOnClickListener {
             SortFragment().show(

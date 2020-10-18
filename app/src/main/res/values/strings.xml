@@ -70,5 +70,8 @@
     <string name="clear_favorite_underlined"><u>Очистить избранное</u></string>
     <string name="by_price_min">По возрастанию цены</string>
     <string name="by_price_max">По убыванию цены</string>
+    <string name="clear_alert_title">Вы уверены, что хотите очистить избранное?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
 
 </resources>
