@@ -26,13 +26,15 @@
         android:layout_marginTop="18dp"
         android:background="@color/dark_red_background"
         android:paddingStart="15dp"
-        android:paddingEnd="60dp"
+        android:paddingEnd="19dp"
         android:text="@string/sort_by"
         android:textAllCaps="false"
         android:textColor="@color/white"
         app:layout_constraintCircleRadius="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/favorites_searchView" />
+        app:layout_constraintTop_toBottomOf="@id/favorites_searchView"
+        android:drawableEnd="@drawable/lines_icon"
+        android:drawablePadding="19dp"/>
 
     <TextView
         android:id="@+id/clear_favorite"

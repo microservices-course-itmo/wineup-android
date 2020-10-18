@@ -5,10 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
@@ -40,6 +43,17 @@ class FavoritesFragment : Fragment() {
         viewModel.wineList.observe(viewLifecycleOwner, Observer(this::renderVineList))
         viewModel.selectedFilter.observe(viewLifecycleOwner, Observer(this::filterSelected))
         favoriteListRecycler.adapter = adapter
+
+        favoriteListRecycler.addItemDecoration(
+            DividerItemDecoration(
+                favoriteListRecycler.context,
+                LinearLayout.VERTICAL
+            ).apply {
+                ContextCompat.getDrawable(requireContext(), R.drawable.divider)
+                    ?.let { setDrawable(it) }
+            }
+        )
+        
         viewModel.setWines()
         setListeners()
     }
