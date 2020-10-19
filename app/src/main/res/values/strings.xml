@@ -64,5 +64,6 @@
     <string name="agreement">Даю согласие на обработку персональных данных</string>
     <string name="enter">Войти</string>
     <string name="format_error">Формат от 2 до 15 букв, не содержащих символов</string>
+    <string name="sugare_filter_name">Содержание сахара</string>
 
 </resources>
