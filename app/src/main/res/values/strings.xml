@@ -33,6 +33,7 @@
     <string name="recommended">Рекомендованное</string>
     <string name="recommend">Наиболее вам подходящие</string>
     <string name="by_rating">По рейтингу</string>
+    <string name="by_recommendation">По рекомендации</string>
     <string name="filter_dry_wine">Сухое</string>
     <string name="filter_semi_dry_wine">Полусухое</string>
     <string name="filter_semi_sweet_wine">Полусладкое</string>
@@ -65,7 +66,15 @@
     <string name="example_city">Москва</string>
     <string name="agreement">Даю согласие на обработку персональных данных</string>
     <string name="enter">Войти</string>
+    <string name="sort_by">Сортировать по</string>
     <string name="format_error">Формат от 2 до 15 букв, не содержащих символов</string>
+    <string name="search_in_favorite">Поиск по избранному</string>
+    <string name="clear_favorite_underlined"><u>Очистить избранное</u></string>
+    <string name="by_price_min">По возрастанию цены</string>
+    <string name="by_price_max">По убыванию цены</string>
+    <string name="clear_alert_title">Вы уверены, что хотите очистить избранное?</string>
+    <string name="yes">Да</string>
+    <string name="no">Нет</string>
     <string name="price">Стоимость:</string>
     <string name="sugare_filter_name">Содержание сахара</string>
 
