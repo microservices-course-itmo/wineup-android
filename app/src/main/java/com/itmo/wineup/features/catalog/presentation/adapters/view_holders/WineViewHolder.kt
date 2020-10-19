@@ -17,27 +17,36 @@ import kotlinx.android.synthetic.main.item_wine.view.*
 class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val image = itemView.leftImage
+
     private val name = itemView.productName
-    private val description = itemView.productDescription
+    private val sortOfGrape = itemView.grapeName
     private val volume = itemView.productVolume
-    private val relevance = itemView.productRelevance
+    private val country = itemView.productCountry
+    private val description = itemView.productDescription
+    private val personalMatch = itemView.personalMatch
+    private val shop = itemView.shop
+    private val discount = itemView.discount
     private val oldPrice = itemView.oldPrice
     private val newPrice = itemView.newPrice
-    private val discount = itemView.discount
+    private val year = itemView.year
     private val rating = itemView.ratingBar
-    private val trademark = itemView.trademark
     private val toFavorites = itemView.toFavorites
+
 
     fun bind(model: WineModel) {
         with(itemView.context) {
             name.text = model.name
-            description.text = getString(R.string.wine_item_description, model.country, model.color, model.amountOfSugar)
+            description.text = getString(R.string.wine_item_description, model.amountOfSugar, model.color)
             volume.text = model.volume
-            relevance.text = getString(R.string.wine_item_relevance, model.personalMatch)
-            oldPrice.text = getString(R.string.wine_item_price, model.price)
+            personalMatch.text = getString(R.string.wine_item_relevance, model.personalMatch)
+            oldPrice.text = getString(R.string.wine_item_old_price, model.price)
             discount.text = getString(R.string.wine_item_discount, model.discount)
             newPrice.text = getString(R.string.wine_item_price, (model.price - model.price * model.discount / 100))
             rating.rating = model.rate
+            shop.text = model.shop
+            sortOfGrape.text = model.sortOfGrape
+            country.text = model.country
+            year.text = getString(R.string.wine_item_year, model.year)
         }
         toFavorites.setOnClickListener(View.OnClickListener {
             if(model.isFavorite){
@@ -70,9 +79,9 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             })
             .into(image)
 
-        Glide.with(itemView.context)
-            .load(model.tradeMarkUrl)
-            .override(trademark.width, trademark.height)
-            .into(trademark)
+//        Glide.with(itemView.context)
+//            .load(model.tradeMarkUrl)
+//            .override(trademark.width, trademark.height)
+//            .into(trademark)
     }
 }
