@@ -12,5 +12,8 @@ data class WineModel(
     val discount: Int,
     val imageUrl: String,
     val tradeMarkUrl: String,
+    val shop: String,
+    val year: Int,
+    val sortOfGrape: String,
     var isFavorite: Boolean
 )
