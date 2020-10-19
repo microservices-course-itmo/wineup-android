@@ -38,6 +38,7 @@
     <style name="RatingBar" parent="android:style/Widget.Material.RatingBar.Small">
         <item name="colorControlNormal">@color/red</item>
         <item name="colorControlActivated">@color/gold</item>
+    </style>
 
     <style name="Switch" parent = "Widget.AppCompat.CompoundButton.Switch">
         <item name="thumbTint">@color/selector_switch_thumb</item>

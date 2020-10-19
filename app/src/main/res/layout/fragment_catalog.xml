@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
         android:background="@drawable/search_background"
-        android:queryBackground="null"
+        android:queryBackground="@null"
         android:queryHint="@string/hint_search"
         android:iconifiedByDefault="false"
         app:layout_constraintStart_toStartOf="parent"

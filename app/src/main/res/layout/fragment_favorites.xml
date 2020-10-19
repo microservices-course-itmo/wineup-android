@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:queryBackground="null"
+        android:queryBackground="@null"
         android:iconifiedByDefault="false"
         android:background="@drawable/country_search_background"
         android:queryHint="@string/search_in_favorite"
@@ -33,7 +33,7 @@
         android:textColor="@color/white"
         app:layout_constraintCircleRadius="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/favorites_searchView"
+        app:layout_constraintTop_toBottomOf="@id/searchInFavourites"
         android:drawableEnd="@drawable/lines_icon"
         android:drawablePadding="19dp"/>
 
@@ -44,9 +44,9 @@
         android:textSize="12sp"
         android:text="@string/clear_favorite_underlined"
         android:textColor="@color/dark_red_background"
-        app:layout_constraintTop_toBottomOf="@id/favorites_searchView"
+        app:layout_constraintTop_toBottomOf="@id/searchInFavourites"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@id/favorites_searchView"
+        app:layout_constraintEnd_toEndOf="@id/searchInFavourites"
         android:layout_marginStart="55dp"/>
 
     <androidx.recyclerview.widget.RecyclerView

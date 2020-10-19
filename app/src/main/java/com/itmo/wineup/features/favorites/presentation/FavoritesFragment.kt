@@ -93,7 +93,7 @@ class FavoritesFragment : Fragment() {
         to_catalog_button.setOnClickListener {
             findNavController().navigate(R.id.navigation_catalog)
         }
-        favorites_searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+        searchInFavourites.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
