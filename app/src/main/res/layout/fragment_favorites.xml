@@ -3,11 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#000000"
     tools:context=".features.favorites.presentation.FavoritesFragment">
 
-    <TextView
+    <SearchView
+        android:id="@+id/searchInFavourites"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Избранное" />
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:background="@drawable/search_background"
+        android:queryBackground="null"
+        android:queryHint="Поиск по избранному"
+        android:iconifiedByDefault="false"/>
 
 </FrameLayout>
