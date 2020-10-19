@@ -6,14 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.WineModel
+import com.itmo.wineup.features.catalog.presentation.CatalogFragment
 import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
 import com.itmo.wineup.features.favorites.presentation.models.FavoriteFilterModel
 import kotlinx.android.synthetic.main.fragment_favorites.*
@@ -60,6 +64,7 @@ class FavoritesFragment : Fragment() {
 
     private fun renderVineList(vineList: List<WineModel>) {
         adapter.updateList(vineList)
+        favorites_empty_container.visibility = if (vineList.isEmpty()) View.VISIBLE else View.GONE
     }
 
     private fun filterSelected(filter: FavoriteFilterModel) {
@@ -71,8 +76,8 @@ class FavoritesFragment : Fragment() {
             AlertDialog.Builder(requireContext())
                 .setTitle(R.string.clear_alert_title)
                 .setPositiveButton(R.string.yes) { _, _ ->
-                    adapter.updateList(emptyList())
-                    //todo: clear favorite list and show screen with "Тут пока пусто"
+                    //todo: clear favorite list
+                    viewModel.wineList.value = emptyList()
                 }
                 .setNegativeButton(R.string.no) { dialogInterface, _ ->
                     dialogInterface.cancel()
@@ -85,8 +90,28 @@ class FavoritesFragment : Fragment() {
                 "BottomFavoriteSortFragment"
             )
         }
+        to_catalog_button.setOnClickListener {
+            findNavController().navigate(R.id.navigation_catalog)
+        }
+        favorites_searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
 
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrBlank()) hideNothingFoundScreen()
+                else showNothingFoundScreen()
+                return false
+            }
+        })
+    }
 
+    private fun showNothingFoundScreen() {
+        nothing_found_container.visibility = View.VISIBLE
+    }
+
+    private fun hideNothingFoundScreen() {
+        nothing_found_container.visibility = View.GONE
     }
 
 }

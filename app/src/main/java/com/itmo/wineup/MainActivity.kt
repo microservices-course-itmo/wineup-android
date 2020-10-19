@@ -5,6 +5,10 @@ import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
+import androidx.navigation.ui.NavigationUI
+import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.messaging.FirebaseMessaging
 import com.itmo.wineup.features.catalog.presentation.CatalogFragment
@@ -21,7 +25,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        navigationController = findNavController(R.id.navHostFragment)
+        navView.setupWithNavController(navigationController)
+        //navView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         //buttonTest.setOnClickListener { openFilterFragment(FilterColorFragment()) }
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->
@@ -33,7 +39,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private val mOnNavigationItemSelectedListener =
         BottomNavigationView.OnNavigationItemSelectedListener { item ->
