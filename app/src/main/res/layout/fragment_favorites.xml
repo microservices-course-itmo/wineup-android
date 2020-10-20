@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:queryBackground="null"
+        android:queryBackground="@null"
         android:iconifiedByDefault="false"
         android:background="@drawable/country_search_background"
         android:queryHint="@string/search_in_favorite"
@@ -33,7 +33,7 @@
         android:textColor="@color/white"
         app:layout_constraintCircleRadius="5dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/favorites_searchView"
+        app:layout_constraintTop_toBottomOf="@id/searchInFavourites"
         android:drawableEnd="@drawable/lines_icon"
         android:drawablePadding="19dp"/>
 
@@ -44,13 +44,12 @@
         android:textSize="12sp"
         android:text="@string/clear_favorite_underlined"
         android:textColor="@color/dark_red_background"
-        app:layout_constraintTop_toBottomOf="@id/favorites_searchView"
+        app:layout_constraintTop_toBottomOf="@id/searchInFavourites"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@id/favorites_searchView"
+        app:layout_constraintEnd_toEndOf="@id/searchInFavourites"
         android:layout_marginStart="55dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-
         android:id="@+id/favoriteListRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -58,5 +57,97 @@
         app:layout_constraintTop_toBottomOf="@id/sort_by_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/nothing_found_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sort_by_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/thinking"
+            android:layout_margin="10dp"
+            app:layout_constraintBottom_toTopOf="@id/nothing_found_text"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/nothing_found_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favorites_nothing_found"
+            android:textSize="24sp"
+            android:textColor="@color/grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/favorites_empty_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/sort_by_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/favorites_empty_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favorites_empty_title"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="25dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/favorites_empty_subtitle"/>
+
+        <TextView
+            android:id="@+id/favorites_empty_subtitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/favorites_empty_subtitle"
+            android:textAlignment="center"
+            android:textSize="18sp"
+            android:textColor="@color/grey"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/favorites_arrow"/>
+
+        <ImageView
+            android:id="@+id/favorites_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="5dp"
+            android:paddingBottom="10dp"
+            android:src="@drawable/ic_arrow_favorites"
+            app:layout_constraintBottom_toTopOf="@id/to_catalog_button"
+            app:layout_constraintStart_toEndOf="@id/to_catalog_button" />
+
+        <Button
+            android:id="@+id/to_catalog_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_red_background"
+            android:paddingVertical="20dp"
+            android:paddingHorizontal="25dp"
+            android:text="@string/button_to_catalog"
+            android:textSize="16sp"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
