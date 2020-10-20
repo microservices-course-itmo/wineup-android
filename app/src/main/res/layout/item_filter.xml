@@ -16,6 +16,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="FilterName"
+        android:textColor="@color/checkBox_red"
         android:background="@drawable/border"/>
 
 
