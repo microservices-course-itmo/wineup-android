@@ -44,7 +44,9 @@ class FilterSugarFragment : BottomSheetDialogFragment(){
         semiDryWineCheckBox.setOnClickListener { onCheckboxClicked() }
         semiSweetWineCheckBox.setOnClickListener { onCheckboxClicked() }
         sweetWineCheckBox.setOnClickListener { onCheckboxClicked() }
+        confirmButton.setOnClickListener{dismiss()}
     }
+
 
     override fun onPause() {
         viewModel.wineSugarList.value = sugar

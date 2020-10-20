@@ -12,14 +12,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.WineModel
-import com.itmo.wineup.features.catalog.presentation.CatalogFragment
 import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
-import com.itmo.wineup.features.favorites.presentation.models.FavoriteFilterModel
+import com.itmo.wineup.features.favorites.presentation.models.FavoriteSortModel
 import kotlinx.android.synthetic.main.fragment_favorites.*
 
 class FavoritesFragment : Fragment() {
@@ -45,18 +43,8 @@ class FavoritesFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(FavoritesViewModel::class.java)
         viewModel.wineList.observe(viewLifecycleOwner, Observer(this::renderVineList))
-        viewModel.selectedFilter.observe(viewLifecycleOwner, Observer(this::filterSelected))
+        viewModel.selectedSort.observe(viewLifecycleOwner, Observer(this::filterSelected))
         favoriteListRecycler.adapter = adapter
-
-        favoriteListRecycler.addItemDecoration(
-            DividerItemDecoration(
-                favoriteListRecycler.context,
-                LinearLayout.VERTICAL
-            ).apply {
-                ContextCompat.getDrawable(requireContext(), R.drawable.divider)
-                    ?.let { setDrawable(it) }
-            }
-        )
         
         viewModel.setWines()
         setListeners()
@@ -67,8 +55,8 @@ class FavoritesFragment : Fragment() {
         favorites_empty_container.visibility = if (vineList.isEmpty()) View.VISIBLE else View.GONE
     }
 
-    private fun filterSelected(filter: FavoriteFilterModel) {
-        Toast.makeText(context, "Selected filter: $filter", Toast.LENGTH_LONG).show()
+    private fun filterSelected(sort: FavoriteSortModel) {
+        //Toast.makeText(context, "Selected filter: $sort", Toast.LENGTH_LONG).show()
     }
 
     private fun setListeners() {
@@ -108,10 +96,14 @@ class FavoritesFragment : Fragment() {
 
     private fun showNothingFoundScreen() {
         nothing_found_container.visibility = View.VISIBLE
+        favoriteListRecycler.visibility = View.GONE
+        favorites_empty_container.visibility = View.GONE
+
     }
 
     private fun hideNothingFoundScreen() {
         nothing_found_container.visibility = View.GONE
+        favoriteListRecycler.visibility = View.VISIBLE
     }
 
 }

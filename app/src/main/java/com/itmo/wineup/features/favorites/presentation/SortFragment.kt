@@ -8,15 +8,14 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.itmo.wineup.R
-import com.itmo.wineup.features.favorites.presentation.models.FavoriteFilterModel
-import kotlinx.android.synthetic.main.fragment_filter_recommend.by_rating
+import com.itmo.wineup.features.catalog.models.Recommendation
+import com.itmo.wineup.features.favorites.presentation.models.FavoriteSortModel
+import kotlinx.android.synthetic.main.fragment_filter_recommend.*
 import kotlinx.android.synthetic.main.fragment_sort.*
 
 class SortFragment: BottomSheetDialogFragment() {
 
-    private val sort = mutableSetOf(FavoriteFilterModel.BY_RECOMMENDATION)
     private lateinit var viewModel: FavoritesViewModel
-    private var closeFragment = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,69 +29,34 @@ class SortFragment: BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(FavoritesViewModel::class.java)
-        viewModel.selectedFilter.observe(viewLifecycleOwner, Observer(this::setFilter))
-        setListener()
+        viewModel.selectedSort.observe(viewLifecycleOwner, Observer(this::setFilter))
     }
 
-    private fun setFilter(sorting: Set<FavoriteFilterModel>){
-        for(sort in sorting)
+    private fun setFilter(sort: FavoriteSortModel){
             when(sort){
-                FavoriteFilterModel.BY_RECOMMENDATION-> byRecommendCheckbox.isChecked = true
-                FavoriteFilterModel.BY_RATING -> byRatingCheckbox.isChecked = true
-                FavoriteFilterModel.BY_PRICE_MIN -> ascendingPriceCheckbox.isChecked = true
-                FavoriteFilterModel.BY_PRICE_MAX -> descendingPriceCheckbox.isChecked = true
+                FavoriteSortModel.BY_RECOMMENDATION -> byRecommendRadio.isChecked = true
+                FavoriteSortModel.BY_RATING -> byRatingRadio.isChecked = true
+                FavoriteSortModel.BY_PRICE_MIN -> ascendingPriceRadio.isChecked = true
+                FavoriteSortModel.BY_PRICE_MAX -> descendingPriceRadio.isChecked = true
             }
     }
 
-    private fun onCheckboxClicked() {
-        if (byRecommendCheckbox.isChecked) {
-            sort.add(FavoriteFilterModel.BY_RECOMMENDATION)
-        } else {
-            sort.remove(FavoriteFilterModel.BY_RECOMMENDATION)
-        }
-
-        if (byRatingCheckbox.isChecked) {
-            sort.add(FavoriteFilterModel.BY_RATING)
-        } else {
-            sort.remove(FavoriteFilterModel.BY_RATING)
-        }
-
-        if (ascendingPriceCheckbox.isChecked) {
-            sort.add(FavoriteFilterModel.BY_PRICE_MIN)
-        } else {
-            sort.remove(FavoriteFilterModel.BY_PRICE_MIN)
-        }
-
-        if (descendingPriceCheckbox.isChecked) {
-            sort.add(FavoriteFilterModel.BY_PRICE_MAX)
-        } else {
-            sort.remove(FavoriteFilterModel.BY_PRICE_MAX)
-        }
-
-    }
-}
-       
-
-    private fun setFilter(selectedValue: FavoriteFilterModel) {
-        when (selectedValue) {
-            FavoriteFilterModel.BY_RECOMMENDATION -> by_recommendation.isChecked = true
-            FavoriteFilterModel.BY_RATING -> by_rating.isChecked = true
-            FavoriteFilterModel.BY_PRICE_MIN -> by_price_min.isChecked = true
-            FavoriteFilterModel.BY_PRICE_MAX -> by_price_max.isChecked = true
-        }
-        closeFragment = true
+    override fun onPause() {
+        viewModel.selectedSort.value = getSortModelFromRadio()
+        super.onPause()
     }
 
-    private fun setListener() {
-        filters_radio_group.setOnCheckedChangeListener { _, checkedId ->
-            when (checkedId) {
-                R.id.by_recommendation -> viewModel.selectedFilter.value = FavoriteFilterModel.BY_RECOMMENDATION
-                R.id.by_rating -> viewModel.selectedFilter.value = FavoriteFilterModel.BY_RATING
-                R.id.by_price_min -> viewModel.selectedFilter.value = FavoriteFilterModel.BY_PRICE_MIN
-                R.id.by_price_max -> viewModel.selectedFilter.value = FavoriteFilterModel.BY_PRICE_MAX
-            }
-            if (closeFragment) dismiss()
+    private fun getSortModelFromRadio() =
+        when(sortRadioGroup.checkedRadioButtonId){
+            byRatingRadio.id -> FavoriteSortModel.BY_RATING
+            byRecommendRadio.id -> FavoriteSortModel.BY_RECOMMENDATION
+            ascendingPriceRadio.id -> FavoriteSortModel.BY_PRICE_MIN
+            descendingPriceRadio.id ->  FavoriteSortModel.BY_PRICE_MAX
+            else -> FavoriteSortModel.BY_RECOMMENDATION
         }
-    }
+
+
+
+
 
 }
