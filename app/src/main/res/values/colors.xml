@@ -18,6 +18,7 @@
     <color name="light_red">#EB5757</color>
     <color name="button_background_enabled">#ec5656</color>
     <color name="button_background_disabled">#fdecec</color>
+    <color name="CHECK_COLOR">#FF0000</color>
     <color name="dark_red_background">#931332</color>
     <color name="gold">#ecab2e</color>
 </resources>

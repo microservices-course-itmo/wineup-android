@@ -12,13 +12,15 @@ import com.itmo.wineup.features.favorites.presentation.models.FavoriteFilterMode
 import kotlinx.android.synthetic.main.fragment_filter_recommend.by_rating
 import kotlinx.android.synthetic.main.fragment_sort.*
 
-class SortFragment : BottomSheetDialogFragment() {
+class SortFragment: BottomSheetDialogFragment() {
 
+    private val sort = mutableSetOf(FavoriteFilterModel.BY_RECOMMENDATION)
     private lateinit var viewModel: FavoritesViewModel
     private var closeFragment = false
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_sort, container, false)
@@ -31,6 +33,45 @@ class SortFragment : BottomSheetDialogFragment() {
         viewModel.selectedFilter.observe(viewLifecycleOwner, Observer(this::setFilter))
         setListener()
     }
+
+    private fun setFilter(sorting: Set<FavoriteFilterModel>){
+        for(sort in sorting)
+            when(sort){
+                FavoriteFilterModel.BY_RECOMMENDATION-> byRecommendCheckbox.isChecked = true
+                FavoriteFilterModel.BY_RATING -> byRatingCheckbox.isChecked = true
+                FavoriteFilterModel.BY_PRICE_MIN -> ascendingPriceCheckbox.isChecked = true
+                FavoriteFilterModel.BY_PRICE_MAX -> descendingPriceCheckbox.isChecked = true
+            }
+    }
+
+    private fun onCheckboxClicked() {
+        if (byRecommendCheckbox.isChecked) {
+            sort.add(FavoriteFilterModel.BY_RECOMMENDATION)
+        } else {
+            sort.remove(FavoriteFilterModel.BY_RECOMMENDATION)
+        }
+
+        if (byRatingCheckbox.isChecked) {
+            sort.add(FavoriteFilterModel.BY_RATING)
+        } else {
+            sort.remove(FavoriteFilterModel.BY_RATING)
+        }
+
+        if (ascendingPriceCheckbox.isChecked) {
+            sort.add(FavoriteFilterModel.BY_PRICE_MIN)
+        } else {
+            sort.remove(FavoriteFilterModel.BY_PRICE_MIN)
+        }
+
+        if (descendingPriceCheckbox.isChecked) {
+            sort.add(FavoriteFilterModel.BY_PRICE_MAX)
+        } else {
+            sort.remove(FavoriteFilterModel.BY_PRICE_MAX)
+        }
+
+    }
+}
+       
 
     private fun setFilter(selectedValue: FavoriteFilterModel) {
         when (selectedValue) {
