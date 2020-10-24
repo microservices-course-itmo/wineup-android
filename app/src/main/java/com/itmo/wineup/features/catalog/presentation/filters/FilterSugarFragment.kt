@@ -9,10 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.itmo.wineup.R
-import com.itmo.wineup.features.catalog.models.WineColor
 import com.itmo.wineup.features.catalog.models.WineSugar
 import com.itmo.wineup.features.catalog.presentation.CatalogViewModel
-import kotlinx.android.synthetic.main.fragment_filter_color.*
 import kotlinx.android.synthetic.main.fragment_filter_sugar.*
 
 class FilterSugarFragment : BottomSheetDialogFragment(){
@@ -46,7 +44,9 @@ class FilterSugarFragment : BottomSheetDialogFragment(){
         semiDryWineCheckBox.setOnClickListener { onCheckboxClicked() }
         semiSweetWineCheckBox.setOnClickListener { onCheckboxClicked() }
         sweetWineCheckBox.setOnClickListener { onCheckboxClicked() }
+        confirmButton.setOnClickListener{dismiss()}
     }
+
 
     override fun onPause() {
         viewModel.wineSugarList.value = sugar

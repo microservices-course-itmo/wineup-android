@@ -29,6 +29,7 @@ class FilterRecommendFragment : BottomSheetDialogFragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(CatalogViewModel::class.java)
         viewModel.recommendationList.observe(viewLifecycleOwner, Observer(this::setFilter))
+        confirmButton.setOnClickListener{ dismiss() }
     }
 
     private fun setFilter(recommendation: Recommendation){
@@ -38,8 +39,11 @@ class FilterRecommendFragment : BottomSheetDialogFragment() {
         }
     }
 
-    override fun onPause() {
+    private fun saveFilter(){
         viewModel.recommendationList.value = if (recommended.isChecked) Recommendation.RECOMMENDED else Recommendation.BY_RATING
+    }
+    override fun onPause() {
+        saveFilter()
         super.onPause()
     }
 }

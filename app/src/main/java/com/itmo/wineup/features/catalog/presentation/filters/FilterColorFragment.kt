@@ -44,7 +44,7 @@ class FilterColorFragment : BottomSheetDialogFragment(){
         whiteWineCheckBox.setOnClickListener { onCheckboxClicked() }
         redWineCheckBox.setOnClickListener { onCheckboxClicked() }
         pinkWineCheckBox.setOnClickListener { onCheckboxClicked() }
-        confirmButton.setOnClickListener {
+        confirm_button.setOnClickListener {
             viewModel.wineColorList.value = colors
             dismiss()
         }
