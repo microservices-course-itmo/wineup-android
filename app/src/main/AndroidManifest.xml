@@ -15,9 +15,9 @@
         <activity android:name=".features.auth.presentation.PhoneNumberAccessActivity"/>
         <activity android:name=".features.auth.presentation.CodeInputActivity"/>
         <activity android:name=".features.auth.presentation.AgeAccessErrorActivity" />
-        <activity android:name=".features.auth.presentation.AgeAccessActivity">
+        <activity android:name=".features.auth.presentation.AgeAccessActivity" />
+        <activity android:name=".features.wine_info.WineInfoActivity" />
 
-        </activity>
         <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustPan">
