@@ -17,21 +17,21 @@
     <string name="wine_item_old_price"><s>%1$d₽</s></string>
     <string name="wine_item_discount">-%1$d%%</string>
     <string name="wine_item_year">%1$d г.</string>
-    <string name="hint_search">Поиск</string>
-    <string name="filter_price">Цена</string>
+    <string name="hint_search">Поиск..</string>
+    <string name="filter_price">Цена:</string>
     <string name="from_price">От</string>
     <string name="to_price">До</string>
-    <string name="item_with_discount">Товар со скидкой</string>
+    <string name="item_with_discount">Товары со скидкой</string>
     <string name="to1500">До 1500</string>
     <string name="filter_confirm">Применить</string>
-    <string name="filter_color">Цвет</string>
-    <string name="filter_reset">Сбросить</string>
+    <string name="filter_color">Цвет:</string>
+    <string name="filter_reset"><u>Сбросить</u></string>
     <string name="filter_white_wine">Белое</string>
     <string name="filter_red_wine">Красное</string>
     <string name="filter_pink_wine">Розовое</string>
     <string name="filter_apply">Применить</string>
-    <string name="filter_countries">Страна</string>
-    <string name="recommended">Рекомендованное</string>
+    <string name="filter_countries">Страна:</string>
+    <string name="recommended">Рекомендованное:</string>
     <string name="recommend">Наиболее вам подходящие</string>
     <string name="by_rating">По рейтингу</string>
     <string name="by_recommendation">По рекомендации</string>
@@ -80,10 +80,13 @@
     <string name="yes">Да</string>
     <string name="no">Нет</string>
     <string name="price">Стоимость:</string>
-    <string name="sugare_filter_name">Содержание сахара</string>
+    <string name="sugare_filter_name">Содержание сахара:</string>
     <string name="favorites_nothing_found">Совпадений не найдено</string>
     <string name="favorites_empty_title">Тут пока пусто</string>
     <string name="favorites_empty_subtitle">Наш каталог поможет Вам\nчто-нибудь найти..</string>
     <string name="button_to_catalog">Перейти в каталог</string>
+    <string name="swipe_prompt">Листайте..</string>
+    <string name="below">До:</string>
+    <string name="all_filters_button">Все фильтры</string>
 
 </resources>

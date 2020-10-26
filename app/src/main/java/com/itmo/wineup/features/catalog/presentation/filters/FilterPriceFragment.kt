@@ -1,5 +1,6 @@
 package com.itmo.wineup.features.catalog.presentation.filters
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,11 +12,18 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.WinePriceFilter
 import com.itmo.wineup.features.catalog.presentation.CatalogViewModel
+import com.itmo.wineup.features.catalog.presentation.filters.adapters.viewholders.DismissListener
+import com.itmo.wineup.features.catalog.presentation.filters.adapters.viewholders.Dismissable
 import kotlinx.android.synthetic.main.fragment_filter_price.*
 
-class FilterPriceFragment : BottomSheetDialogFragment(){
+class FilterPriceFragment : BottomSheetDialogFragment(), Dismissable{
 
     private lateinit var viewModel: CatalogViewModel
+    private var dismissListener: DismissListener? = null
+
+    override fun setOnDismissListener(listener: DismissListener) {
+        dismissListener = listener
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -70,6 +78,11 @@ class FilterPriceFragment : BottomSheetDialogFragment(){
             discount_switch.isChecked
         )
         dismiss()
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        dismissListener?.trigger()
+        super.onDismiss(dialog)
     }
 }
 

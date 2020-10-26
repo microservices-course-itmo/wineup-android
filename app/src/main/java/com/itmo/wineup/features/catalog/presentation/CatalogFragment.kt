@@ -1,5 +1,6 @@
 package com.itmo.wineup.features.catalog.presentation
 
+import android.graphics.Typeface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -23,6 +24,8 @@ class CatalogFragment : Fragment() {
     companion object {
         fun newInstance() =
             CatalogFragment()
+        val typeface_thin = Typeface.create("sans-serif-thin", Typeface.NORMAL)
+        val typeface_normal = Typeface.create("sans-serif", Typeface.NORMAL)
     }
 
     private lateinit var viewModel: CatalogViewModel
@@ -52,12 +55,6 @@ class CatalogFragment : Fragment() {
             GridLayoutManager(activity, 1, GridLayoutManager.HORIZONTAL, false)
         filtersRecyclerView.adapter = filterAdapter
 
-        filtersRecyclerView.addItemDecoration(
-            DividerItemDecoration(
-                filtersRecyclerView.context,
-                LinearLayout.VERTICAL
-            )
-        )
         viewModel = ViewModelProvider(requireActivity()).get(CatalogViewModel::class.java)
         viewModel.wineList.observe(viewLifecycleOwner, Observer(this::renderVineList))
         viewModel.wineColorList.observe(viewLifecycleOwner, Observer(this::colorFilter))
@@ -96,7 +93,6 @@ class CatalogFragment : Fragment() {
     }
 
     private fun getFiltersList() = listOf(
-        "Все фильтры",
         "Рекомендованные",
         "Цена",
         "Страна",

@@ -5,19 +5,17 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/filterName"
-        android:layout_width="wrap_content"
+    <com.google.android.material.chip.Chip
+        android:id="@+id/chip"
+        android:theme="@style/Theme.MaterialComponents.Light"
+        android:layout_margin="8dp"
+        style="@style/ChipStyle"
         android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_width="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="FilterName"
-        android:textColor="@color/checkBox_red"
-        android:background="@drawable/border"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:chipStrokeColor="@color/transparent"
+        app:chipStrokeWidth="1dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
