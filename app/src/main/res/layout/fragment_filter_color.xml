@@ -55,7 +55,7 @@
                 android:fontFamily="sans-serif-thin"
                 android:textColor="@color/text"
                 android:text="@string/filter_white_wine"
-                android:theme="@style/CheckBox"
+                android:theme="@style/FilterCheckbox"
                 app:layout_constraintBottom_toTopOf="@id/redWineCheckBox"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/Color" />
@@ -71,7 +71,7 @@
                 android:fontFamily="sans-serif-thin"
                 android:textColor="@color/text"
                 android:text="@string/filter_red_wine"
-                android:theme="@style/CheckBox"
+                android:theme="@style/FilterCheckbox"
                 app:layout_constraintBottom_toTopOf="@id/pinkWineCheckBox"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/whiteWineCheckBox" />
@@ -87,7 +87,7 @@
                 android:fontFamily="sans-serif-thin"
                 android:textColor="@color/text"
                 android:text="@string/filter_pink_wine"
-                android:theme="@style/CheckBox"
+                android:theme="@style/FilterCheckbox"
                 app:layout_constraintBottom_toTopOf="@id/confirmButton"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/redWineCheckBox" />

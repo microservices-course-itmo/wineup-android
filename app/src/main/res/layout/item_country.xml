@@ -17,7 +17,7 @@
         android:lines="1"
         android:textSize="18sp"
         android:textColor="@color/text"
-        android:theme="@style/CheckBox"
+        android:theme="@style/FilterCheckbox"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
