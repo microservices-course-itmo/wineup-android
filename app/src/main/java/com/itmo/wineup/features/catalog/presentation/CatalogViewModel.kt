@@ -13,7 +13,7 @@ class CatalogViewModel: ViewModel() {
     val wineColorList = MutableLiveData<Set<WineColor>>()
     val wineSugarList = MutableLiveData<Set<WineSugar>>()
     val countriesList = MutableLiveData<List<String>>()
-    val recommendationList = MutableLiveData<Recommendation>()
+    val recommendationList = MutableLiveData<Recommendation>(Recommendation.RECOMMENDED)
     val priceValue = MutableLiveData<WinePriceFilter>()
 
 
