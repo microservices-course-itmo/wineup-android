@@ -88,5 +88,6 @@
     <string name="swipe_prompt">Листайте..</string>
     <string name="below">До:</string>
     <string name="all_filters_button">Все фильтры</string>
+    <string name="dop_param"><u>Доп. параметры</u></string>
 
 </resources>

@@ -1,5 +1,6 @@
 package com.itmo.wineup.features.catalog.presentation.adapters.view_holders
 
+import android.content.Intent
 import android.graphics.Paint
 import android.graphics.drawable.Drawable
 import android.util.Log
@@ -12,9 +13,14 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.WineModel
+import com.itmo.wineup.features.wine_info.WineInfoActivity
 import kotlinx.android.synthetic.main.item_wine.view.*
 
 class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+
+    companion object {
+        const val WINE_MODEL_TAG = "WINE_MODEL"
+    }
 
     private val image = itemView.leftImage
 
@@ -78,6 +84,12 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 }
             })
             .into(image)
+
+        itemView.setOnClickListener {
+            val intent = Intent(itemView.context, WineInfoActivity::class.java)
+            intent.putExtra(WINE_MODEL_TAG, model)
+            itemView.context.startActivity(intent)
+        }
 
 //        Glide.with(itemView.context)
 //            .load(model.tradeMarkUrl)
