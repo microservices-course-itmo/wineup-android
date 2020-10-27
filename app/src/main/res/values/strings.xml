@@ -39,11 +39,11 @@
     <string name="filter_semi_dry_wine">Полусухое</string>
     <string name="filter_semi_sweet_wine">Полусладкое</string>
     <string name="filter_sweet_wine">Сладкое</string>
-    <string name="phoneNumberTestInformation">Введите номер телефона для авторизации</string>
+    <string name="phoneNumberTestInformation"><b>Введите номер</b> телефона для авторизации</string>
     <string name="whineUp">WhineUp</string>
-    <string name="enterPhoneNumber">+7 (9xx) xxx-xx-xx</string>
+    <string name="enterPhoneNumber">&#9990; +7 (9xx) xxx-xx-xx</string>
     <string name="authButton">Войти</string>
-    <string name="withoutAuthButton">ПРОДОЛЖИТЬ БЕЗ АВТОРИЗАЦИИ</string>
+    <string name="withoutAuthButton"><u>Продолжить без авторизации</u></string>
     <string name="enter_code">Введите код подтверждения</string>
     <string name="back">Назад</string>
     <string name="wrong_code">Код введен неверно</string>

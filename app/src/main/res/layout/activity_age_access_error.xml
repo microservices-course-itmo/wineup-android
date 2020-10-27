@@ -9,18 +9,29 @@
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/grey"/>
+        app:srcCompat="@drawable/auth_background"
+        android:scaleType="centerCrop"
+        android:background="@color/background_red"
+        android:alpha="0.75"/>
+    <ImageView
+        android:id="@+id/whineUpLogo"
+        android:layout_width="94dp"
+        android:layout_height="94dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/wine_up_logo"/>
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="160dp"
+        android:layout_marginTop="60dp"
         android:text="@string/age_err_1"
         android:textColor="@color/white"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/whineUpLogo"/>
 
     <TextView
         android:id="@+id/textView4"

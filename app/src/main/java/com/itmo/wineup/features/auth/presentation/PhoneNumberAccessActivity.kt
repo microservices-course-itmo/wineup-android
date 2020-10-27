@@ -45,9 +45,11 @@ class PhoneNumberAccessActivity: AppCompatActivity() {
     private fun Button.enabled(enabled: Boolean) {
         isEnabled = enabled
         setTextColor(ContextCompat.getColor(context, if (enabled) R.color.white else R.color.button_background_enabled))
+
         setBackgroundColor(
             ContextCompat.getColor(context, if (enabled) R.color.button_background_enabled else R.color.button_background_disabled)
         )
+        alpha = 1F;
     }
 
 }
