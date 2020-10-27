@@ -22,4 +22,7 @@
     <color name="dark_red_background">#931332</color>
     <color name="gold">#ecab2e</color>
     <color name="background_red">#751B050A</color>
+    <color name="text">#333333</color>
+    <color name="lighter_gray">#D1D1D1</color>
+    <color name="reset">#931332</color>
 </resources>
