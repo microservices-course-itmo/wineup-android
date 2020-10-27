@@ -5,66 +5,96 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/app_name"
+
+    <ImageView
+        android:id="@+id/authBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:tintMode="src_in"
+        app:srcCompat="@drawable/authBackground"
+        app:tint="@color/background_red" />
+
+
+    <Button
+        android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="40dp"
-        android:text="@string/app_name"
-        android:textSize="60sp"
-        android:textStyle="normal"
+        android:layout_marginTop="56dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginEnd="108dp"
+        style="?android:attr/borderlessButtonStyle"
+        android:text="@string/back"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/wineUpLogo" />
+
+    <ImageView
+        android:id="@+id/wineUpLogo"
+        android:layout_width="94dp"
+        android:layout_height="94dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@drawable/wineUpLogo"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="4dp" />
+
 
     <TextView
         android:id="@+id/wrong_code"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
+        android:layout_width="220dp"
+        android:layout_height="45dp"
         android:layout_marginTop="60dp"
         android:text="@string/wrong_code"
-        android:textColor="@color/button_background_enabled"
-        android:textSize="15sp"
+        android:background="@drawable/rounded_btn_white"
+        android:textColor="@color/dark_red"
+        android:textSize="16sp"
+        android:gravity="center"
         android:visibility="invisible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/app_name" />
+        app:layout_constraintTop_toBottomOf="@+id/wineUpLogo" />
 
 
     <TextView
         android:id="@+id/enter_code"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:text="@string/enter_code"
         android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/wrong_code" />
 
     <EditText
         android:id="@+id/code_edit_text"
-        android:layout_width="75dp"
-        android:layout_height="wrap_content"
+        android:layout_width="218dp"
+        android:layout_height="58dp"
         android:layout_marginTop="50dp"
         android:inputType="number"
         android:maxLength="6"
-        android:backgroundTint="@color/button_background_enabled"
+        android:hint="@string/code_sample"
+        android:background="@drawable/rounded_btn_white"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/black_10"
+        android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/enter_code" />
 
     <Button
         android:id="@+id/enter_button"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
+        android:layout_width="218dp"
+        android:layout_height="58dp"
         android:layout_marginTop="40dp"
-        android:background="@color/button_background_disabled"
+        android:background="@drawable/rounded_btn"
         android:enabled="false"
         android:text="@string/enter"
-        android:textColor="@color/button_background_enabled"
+        android:textColor="@color/white"
         app:layout_constraintCircleRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -72,13 +102,13 @@
 
     <Button
         android:id="@+id/button_resend_code"
-        android:layout_width="130dp"
-        android:layout_height="50dp"
+        android:layout_width="218dp"
+        android:layout_height="58dp"
         android:layout_marginTop="40dp"
-        android:background="@color/button_background_disabled"
+        android:background="@drawable/rounded_btn"
         android:enabled="false"
         android:text="@string/resend_code"
-        android:textColor="@color/button_background_enabled"
+        android:textColor="@color/white"
         app:layout_constraintCircleRadius="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,27 +116,19 @@
 
     <TextView
         android:id="@+id/timer_counter"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="316dp"
+        android:layout_height="35dp"
         android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:textSize="16sp"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_resend_code"
-        tools:text="Отправить повторно через 59с" />
+        tools:text="@string/counter_resend_code" />
 
-    <Button
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="35dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="40dp"
-        android:background="@color/button_background_enabled"
-        android:text="@string/back"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintCircleRadius="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
