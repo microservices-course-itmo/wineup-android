@@ -85,5 +85,6 @@
     <string name="favorites_empty_title">Тут пока пусто</string>
     <string name="favorites_empty_subtitle">Наш каталог поможет Вам\nчто-нибудь найти..</string>
     <string name="button_to_catalog">Перейти в каталог</string>
+    <string name="dop_param"><u>Доп. параметры</u></string>
 
 </resources>
