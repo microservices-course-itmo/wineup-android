@@ -2,103 +2,100 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/background_red">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="match_parent"
         android:layout_width="match_parent">
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha="0.25"
+            android:scaleType="centerCrop"
+            android:src="@drawable/auth_background" />
 
-        <TextView
+        <ImageView
             android:id="@+id/whineUpLogo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingStart="33dp"
-            android:paddingTop="38dp"
-            android:text="@string/whineUp"
-            android:textSize="60sp"
-            app:layout_constraintBottom_toTopOf="@+id/phoneNumberTextInformation"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-        </TextView>
+            android:layout_width="94dp"
+            android:layout_height="94dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="20dp"
+            android:src="@drawable/wineup_logo"/>
 
         <TextView
             android:id="@+id/phoneNumberTextInformation"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="38dp"
-            android:layout_marginTop="120dp"
-            android:layout_marginEnd="38dp"
-            android:paddingStart="38dp"
+            android:layout_marginTop="88dp"
+            android:layout_marginStart="64dp"
+            android:layout_marginEnd="64dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
             android:text="@string/phoneNumberTestInformation"
-            android:textSize="24sp"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/whineUpLogo">
-
-        </TextView>
+            app:layout_constraintTop_toBottomOf="@+id/whineUpLogo"/>
 
         <EditText
             android:id="@+id/phoneNumberInput"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
+            android:layout_width="218dp"
+            android:layout_height="58dp"
             android:hint="@string/enterPhoneNumber"
             android:inputType="phone"
             android:maxLength="11"
-            android:background="@android:color/transparent"
-            android:textSize="18sp"
-            android:layout_marginTop="40dp"
-            android:layout_marginStart="64dp"
+            android:background="@color/white"
+            android:paddingStart="56dp"
+            android:paddingEnd="26dp"
+            android:textSize="14sp"
+            android:layout_marginTop="30dp"
             android:textColor="@color/colorAccent"
             android:textColorHint="@color/black_10"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phoneNumberTextInformation">
         </EditText>
+        <ImageView
+            android:id="@+id/phonePic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/phone"
+            android:layout_marginStart="25dp"
+            app:layout_constraintTop_toTopOf="@+id/phoneNumberInput"
+            app:layout_constraintStart_toStartOf="@+id/phoneNumberInput"
+            app:layout_constraintBottom_toBottomOf="@+id/phoneNumberInput"/>
 
-
-        <View
-            android:id="@+id/redLine"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:background="@color/light_red"
+        <Button
+            android:id="@+id/authButton"
+            android:layout_width="218dp"
+            android:layout_height="58dp"
+            android:layout_marginTop="24dp"
+            android:background="@color/button_red"
+            android:alpha="0.5"
+            android:enabled="false"
+            android:text="@string/enter"
+            android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/phoneNumberInput">
 
-        </View>
-
-        <Button
-            android:id="@+id/authButton"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginTop="40dp"
-            android:background="@color/button_background_disabled"
-            android:enabled="false"
-            android:text="@string/enter"
-            android:textColor="@color/button_background_enabled"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/redLine">
-
         </Button>
 
-        <Button
-            style="?android:attr/borderlessButtonStyle"
+        <TextView
             android:id="@+id/withoutAuthButton"
-            android:layout_width="150dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:background="@color/white"
+            android:layout_marginTop="30dp"
+            android:textColor="@color/white"
             android:text="@string/withoutAuthButton"
-            android:textSize="14dp"
+            android:textStyle=""
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/authButton">
-
-        </Button>
+            app:layout_constraintTop_toBottomOf="@+id/authButton"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

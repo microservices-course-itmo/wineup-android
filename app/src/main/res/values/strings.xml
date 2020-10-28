@@ -39,11 +39,11 @@
     <string name="filter_semi_dry_wine">Полусухое</string>
     <string name="filter_semi_sweet_wine">Полусладкое</string>
     <string name="filter_sweet_wine">Сладкое</string>
-    <string name="phoneNumberTestInformation">Введите номер телефона для авторизации</string>
+    <string name="phoneNumberTestInformation"><b>Введите номер</b> телефона для авторизации</string>
     <string name="whineUp">WhineUp</string>
-    <string name="enterPhoneNumber">+7 (9xx) xxx-xx-xx</string>
+    <string name="enterPhoneNumber">+7 (9XX) XXX-XX-XX</string>
     <string name="authButton">Войти</string>
-    <string name="withoutAuthButton">ПРОДОЛЖИТЬ БЕЗ АВТОРИЗАЦИИ</string>
+    <string name="withoutAuthButton"><u>Продолжить без авторизации</u></string>
     <string name="enter_code">Введите код подтверждения</string>
     <string name="back">&#8592; Вернуться назад</string>
     <string name="wrong_code">&#10005; Код введен <b>неверно</b></string>
@@ -52,12 +52,12 @@
 
     <string name="wineup">WineUp</string>
     <string name="age_err_1">Спасибо за честный ответ!</string>
-    <string name="age_err_2">К сожалению наше приложение содержит информацию, не предназначинную для лиц младше 18 :(</string>
-    <string name="age_err_3">Назад</string>
+    <string name="age_err_2">К сожалению наше приложение содержит информацию, <b>не предназначенную</b> для лиц младше 18 лет</string>
+    <string name="age_err_3">Вернуться назад</string>
     <string name="age_access_1">Добро пожаловать!</string>
     <string name="age_access_2">Вам уже исполнилось 18?</string>
-    <string name="age_access_3">Да!</string>
-    <string name="age_access_4">Нет</string>
+    <string name="age_access_3">&#10004; Да!</string>
+    <string name="age_access_4">&#10005; Нет</string>
     <string name="data_enter">Введите данные</string>
     <string name="birth_date">Введите дату рождения</string>
     <string name="date_format">03 05 1996</string>
