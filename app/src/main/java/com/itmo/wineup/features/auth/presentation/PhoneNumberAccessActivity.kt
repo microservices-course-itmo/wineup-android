@@ -2,12 +2,14 @@ package com.itmo.wineup.features.auth.presentation
 
 
 import android.content.Intent
+import android.graphics.Color.alpha
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import com.google.android.gms.common.api.internal.BackgroundDetector
 import com.itmo.wineup.MainActivity
 import com.itmo.wineup.R
 import kotlinx.android.synthetic.main.activity_phone_number_access.*
@@ -44,10 +46,7 @@ class PhoneNumberAccessActivity: AppCompatActivity() {
 
     private fun Button.enabled(enabled: Boolean) {
         isEnabled = enabled
-        setTextColor(ContextCompat.getColor(context, if (enabled) R.color.white else R.color.button_background_enabled))
-        setBackgroundColor(
-            ContextCompat.getColor(context, if (enabled) R.color.button_background_enabled else R.color.button_background_disabled)
-        )
+        alpha = if (enabled) 1F else 0.5F
     }
 
 }
