@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.*
@@ -52,7 +53,7 @@ class CatalogFragment : Fragment() {
         recyclerView.adapter = adapter
         filtersRecyclerView = view.findViewById(R.id.filterRecycler)
         filtersRecyclerView.layoutManager =
-            GridLayoutManager(activity, 1, GridLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(activity,  GridLayoutManager.HORIZONTAL, false)
         filtersRecyclerView.adapter = filterAdapter
 
         viewModel = ViewModelProvider(requireActivity()).get(CatalogViewModel::class.java)

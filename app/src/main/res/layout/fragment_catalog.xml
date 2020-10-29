@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     xmlns:tools="http://schemas.android.com/tools">
 
     <SearchView
@@ -22,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginVertical="12dp"
+        android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@id/searchInCatalog"
         android:gravity="center_vertical"
         android:background="@color/white">
@@ -52,8 +54,8 @@
             android:id="@+id/filterRecycler"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingHorizontal="4dp"
-            android:paddingVertical="9dp"
+            android:layout_gravity="center_vertical"
+            android:orientation="horizontal"
             android:scrollbars="none"/>
     </LinearLayout>
 
@@ -61,7 +63,6 @@
         android:id="@+id/vineListRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="10dp"
         app:layout_constraintTop_toBottomOf="@id/filters_container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
