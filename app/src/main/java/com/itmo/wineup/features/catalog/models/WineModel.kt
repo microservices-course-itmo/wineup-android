@@ -1,5 +1,7 @@
 package com.itmo.wineup.features.catalog.models
 
+import java.io.Serializable
+
 data class WineModel(
     val name: String,
     val country: String,
@@ -16,4 +18,4 @@ data class WineModel(
     val year: Int,
     val sortOfGrape: String,
     var isFavorite: Boolean
-)
+) : Serializable

@@ -1,35 +1,49 @@
 package com.itmo.wineup.features.catalog.presentation.filters.adapters.viewholders
 
 import android.view.View
-import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.findFragment
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.presentation.filters.*
+import kotlinx.android.synthetic.main.item_filter.view.*
 
-class FiltersViewHolder(item: View) : RecyclerView.ViewHolder(item) {
+class FiltersViewHolder(item: View) : RecyclerView.ViewHolder(item), DismissListener {
 
-    private val filterName = item.findViewById<Button>(R.id.filterName)
+    private val filterName = item.chip
 
     fun bind(model: String) {
         filterName.text = model
+        filterName.isChecked = false
         filterName.setOnClickListener {
-            when (model) {
-                "Рекомендованные" -> openFilterFragment(FilterRecommendFragment())
-                "Цена" -> openFilterFragment(FilterPriceFragment())
-                "Страна" -> openFilterFragment(FilterCountriesFragment())
-                "Цвет" -> openFilterFragment(FilterColorFragment())
-                "Содержание сахара" -> openFilterFragment(FilterSugarFragment())
+            filterName.isChecked = true
+            var fragment: BottomSheetDialogFragment? = when (model) {
+                "Рекомендованные" -> FilterRecommendFragment()
+                "Цена" -> FilterPriceFragment()
+                "Страна" -> FilterCountriesFragment()
+                "Цвет" -> FilterColorFragment()
+                "Содержание сахара" -> FilterSugarFragment()
+                else -> null
             }
-
+            if (fragment != null) {
+                (fragment as Dismissable).setOnDismissListener(this)
+                openFilterFragment(fragment)
+            }
         }
+    }
+
+    override fun trigger() {
+        filterName.isChecked = false
     }
 
     private fun openFilterFragment(fragment: BottomSheetDialogFragment) {
         fragment.show((itemView.context as AppCompatActivity).supportFragmentManager, fragment.tag)
     }
+}
+
+interface DismissListener {
+    fun trigger()
+}
+
+interface Dismissable {
+    fun setOnDismissListener(listener: DismissListener)
 }

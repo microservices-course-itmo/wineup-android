@@ -10,7 +10,7 @@
     <color name="grey">#9E9E9E</color>
     <color name="white">#ffffff</color>
     <color name="red">#931332</color>
-    <color name="transparent">#55000000</color>
+    <color name="transparent">#30000000</color>
     <color name="checkBox_red">#a22744</color>
     <color name="checkBox_gray">#a9a9a9</color>
     <color name="button_confirm">#c1c6cc</color>
@@ -21,4 +21,12 @@
     <color name="CHECK_COLOR">#FF0000</color>
     <color name="dark_red_background">#931332</color>
     <color name="gold">#ecab2e</color>
+    <color name="background_red">#1B050A</color>
+    <color name="text">#333333</color>
+    <color name="lighter_gray">#D1D1D1</color>
+    <color name="reset">#931332</color>
+    <color name="button_age_access">#45D09E</color>
+    <color name="button_age_denied">#E20338</color>
+    <color name="button_red">#931332</color>
+    <color name="background_color">#F4F4F4</color>
 </resources>
