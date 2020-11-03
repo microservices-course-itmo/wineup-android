@@ -91,5 +91,8 @@
     <string name="below">До:</string>
     <string name="all_filters_button">Все фильтры</string>
     <string name="dop_param"><u>Доп. параметры</u></string>
+    <string name="feedback">Отзывы</string>
+    <string name="name_feedback">Марков Павел</string>
+    <string name="more_feedback">Больше отзывов</string>
 
 </resources>
