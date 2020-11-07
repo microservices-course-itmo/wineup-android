@@ -48,7 +48,6 @@
             android:layout_height="58dp"
             android:hint="@string/enterPhoneNumber"
             android:inputType="phone"
-            android:maxLength="11"
             android:background="@color/white"
             android:paddingStart="56dp"
             android:paddingEnd="26dp"
