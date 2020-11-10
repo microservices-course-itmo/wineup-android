@@ -36,7 +36,10 @@ class AgeAccessActivity : AppCompatActivity() {
     }
 
     private fun tryLogin() {
-        if (!autoLogin) viewModel.skipLogin()
+        if (!autoLogin)  {
+            viewModel.skipLogin()
+            return
+        }
         viewModel.preferences = getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE)
         viewModel.login()
 
