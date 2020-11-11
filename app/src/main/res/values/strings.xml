@@ -94,5 +94,6 @@
     <string name="feedback">Отзывы</string>
     <string name="name_feedback">Марков Павел</string>
     <string name="more_feedback">Больше отзывов</string>
+    <string name="profile_exit">Выход</string>
 
 </resources>

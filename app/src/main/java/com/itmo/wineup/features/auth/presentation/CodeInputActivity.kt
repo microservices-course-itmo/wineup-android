@@ -49,6 +49,8 @@ class CodeInputActivity : AppCompatActivity() {
         setListeners()
         viewModel.accessTokenLiveData.observe(this, Observer<String> {
             startActivity(Intent(applicationContext, MainActivity::class.java))
+            login_progress.visibility = View.GONE
+            enter_button.enabled(true)
         })
     }
 
@@ -107,7 +109,7 @@ class CodeInputActivity : AppCompatActivity() {
                     task.result?.user?.let { viewModel.login(it) }
                         ?: Log.d("Auth", "Unexpected error: user is null")
                 }
-                task.exception is FirebaseAuthInvalidCredentialsException -> wrong_code.visibility = View.VISIBLE
+                task.exception is FirebaseAuthInvalidCredentialsException -> onInvalidCode()
                 else -> {
                     Log.e("Auth", "Auth error", task.exception)
                     Toast.makeText(applicationContext, "Unexpected error while authenticating", Toast.LENGTH_SHORT).show()
@@ -117,8 +119,16 @@ class CodeInputActivity : AppCompatActivity() {
     }
 
     private fun validateCode() {
+        enter_button.enabled(false)
+        login_progress.visibility = View.VISIBLE
         val credential = PhoneAuthProvider.getCredential(verificationId, code_edit_text.text.toString())
         signIn(credential)
+    }
+
+    private fun onInvalidCode() {
+        wrong_code.visibility = View.VISIBLE
+        login_progress.visibility = View.GONE
+        enter_button.enabled(true)
     }
 
     private fun resendCode() {
