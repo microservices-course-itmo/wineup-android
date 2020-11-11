@@ -5,21 +5,28 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.itmo.wineup.R
-import com.itmo.wineup.features.catalog.models.Recommendation
 import kotlinx.android.synthetic.main.wine_activity.*
 import com.itmo.wineup.features.catalog.domain.GetWineListUseCase
 import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
+import com.itmo.wineup.features.catalog.domain.GetFeedbackListUseCase
+import com.itmo.wineup.features.catalog.models.FeedbackModel
+import com.itmo.wineup.features.catalog.presentation.adapters.FeedbackAdapter
 
 class WineInfoActivity : AppCompatActivity() {
     companion object {
         const val WINE_MODEL_TAG = "WINE_MODEL"
+        const val FEEDBACK_MODEL_TAG = "FEEDBACK_MODEL"
     }
     private var current: Int = 0
-    private lateinit var recommendation: Recommendation
+    private var currentFeedback : Int = 0
+
     private val getWineListUseCase = GetWineListUseCase()
     private lateinit var wineModel: WineModel
     private val adapter = WinesAdapter(mutableListOf())
+
+    private val getFeedbackListUse = GetFeedbackListUseCase()
+    private val adapterFeedback = FeedbackAdapter(mutableListOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,27 +36,35 @@ class WineInfoActivity : AppCompatActivity() {
         similarRecyclerView.layoutManager = LinearLayoutManager(baseContext, LinearLayoutManager.HORIZONTAL, false)
         similarRecyclerView.adapter = adapter
         similarRecyclerView.isNestedScrollingEnabled = false
-        renderVineList(getWineListUseCase.invoke())
+        renderVineList(getWineListUseCase.getHardcodedList())
         button_back.alpha = 0.25F
         setSimilarListeners()
+
+        feedbackRecyclerView.layoutManager = LinearLayoutManager(baseContext, LinearLayoutManager.VERTICAL, false)
+        feedbackRecyclerView.adapter = adapterFeedback
+        renderFeedbackList(getFeedbackListUse.invoke())
+        setFeedbackListeners()
     }
 
+    private fun renderFeedbackList(feedbackList: List<FeedbackModel>) {
+        adapterFeedback.updateList(feedbackList)
+    }
 
     private fun setFeedbackListeners(){
         button_feedback.setOnClickListener() {
-            current ++
-            button_feedback.isEnabled = current != 0
-            if (current == 0) {
+            currentFeedback ++
+            button_feedback.isEnabled = currentFeedback != 0
+            if (currentFeedback == 0) {
                 button_feedback.visibility = View.INVISIBLE
             } else button_feedback.visibility = View.VISIBLE
             button_feedback.isEnabled = current != feedbackRecyclerView.adapter?.itemCount ?: Int
-            if (current == feedbackRecyclerView.adapter?.itemCount ?: Int) {
+            if (currentFeedback == feedbackRecyclerView.adapter?.itemCount ?: Int) {
                 button_feedback.visibility = View.INVISIBLE
             } else button_feedback.visibility = View.VISIBLE
-            feedbackRecyclerView.smoothScrollToPosition(current)
+            feedbackRecyclerView.smoothScrollToPosition(currentFeedback)
         }
-
     }
+
     private fun renderVineList(vineList: List<WineModel>) {
         adapter.updateList(vineList)
     }

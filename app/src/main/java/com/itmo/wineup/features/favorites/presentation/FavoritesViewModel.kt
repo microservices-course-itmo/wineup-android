@@ -16,7 +16,7 @@ class FavoritesViewModel: ViewModel() {
 
 
     fun setWines() {
-        wineList.value = getWineListUseCase.invoke()
+        wineList.value = getWineListUseCase.getHardcodedList()
     }
 
 

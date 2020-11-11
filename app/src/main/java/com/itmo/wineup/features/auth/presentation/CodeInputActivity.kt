@@ -1,5 +1,6 @@
 package com.itmo.wineup.features.auth.presentation
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -10,7 +11,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.google.firebase.FirebaseException
 import com.google.firebase.auth.*
@@ -18,6 +19,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
 import com.itmo.wineup.MainActivity
 import com.itmo.wineup.R
+import com.itmo.wineup.features.auth.USER_ACCESS_INFO
 import kotlinx.android.synthetic.main.activity_code_input.*
 import java.util.concurrent.TimeUnit
 
@@ -39,11 +41,15 @@ class CodeInputActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_code_input)
         viewModel = ViewModelProvider(this).get(CodeInputViewModel::class.java)
+        viewModel.preferences = getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE)
         prepareAuth()
         PhoneAuthProvider.verifyPhoneNumber(authOptions)
         initTimer()
         startTimer()
         setListeners()
+        viewModel.accessTokenLiveData.observe(this, Observer<String> {
+            startActivity(Intent(applicationContext, MainActivity::class.java))
+        })
     }
 
     private fun prepareAuth() {
@@ -95,19 +101,15 @@ class CodeInputActivity : AppCompatActivity() {
     }
 
     private fun signIn(credential: PhoneAuthCredential) {
-        auth.signInWithCredential(credential).addOnCompleteListener {
+        auth.signInWithCredential(credential).addOnCompleteListener {task ->
             when {
-                it.isSuccessful -> {
-                    val user = it.result?.user
-                    user?.getIdToken(true)?.addOnCompleteListener { tokenTask ->
-                        val token = tokenTask.result?.token
-                        Log.d("Auth", "Got token response: $token")
-                        startActivity(Intent(this, MainActivity::class.java))
-                    } ?: Log.d("Auth", "Unexpected error: user is null")
+                task.isSuccessful -> {
+                    task.result?.user?.let { viewModel.login(it) }
+                        ?: Log.d("Auth", "Unexpected error: user is null")
                 }
-                it.exception is FirebaseAuthInvalidCredentialsException -> wrong_code.visibility = View.VISIBLE
+                task.exception is FirebaseAuthInvalidCredentialsException -> wrong_code.visibility = View.VISIBLE
                 else -> {
-                    Log.e("Auth", "Auth error", it.exception)
+                    Log.e("Auth", "Auth error", task.exception)
                     Toast.makeText(applicationContext, "Unexpected error while authenticating", Toast.LENGTH_SHORT).show()
                 }
             }

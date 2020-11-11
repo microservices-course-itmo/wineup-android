@@ -1,7 +1,9 @@
 package com.itmo.wineup
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -11,6 +13,8 @@ import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.messaging.FirebaseMessaging
+import com.itmo.wineup.features.auth.USER_ACCESS_INFO
+import com.itmo.wineup.features.auth.USER_CURRENT_ID
 import com.itmo.wineup.features.catalog.presentation.CatalogFragment
 import com.itmo.wineup.features.catalog.presentation.filters.FilterColorFragment
 import com.itmo.wineup.features.favorites.presentation.FavoritesFragment
@@ -38,6 +42,8 @@ class MainActivity : AppCompatActivity() {
                 Log.d("FCM", "Token for this app is ${task.result}")
             }
         }
+        val id = getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE).getInt(USER_CURRENT_ID, -1)
+        Toast.makeText(baseContext, "Logged in with user id $id", Toast.LENGTH_SHORT).show()
     }
 
     private val mOnNavigationItemSelectedListener =
