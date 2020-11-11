@@ -1,19 +1,18 @@
 package com.itmo.wineup.features.catalog.data
 
 import com.itmo.wineup.features.catalog.models.WineModel
+import com.itmo.wineup.network.retrofit.WineRetrofitApi
 
-class WineListRepository {
+class WineListRepository(private val api: WineRetrofitApi) {
 
-    fun getList() = getHardCodedList()
 
-    private fun getListFromApi(): List<WineModel> {
-        //todo
-        return emptyList()
-    }
+    suspend fun getList() = getListFromApi()
 
-    private fun getHardCodedList(): List<WineModel> {
+    private suspend fun getListFromApi() = api.getWineList()
+
+    fun getHardcodedList(): List<WineModel> {
         val wines = arrayListOf<WineModel>()
-        for (i in 0..9){
+        for (i in 0..9) {
             wines.add(
                 WineModel(
                     "Canti Merlot",

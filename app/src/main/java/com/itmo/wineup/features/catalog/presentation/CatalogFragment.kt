@@ -2,15 +2,14 @@ package com.itmo.wineup.features.catalog.presentation
 
 import android.graphics.Typeface
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +17,7 @@ import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.*
 import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
 import com.itmo.wineup.features.catalog.presentation.filters.adapters.FiltersAdapter
+import com.itmo.wineup.network.retrofit.data.State
 
 
 class CatalogFragment : Fragment() {
@@ -25,6 +25,7 @@ class CatalogFragment : Fragment() {
     companion object {
         fun newInstance() =
             CatalogFragment()
+
         val typeface_thin = Typeface.create("sans-serif-thin", Typeface.NORMAL)
         val typeface_normal = Typeface.create("sans-serif", Typeface.NORMAL)
     }
@@ -53,24 +54,45 @@ class CatalogFragment : Fragment() {
         recyclerView.adapter = adapter
         filtersRecyclerView = view.findViewById(R.id.filterRecycler)
         filtersRecyclerView.layoutManager =
-            LinearLayoutManager(activity,  GridLayoutManager.HORIZONTAL, false)
+            LinearLayoutManager(activity, GridLayoutManager.HORIZONTAL, false)
         filtersRecyclerView.adapter = filterAdapter
 
         viewModel = ViewModelProvider(requireActivity()).get(CatalogViewModel::class.java)
-        viewModel.wineList.observe(viewLifecycleOwner, Observer(this::renderVineList))
+        viewModel.wineList.observe(viewLifecycleOwner, Observer(this::renderWineList))
         viewModel.wineColorList.observe(viewLifecycleOwner, Observer(this::colorFilter))
         viewModel.wineSugarList.observe(viewLifecycleOwner, Observer(this::sugarFilter))
         viewModel.countriesList.observe(viewLifecycleOwner, Observer(this::countriesFilter))
-        viewModel.recommendationList.observe(viewLifecycleOwner, Observer(this:: recommendationFilter))
-        viewModel.priceValue.observe(viewLifecycleOwner, Observer(this:: priceFilter))
+        viewModel.recommendationList.observe(
+            viewLifecycleOwner,
+            Observer(this::recommendationFilter)
+        )
+        viewModel.priceValue.observe(viewLifecycleOwner, Observer(this::priceFilter))
         filterAdapter.updateList(getFiltersList())
         viewModel.setWines()
 
 
     }
 
-    private fun renderVineList(vineList: List<WineModel>) {
-        adapter.updateList(vineList)
+    private fun renderWineList(state: State) {
+        when (state) {
+            is State.Loading -> {
+                Log.i("testing", "state = LOADING")
+                Toast.makeText(requireContext(), "Loading...", Toast.LENGTH_SHORT).show()
+                //todo show skeletons or loader
+            }
+            is State.Success -> {
+                adapter.updateList(state.data)
+                Log.i("testing", "state = success")
+                Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
+            }
+            is State.Error -> {
+                Log.i("testing", "state = error, message = ${state.message}")
+                Toast.makeText(requireContext(), "error: ${state.message}", Toast.LENGTH_LONG).show()
+
+                //todo alert or stub
+            }
+        }
+
     }
 
     private fun colorFilter(vineList: Set<WineColor>) {
