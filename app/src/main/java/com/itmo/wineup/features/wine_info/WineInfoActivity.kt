@@ -29,7 +29,7 @@ class WineInfoActivity : AppCompatActivity() {
         similarRecyclerView.layoutManager = LinearLayoutManager(baseContext, LinearLayoutManager.HORIZONTAL, false)
         similarRecyclerView.adapter = adapter
         similarRecyclerView.isNestedScrollingEnabled = false
-        renderVineList(getWineListUseCase.invoke())
+        renderVineList(getWineListUseCase.getHardcodedList())
         button_back.alpha = 0.25F
         setSimilarListeners()
     }
