@@ -27,7 +27,6 @@ class WineInfoActivity : AppCompatActivity() {
 
     private val getFeedbackListUse = GetFeedbackListUseCase()
     private val adapterFeedback = FeedbackAdapter(mutableListOf())
-    private lateinit var feedbackModel: FeedbackModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,9 +40,8 @@ class WineInfoActivity : AppCompatActivity() {
         button_back.alpha = 0.25F
         setSimilarListeners()
 
-        feedbackModel = intent.getSerializableExtra(FEEDBACK_MODEL_TAG) as FeedbackModel
-        similarRecyclerView.layoutManager = LinearLayoutManager(baseContext, LinearLayoutManager.VERTICAL, false)
-        similarRecyclerView.adapter = adapterFeedback
+        feedbackRecyclerView.layoutManager = LinearLayoutManager(baseContext, LinearLayoutManager.VERTICAL, false)
+        feedbackRecyclerView.adapter = adapterFeedback
         renderFeedbackList(getFeedbackListUse.invoke())
         setFeedbackListeners()
     }
