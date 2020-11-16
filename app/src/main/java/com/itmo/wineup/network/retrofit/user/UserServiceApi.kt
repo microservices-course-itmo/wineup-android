@@ -9,6 +9,9 @@ interface UserServiceApi {
     @POST("login")
     fun login(@Body tokenObject: JsonObject) : Call<LoginResponse>
 
+    @POST("registration")
+    fun register(@Body requestObject: JsonObject) : Call<LoginResponse>
+
     @POST("refresh")
     fun refresh(@Query("refreshToken") token: String) : Call<LoginResponse>
 

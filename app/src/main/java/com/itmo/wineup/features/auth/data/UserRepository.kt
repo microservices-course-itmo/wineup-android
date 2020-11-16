@@ -15,6 +15,16 @@ class UserRepository {
         UserService.api().login(tokenObject).enqueue(callback)
     }
 
+    fun register(firebaseToken: String, birthDate: String, cityId: Int, name: String, callback: Callback<LoginResponse>) {
+        val requestObject = JsonObject().apply {
+            addProperty("birthday", birthDate)
+            addProperty("cityId", cityId)
+            addProperty("fireBaseToken", firebaseToken)
+            addProperty("name", name)
+        }
+        UserService.api().register(requestObject).enqueue(callback)
+    }
+
     fun refresh(refreshToken: String, callback: Callback<LoginResponse>) =
         UserService.api().refresh(refreshToken).enqueue(callback)
 
