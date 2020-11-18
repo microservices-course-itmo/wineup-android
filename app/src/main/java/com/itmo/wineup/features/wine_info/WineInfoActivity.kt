@@ -12,6 +12,7 @@ import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
 import com.itmo.wineup.features.catalog.domain.GetFeedbackListUseCase
 import com.itmo.wineup.features.catalog.models.FeedbackModel
 import com.itmo.wineup.features.catalog.presentation.adapters.FeedbackAdapter
+import kotlinx.android.synthetic.main.fragment_filter_price.*
 
 class WineInfoActivity : AppCompatActivity() {
     companion object {
@@ -26,6 +27,8 @@ class WineInfoActivity : AppCompatActivity() {
     private val adapter = WinesAdapter(mutableListOf())
 
     private val getFeedbackListUse = GetFeedbackListUseCase()
+    private val feedbackList : List<FeedbackModel> = getFeedbackListUse.invoke()
+    private var feedbackCurrentList : MutableList<FeedbackModel> = mutableListOf()
     private val adapterFeedback = FeedbackAdapter(mutableListOf())
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -42,8 +45,8 @@ class WineInfoActivity : AppCompatActivity() {
 
         feedbackRecyclerView.layoutManager = LinearLayoutManager(baseContext, LinearLayoutManager.VERTICAL, false)
         feedbackRecyclerView.adapter = adapterFeedback
-        renderFeedbackList(getFeedbackListUse.invoke())
         setFeedbackListeners()
+        button_feedback.callOnClick()
     }
 
     private fun renderFeedbackList(feedbackList: List<FeedbackModel>) {
@@ -52,16 +55,19 @@ class WineInfoActivity : AppCompatActivity() {
 
     private fun setFeedbackListeners(){
         button_feedback.setOnClickListener() {
-            currentFeedback ++
-            button_feedback.isEnabled = currentFeedback != 0
-            if (currentFeedback == 0) {
+            if (feedbackList.size - currentFeedback > 0) {
+                feedbackCurrentList.add(feedbackList[currentFeedback])
+                currentFeedback ++
+                }
+            if (feedbackList.size - currentFeedback > 0) {
+                feedbackCurrentList.add(feedbackList[currentFeedback])
+                currentFeedback ++
+            }
+            renderFeedbackList(feedbackCurrentList)
+            button_feedback.isEnabled = currentFeedback != feedbackList.size
+            if (currentFeedback == feedbackList.size) {
                 button_feedback.visibility = View.INVISIBLE
             } else button_feedback.visibility = View.VISIBLE
-            button_feedback.isEnabled = current != feedbackRecyclerView.adapter?.itemCount ?: Int
-            if (currentFeedback == feedbackRecyclerView.adapter?.itemCount ?: Int) {
-                button_feedback.visibility = View.INVISIBLE
-            } else button_feedback.visibility = View.VISIBLE
-            feedbackRecyclerView.smoothScrollToPosition(currentFeedback)
         }
     }
 

@@ -29,6 +29,7 @@
                 android:textStyle="bold"
                 android:layout_marginTop="36dp"
                 android:layout_marginStart="22dp"
+                android:layout_marginEnd="22dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"/>
 
@@ -51,7 +52,7 @@
 
             <TextView
                 android:id="@+id/commentFeedback"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="commentFeedback"
                 android:textSize="12sp"
@@ -65,7 +66,7 @@
 
             <TextView
                 android:id="@+id/dateComment"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="dateComment"
                 android:textSize="8sp"

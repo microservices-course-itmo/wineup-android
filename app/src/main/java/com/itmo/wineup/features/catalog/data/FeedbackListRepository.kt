@@ -13,7 +13,7 @@ class FeedbackListRepository {
 
     private fun getHardCodedList(): List<FeedbackModel> {
         val feedback = arrayListOf<FeedbackModel>()
-        for (i in 0..1){
+        for (i in 0..4){
             feedback.add(
                 FeedbackModel(
                     "Марков Павел",
