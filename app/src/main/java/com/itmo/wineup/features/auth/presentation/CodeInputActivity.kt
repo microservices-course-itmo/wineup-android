@@ -47,8 +47,19 @@ class CodeInputActivity : AppCompatActivity() {
         initTimer()
         startTimer()
         setListeners()
-        viewModel.accessTokenLiveData.observe(this, Observer<String> {
-            startActivity(Intent(applicationContext, MainActivity::class.java))
+        viewModel.accessStateLiveDate.observe(this, {
+            hideProgress()
+            when (it) {
+                CodeInputViewModel.AccessState.GRANTED -> startActivity(Intent(applicationContext, MainActivity::class.java))
+                CodeInputViewModel.AccessState.UNAUTHORIZED -> {
+                    val registrationIntent = Intent(applicationContext, RegistrationActivity::class.java)
+                    registrationIntent.putExtra(RegistrationActivity.EXTRA_FIREBASE_TOKEN, viewModel.firebaseToken)
+                    startActivity(registrationIntent)
+                }
+                CodeInputViewModel.AccessState.INVALID_TOKEN -> Log.e("UserAuth", "Login unsuccessful. Incorrect firebase token.")
+                CodeInputViewModel.AccessState.ERROR -> Log.e("UserAuth", "Unknown error")
+                else -> {}
+            }
         })
     }
 
@@ -107,7 +118,10 @@ class CodeInputActivity : AppCompatActivity() {
                     task.result?.user?.let { viewModel.login(it) }
                         ?: Log.d("Auth", "Unexpected error: user is null")
                 }
-                task.exception is FirebaseAuthInvalidCredentialsException -> wrong_code.visibility = View.VISIBLE
+                task.exception is FirebaseAuthInvalidCredentialsException -> {
+                    wrong_code.visibility = View.VISIBLE
+                    hideProgress()
+                }
                 else -> {
                     Log.e("Auth", "Auth error", task.exception)
                     Toast.makeText(applicationContext, "Unexpected error while authenticating", Toast.LENGTH_SHORT).show()
@@ -117,8 +131,15 @@ class CodeInputActivity : AppCompatActivity() {
     }
 
     private fun validateCode() {
+        enter_button.enabled(false)
+        login_progress.visibility = View.VISIBLE
         val credential = PhoneAuthProvider.getCredential(verificationId, code_edit_text.text.toString())
         signIn(credential)
+    }
+
+    private fun hideProgress() {
+        login_progress.visibility = View.GONE
+        enter_button.enabled(true)
     }
 
     private fun resendCode() {

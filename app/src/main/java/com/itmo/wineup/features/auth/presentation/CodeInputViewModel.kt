@@ -16,15 +16,21 @@ import retrofit2.Response
 
 class CodeInputViewModel : ViewModel() {
 
-    val accessTokenLiveData = MutableLiveData<String>()
+    val accessStateLiveDate = MutableLiveData(AccessState.WAITING)
+    lateinit var firebaseToken : String
     private val repo = UserRepository()
     lateinit var preferences: SharedPreferences
 
+    private fun updateState(state : AccessState) {
+        accessStateLiveDate.value = state
+    }
+
     fun login(user: FirebaseUser) {
         user.getIdToken(true).addOnCompleteListener {
-            val token = it.result?.token
+            val token = it.result?.token!!
+            firebaseToken = token
             Log.d("Auth", "Got token response: $token")
-            performLoginWithFirebaseToken(token!!)
+            performLoginWithFirebaseToken(token)
         }
     }
 
@@ -43,13 +49,21 @@ class CodeInputViewModel : ViewModel() {
                         putInt(USER_CURRENT_ID, body.user.id.toInt())
                         apply()
                     }
-                    accessTokenLiveData.value = body.accessToken
+                    updateState(AccessState.GRANTED)
                 }
                 else {
-                    Log.e("UserAuth", "Response unsuccessful. Incorrect firebase token?")
+                    when (response.code()) {
+                        401 -> updateState(AccessState.UNAUTHORIZED)
+                        418 -> updateState(AccessState.INVALID_TOKEN)
+                        else -> updateState(AccessState.ERROR)
+                    }
                 }
             }
         })
+    }
+
+    enum class AccessState {
+        WAITING, GRANTED, UNAUTHORIZED, INVALID_TOKEN, ERROR
     }
 
 }
