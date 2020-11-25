@@ -2,25 +2,21 @@ package com.itmo.wineup.network.retrofit.data
 
 import com.google.gson.annotations.SerializedName
 
-data class WineResponse (
+data class WineResponse(
 
     val avg: Float,
 
-    @SerializedName("brand_id")
-    val brandId: String,
+    val brand: BrandResponse,
 
     val color: String,
 
-    @SerializedName("grape_id")
-    val grapeId: String,
+    val grape: List<GrapeResponse>,
 
     val name: String,
 
-    @SerializedName("producer_id")
-    val producerId: String,
+    val producer: ProducerResponse,
 
-    @SerializedName("region_id")
-    val regionId: String,
+    val region: List<RegionResponse>,
 
     val sugar: String,
 

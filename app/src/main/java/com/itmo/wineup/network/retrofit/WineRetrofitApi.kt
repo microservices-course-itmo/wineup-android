@@ -5,7 +5,7 @@ import retrofit2.http.GET
 
 interface WineRetrofitApi {
 
-    @GET("/wine/")
+    @GET("wine/true")
     suspend fun getWineList(): List<WineResponse>
 
 }
