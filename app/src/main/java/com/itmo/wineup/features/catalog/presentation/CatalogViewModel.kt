@@ -41,7 +41,7 @@ class CatalogViewModel : ViewModel() {
                 WineModel(
                     name = response.name,
                     color = response.color,
-                    country = response.regionId,
+                    country = response.region.first().country,//todo
                     amountOfSugar = response.sugar,
                     volume = response.avg.toString(),
                     personalMatch = 1, //todo
@@ -50,10 +50,10 @@ class CatalogViewModel : ViewModel() {
                     discount = 2, //todo
                     imageUrl = "url", //todo
                     tradeMarkUrl = "url", //todo
-                    shop = response.producerId,
+                    shop = response.producer.name,
                     year = response.year,
-                    sortOfGrape = response.grapeId,
-                    isFavorite = true
+                    sortOfGrape = response.grape.first().name,//todo
+                    isFavorite = true//todo
                 )
             )
         }
