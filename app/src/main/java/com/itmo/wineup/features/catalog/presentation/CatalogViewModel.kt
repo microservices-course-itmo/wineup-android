@@ -7,6 +7,7 @@ import com.itmo.wineup.network.retrofit.data.WineResponse
 import com.itmo.wineup.features.catalog.domain.GetWineListUseCase
 import com.itmo.wineup.features.catalog.models.*
 import com.itmo.wineup.network.retrofit.data.State
+import com.itmo.wineup.network.retrofit.data.WinePositionResponse
 import kotlinx.coroutines.launch
 
 class CatalogViewModel : ViewModel() {
@@ -34,25 +35,25 @@ class CatalogViewModel : ViewModel() {
 
     }
 
-    private fun getWineModel(list: List<WineResponse>): List<WineModel> {
+    private fun getWineModel(list: List<WinePositionResponse>): List<WineModel> {
         val res = mutableListOf<WineModel>()
         for (response in list) {
             res.add(
                 WineModel(
-                    name = response.name,
-                    color = response.color,
-                    country = response.region.first().country,//todo
-                    amountOfSugar = response.sugar,
-                    volume = response.avg.toString(),
+                    name = response.wine.name,
+                    color = response.wine.color,
+                    country = response.wine.region.first().country,//todo
+                    amountOfSugar = response.wine.sugar,
+                    volume = response.volume,
                     personalMatch = 1, //todo
                     rate = 2.0f, //todo
-                    price = 1000, //todo
-                    discount = 2, //todo
-                    imageUrl = "url", //todo
-                    tradeMarkUrl = "url", //todo
-                    shop = response.producer.name,
-                    year = response.year,
-                    sortOfGrape = response.grape.first().name,//todo
+                    price = response.actualPrice,
+                    discount =  (response.price - response.actualPrice) / response.price,
+                    imageUrl = response.image,
+                    tradeMarkUrl = response.wine.brand.name,
+                    shop = response.shop.site,
+                    year = response.wine.year,
+                    sortOfGrape = response.wine.grape.first().name,//todo
                     isFavorite = true//todo
                 )
             )

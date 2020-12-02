@@ -43,7 +43,7 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         with(itemView.context) {
             name.text = model.name
             description.text = getString(R.string.wine_item_description, model.amountOfSugar, model.color)
-            volume.text = model.volume
+            volume.text = getString(R.string.wine_item_volume, model.volume)
             personalMatch.text = getString(R.string.wine_item_relevance, model.personalMatch)
             oldPrice.text = getString(R.string.wine_item_old_price, model.price)
             discount.text = getString(R.string.wine_item_discount, model.discount)

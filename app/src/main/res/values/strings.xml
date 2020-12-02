@@ -14,6 +14,7 @@
     <string name="wine_item_description">%1$s, %2$s</string>
     <string name="wine_item_relevance">Подходит вам на %1$d%%</string>
     <string name="wine_item_price">%1$d₽</string>
+    <string name="wine_item_volume">%fл.</string>
     <string name="wine_item_old_price"><s>%1$d₽</s></string>
     <string name="wine_item_discount">-%1$d%%</string>
     <string name="wine_item_year">%1$d г.</string>

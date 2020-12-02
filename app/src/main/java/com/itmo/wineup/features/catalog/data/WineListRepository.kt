@@ -8,7 +8,7 @@ class WineListRepository(private val api: WineRetrofitApi) {
 
     suspend fun getList() = getListFromApi()
 
-    private suspend fun getListFromApi() = api.getWineList()
+    private suspend fun getListFromApi() = api.getWinePositionList()
 
     fun getHardcodedList(): List<WineModel> {
         val wines = arrayListOf<WineModel>()
@@ -19,11 +19,11 @@ class WineListRepository(private val api: WineRetrofitApi) {
                     "Франция",
                     "красное",
                     "Сухое",
-                    "0.75л",
+                    0.75f,
                     85,
                     4.5F,
-                    2300,
-                    15,
+                    2300f,
+                    15f,
                     "https://kvz1926.com/img/2018/11/wine-isabella-red-semisweet.jpg",
                     "https://telegra.ph/file/3e1bd647ce4230fa995d9.jpg",
                     "Ароматный мир",
