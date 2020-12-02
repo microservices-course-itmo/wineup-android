@@ -10,11 +10,11 @@ import retrofit2.http.POST
 interface WineRetrofitApi {
 
     @Headers("accessToken: 123")
-    @GET("wine/true")
+    @GET("wine/true/")
     suspend fun getWineList(@Body body: String): List<WineResponse>
 
     @Headers("accessToken: 123")
-    @GET("position/true/")
-    suspend fun getWinePositionList(/*@Body body: String = ""*/): List<WinePositionResponse>
+    @POST("position/true/")
+    suspend fun getWinePositionList(): List<WinePositionResponse>
 
 }
