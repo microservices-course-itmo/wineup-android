@@ -23,10 +23,10 @@ class CatalogViewModel : ViewModel() {
 
 
     fun setWines() {
-        wineList.value = State.Loading
+        wineList.value = State.Loading  
         viewModelScope.launch {
             try {
-                val responseList = getWineListUseCase.invoke()
+                val responseList = getWineListUseCase.invoke(0, 1)
                 wineList.value = State.Success(data = getWineModel(responseList))
             } catch (e: Exception){
                 wineList.value = State.Error(message = e.message.toString())
@@ -48,7 +48,7 @@ class CatalogViewModel : ViewModel() {
                     personalMatch = 1, //todo
                     rate = 2.0f, //todo
                     price = response.actualPrice,
-                    discount =  (response.price - response.actualPrice) / response.price,
+                    discount =  2.0f,//todo
                     imageUrl = response.image,
                     tradeMarkUrl = response.wine.brand.name,
                     shop = response.shop.site,
