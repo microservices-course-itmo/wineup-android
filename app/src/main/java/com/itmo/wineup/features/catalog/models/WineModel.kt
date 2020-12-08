@@ -11,11 +11,14 @@ data class WineModel(
     val personalMatch: Int,
     val rate: Float,
     val price: Float,
-    val discount: Float,
+    val oldPrice: Float,
+    val discount: Int,
     val imageUrl: String,
     val tradeMarkUrl: String,
     val shop: String,
     val year: Int,
     val sortOfGrape: String,
-    var isFavorite: Boolean
+    var isFavorite: Boolean,
+    var gastronomy: String,
+    var description: String
 ) : Serializable

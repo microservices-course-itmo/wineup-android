@@ -23,13 +23,16 @@ class WineListRepository(private val api: WineRetrofitApi) {
                     85,
                     4.5F,
                     2300f,
-                    15f,
+                    3000f,
+                    15,
                     "https://kvz1926.com/img/2018/11/wine-isabella-red-semisweet.jpg",
                     "https://telegra.ph/file/3e1bd647ce4230fa995d9.jpg",
                     "Ароматный мир",
                     2011,
                     "Saubignon Blanc",
-                    false
+                    false,
+                    "",
+                    ""
                 )
             )
         }

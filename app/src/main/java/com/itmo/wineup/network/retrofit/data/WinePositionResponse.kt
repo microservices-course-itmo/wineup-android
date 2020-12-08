@@ -22,6 +22,8 @@ data class WinePositionResponse(
 
     val wine: WineResponse,
 
+    val gastronomy: String,
+
     @SerializedName("wine_position_id")
     val winePositionId: String
 
