@@ -45,7 +45,7 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             description.text = getString(R.string.wine_item_description, model.amountOfSugar, model.color)
             volume.text = getString(R.string.wine_item_volume, model.volume)
             personalMatch.text = getString(R.string.wine_item_relevance, model.personalMatch)
-            if (model.oldPrice == 0f) {
+            if (model.oldPrice == 0f || model.oldPrice == model.price) {
                 discount.visibility = View.GONE
                 oldPrice.visibility = View.GONE
             }

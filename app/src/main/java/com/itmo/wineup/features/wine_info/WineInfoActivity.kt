@@ -57,7 +57,7 @@ class WineInfoActivity : AppCompatActivity() {
         productDescription.text = getString(R.string.wine_item_description, wineModel.amountOfSugar, wineModel.color)
         productVolume.text = getString(R.string.wine_item_volume, wineModel.volume)
         personalMatch.text = getString(R.string.wine_item_relevance, wineModel.personalMatch)
-        if (wineModel.oldPrice == 0f) {
+        if (wineModel.oldPrice == 0f || wineModel.oldPrice == wineModel.price) {
             discount.visibility = View.GONE
             oldPrice.visibility = View.GONE
         }
