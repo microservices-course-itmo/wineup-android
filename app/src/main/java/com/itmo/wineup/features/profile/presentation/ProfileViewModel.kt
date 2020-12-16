@@ -10,15 +10,17 @@ import retrofit2.Response
 
 class ProfileViewModel: ViewModel() {
 
-    val phoneLiveData = MutableLiveData<String>("")
+    val phoneLiveData = MutableLiveData("")
+    val nameLiveData = MutableLiveData("")
 
-    fun getUserById(id : Int) {
-        UserRepository().getUserById(id, object : Callback<UserResponse> {
+    fun currentUser() {
+        UserRepository().currentUser(object : Callback<UserResponse> {
             override fun onFailure(call: Call<UserResponse>, t: Throwable) {}
 
             override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if (response.isSuccessful) {
                     phoneLiveData.value = response.body()!!.phoneNumber
+                    nameLiveData.value = response.body()!!.name
                 }
             }
         })

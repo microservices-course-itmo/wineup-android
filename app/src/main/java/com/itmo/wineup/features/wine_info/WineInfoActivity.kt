@@ -49,6 +49,7 @@ class WineInfoActivity : AppCompatActivity() {
         feedbackRecyclerView.adapter = adapterFeedback
         setFeedbackListeners()
         button_feedback.callOnClick()
+        backButton.setOnClickListener { finish() }
     }
 
     private fun populate() {
@@ -75,6 +76,8 @@ class WineInfoActivity : AppCompatActivity() {
         year.text = getString(R.string.wine_item_year, wineModel.year)
         textAboutTaste.text = wineModel.description
         textAboutFood.text = wineModel.gastronomy
+        if (wineModel.isFavorite) toFavorites.setImageResource(R.drawable.ic_like_red)
+        else toFavorites.setImageResource(R.drawable.ic_like)
     }
 
     private fun renderFeedbackList(feedbackList: List<FeedbackModel>) {

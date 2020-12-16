@@ -34,4 +34,7 @@ class UserRepository {
     fun getUserById(id: Int, callback: Callback<UserResponse>) =
         UserService.api().user(id).enqueue(callback)
 
+    fun currentUser(callback: Callback<UserResponse>) =
+        UserService.api().currentUser().enqueue(callback)
+
 }

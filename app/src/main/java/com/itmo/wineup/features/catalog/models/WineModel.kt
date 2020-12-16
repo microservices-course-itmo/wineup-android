@@ -20,5 +20,6 @@ data class WineModel(
     val sortOfGrape: String,
     var isFavorite: Boolean,
     var gastronomy: String,
-    var description: String
+    var description: String,
+    val positionId: String
 ) : Serializable

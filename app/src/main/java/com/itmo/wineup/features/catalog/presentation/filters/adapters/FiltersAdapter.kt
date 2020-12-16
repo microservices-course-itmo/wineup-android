@@ -9,12 +9,16 @@ import com.itmo.wineup.features.catalog.presentation.filters.adapters.viewholder
 class FiltersAdapter(private var filtersList: MutableList<String>) :
     RecyclerView.Adapter<FiltersViewHolder>() {
 
-    fun updateList(newVines: List<String>) {
+    fun updateList(filters: List<String>) {
         filtersList.apply {
             clear()
-            addAll(newVines)
+            addAll(filters)
         }
         notifyDataSetChanged()
+    }
+
+    fun updateFilterState(filter: String) {
+        filtersList.indexOf(filter)
     }
 
     override fun getItemCount(): Int = filtersList.size

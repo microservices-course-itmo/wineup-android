@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -21,7 +22,10 @@ import com.itmo.wineup.features.catalog.presentation.adapters.CatalogAdapter
 import com.itmo.wineup.features.catalog.presentation.adapters.CatalogLoadStateAdapter
 import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
 import com.itmo.wineup.features.catalog.presentation.filters.adapters.FiltersAdapter
+import com.itmo.wineup.features.catalog.presentation.filters.adapters.viewholders.FiltersViewHolder
 import com.itmo.wineup.network.retrofit.data.State
+import kotlinx.android.synthetic.main.fragment_catalog.*
+import kotlinx.android.synthetic.main.item_filter.view.*
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -79,8 +83,9 @@ class CatalogFragment : Fragment() {
             Observer(this::recommendationFilter)
         )
         viewModel.priceValue.observe(viewLifecycleOwner, Observer(this::priceFilter))
+        viewModel.query.observe(viewLifecycleOwner) { viewModel.updateCatalog() }
         filterAdapter.updateList(getFiltersList())
-        viewModel.setWines()
+//        viewModel.setWines()
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.pager.collectLatest {
@@ -88,6 +93,17 @@ class CatalogFragment : Fragment() {
                 recyclerView.scrollToPosition(0)
             }
         }
+
+        searchInCatalog.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                if (newText.isNullOrBlank() || newText.length > 2) viewModel.query.postValue(newText)
+                return false
+            }
+        })
 
     }
 
@@ -115,22 +131,37 @@ class CatalogFragment : Fragment() {
 
     private fun colorFilter(vineList: Set<WineColor>) {
         //Toast.makeText(context, "Color : $vineList", Toast.LENGTH_LONG).show()
+        (filtersRecyclerView.findViewHolderForAdapterPosition(getFiltersList().indexOf("Цвет"))
+                as FiltersViewHolder?)?.setChecked(vineList.isNotEmpty())
+        viewModel.updateCatalog()
     }
 
     private fun sugarFilter(sugarList: Set<WineSugar>) {
         //Toast.makeText(context, "Sugar : $sugarList", Toast.LENGTH_LONG).show()
+        (filtersRecyclerView.findViewHolderForAdapterPosition(getFiltersList().indexOf("Содержание сахара"))
+                as FiltersViewHolder?)?.setChecked(sugarList.isNotEmpty())
+        viewModel.updateCatalog()
     }
 
     private fun countriesFilter(countriesList: List<String>) {
         //Toast.makeText(context, "Countries : $countriesList", Toast.LENGTH_LONG).show()
+        (filtersRecyclerView.findViewHolderForAdapterPosition(getFiltersList().indexOf("Страна"))
+                as FiltersViewHolder?)?.setChecked(countriesList.isNotEmpty())
+        viewModel.updateCatalog()
     }
 
     private fun recommendationFilter(recommendation: Recommendation) {
         //Toast.makeText(context, "Recommendation : $recommendation", Toast.LENGTH_LONG).show()
+        (filtersRecyclerView.findViewHolderForAdapterPosition(getFiltersList().indexOf("Рекомендованные"))
+                as FiltersViewHolder?)?.setChecked(recommendation != Recommendation.RECOMMENDED)
+        viewModel.updateCatalog()
     }
 
     private fun priceFilter(price: WinePriceFilter) {
         //Toast.makeText(context, "Price : $price", Toast.LENGTH_LONG).show()
+        (filtersRecyclerView.findViewHolderForAdapterPosition(getFiltersList().indexOf("Цена"))
+                as FiltersViewHolder?)?.setChecked(price.minPrice != null || price.maxPrice != null)
+        viewModel.updateCatalog()
     }
 
     private fun getFiltersList() = listOf(

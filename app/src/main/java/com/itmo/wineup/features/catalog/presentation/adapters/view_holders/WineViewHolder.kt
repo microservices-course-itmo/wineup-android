@@ -14,7 +14,11 @@ import com.bumptech.glide.request.target.Target
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.features.wine_info.WineInfoActivity
+import com.itmo.wineup.network.retrofit.user.FavoritesRepository
 import kotlinx.android.synthetic.main.item_wine.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -61,18 +65,22 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             sortOfGrape.text = model.sortOfGrape
             country.text = model.country
             year.text = getString(R.string.wine_item_year, model.year)
+            if (model.isFavorite) toFavorites.setImageResource(R.drawable.ic_like_red)
+            else toFavorites.setImageResource(R.drawable.ic_like)
         }
-        toFavorites.setOnClickListener(View.OnClickListener {
-            if(model.isFavorite){
+        toFavorites.setOnClickListener {
+            if (model.isFavorite) {
                 model.isFavorite = false
-                Glide.with(itemView.context).load(R.drawable.ic_like).into(toFavorites)
-            }
-            else{
+//                Glide.with(itemView.context).load(R.drawable.ic_like).into(toFavorites)
+                toFavorites.setImageResource(R.drawable.ic_like)
+                FavoritesRepository.removeFromFavorites(model.positionId)
+            } else {
                 model.isFavorite = true
-                Glide.with(itemView.context).load(R.drawable.ic_like_red).into(toFavorites)
+//                Glide.with(itemView.context).load(R.drawable.ic_like_red).into(toFavorites)
+                toFavorites.setImageResource(R.drawable.ic_like_red)
+                FavoritesRepository.addToFavorites(model.positionId)
             }
-
-        })
+        }
 
         oldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
 

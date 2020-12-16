@@ -34,9 +34,10 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
         viewModel.phoneLiveData.observe(viewLifecycleOwner, Observer(profile_phone::setText))
-        val preferences = requireActivity().getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE)
-        viewModel.getUserById(preferences.getInt(USER_CURRENT_ID, -1))
+        viewModel.nameLiveData.observe(viewLifecycleOwner, Observer(profile_name::setText))
+        viewModel.currentUser()
         profile_exit_button.setOnClickListener {
+            val preferences = requireActivity().getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE)
             preferences.edit().clear().apply()
             val exitIntent = Intent(requireContext().applicationContext, AgeAccessActivity::class.java)
             exitIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)

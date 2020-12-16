@@ -3,12 +3,12 @@ package com.itmo.wineup.features.catalog.data
 import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.network.retrofit.WineRetrofitApi
 
-class WineListRepository(private val api: WineRetrofitApi) {
+class WineListRepository(private val api: WineRetrofitApi, private val searchParams: String) {
 
 
-    suspend fun getList(positionStart: Int, positionEnd: Int) = getListFromApi(positionStart, positionEnd)
+    suspend fun getList(positionStart: Int, positionEnd: Int) = getListFromApi(positionStart, positionEnd, searchParams)
 
-    private suspend fun getListFromApi(positionStart: Int, positionEnd: Int) = api.getWinePositionList(positionStart, positionEnd)
+    private suspend fun getListFromApi(positionStart: Int, positionEnd: Int, searchParams: String) = api.getWinePositionList(positionStart, positionEnd, searchParams)
 
     fun getHardcodedList(): List<WineModel> {
         val wines = arrayListOf<WineModel>()
@@ -31,6 +31,7 @@ class WineListRepository(private val api: WineRetrofitApi) {
                     2011,
                     "Saubignon Blanc",
                     false,
+                    "",
                     "",
                     ""
                 )

@@ -1,5 +1,6 @@
 package com.itmo.wineup.features.catalog.presentation
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,56 +26,45 @@ class CatalogViewModel : ViewModel() {
     val wineColorList = MutableLiveData<Set<WineColor>>()
     val wineSugarList = MutableLiveData<Set<WineSugar>>()
     val countriesList = MutableLiveData<List<String>>()
-    val recommendationList = MutableLiveData<Recommendation>(Recommendation.RECOMMENDED)
+    val recommendationList = MutableLiveData(Recommendation.RECOMMENDED)
     val priceValue = MutableLiveData<WinePriceFilter>()
+    val query = MutableLiveData("")
+    private var currentSource: CatalogPagingSource? = null
     val pager = Pager(config = PagingConfig(1, enablePlaceholders = true, maxSize = 100))
     { sourceFactory() }.flow.cachedIn(viewModelScope)
 
 
-    fun setWines() {
-        wineList.value = State.Loading  
-        viewModelScope.launch {
-            try {
-                val responseList = getWineListUseCase.invoke(0, 16)
-                wineList.value = State.Success(data = getWineModel(responseList))
-            } catch (e: Exception){
-                wineList.value = State.Error(message = e.message.toString())
-            }
-        }
+//    fun setWines() {
+//        wineList.value = State.Loading
+//        viewModelScope.launch {
+//            try {
+//                val responseList = getWineListUseCase.invoke(0, 16)
+//                wineList.value = State.Success(data = getWineModel(responseList))
+//            } catch (e: Exception){
+//                wineList.value = State.Error(message = e.message.toString())
+//            }
+//        }
+//
+//    }
 
-    }
-
-    private fun getWineModel(list: List<WinePositionResponse>): List<WineModel> {
-        val res = mutableListOf<WineModel>()
-        for (response in list) {
-            res.add(
-                WineModel(
-                    name = response.wine.name,
-                    color = response.wine.color,
-                    country = response.wine.region.first().country,//todo
-                    amountOfSugar = response.wine.sugar,
-                    volume = response.volume,
-                    personalMatch = 1, //todo
-                    rate = 2.0f, //todo
-                    price = response.actualPrice,
-                    oldPrice = 0f,
-                    discount =  2,//todo
-                    imageUrl = response.image,
-                    tradeMarkUrl = response.wine.brand.name,
-                    shop = response.shop.site,
-                    year = response.wine.year,
-                    sortOfGrape = response.wine.grape.first().name,//todo
-                    gastronomy = "",
-                    description = "",
-                    isFavorite = true//todo
-                )
-            )
-        }
-        return res
-    }
+    fun updateCatalog() = currentSource?.invalidate()
 
     private fun sourceFactory() : PagingSource<Int, WineModel> {
-        return CatalogPagingSource(WineListRepository(RetrofitBuilder.wineApi))
+        val sugar = wineSugarList.value?.ifEmpty { null }?.joinToString(separator = ";~", postfix = ";") { "sugar:${it.name}" } ?: ""
+        val color = wineColorList.value?.ifEmpty { null }?.joinToString(separator = ";~", postfix = ";") { "color:${it.name}" } ?: ""
+        val price = priceValue.value?.let {
+            if (it.minPrice != null && it.maxPrice != null) "actual_price>${it.minPrice};*actual_price<${it.maxPrice};"
+            else if (it.minPrice != null) "actual_price>${it.minPrice};"
+            else if (it.maxPrice != null) "actual_price<${it.maxPrice};"
+            else ""
+        } ?: ""
+        val brand = query.value?.let {
+            if (it.isNotEmpty()) "brandName:$it"
+            else ""
+        } ?: ""
+        val params = sugar+color+price+brand
+        Log.d("Params", params)
+        return CatalogPagingSource(WineListRepository(RetrofitBuilder.wineApi, params)).also { currentSource = it }
     }
 
 }

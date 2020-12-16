@@ -25,7 +25,7 @@ class FilterSugarFragment : BottomSheetDialogFragment(), Dismissable{
         dismissListener = listener
     }
 
-    private val sugar = mutableSetOf(WineSugar.DRY)
+    private val sugar = mutableSetOf<WineSugar>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -38,7 +38,7 @@ class FilterSugarFragment : BottomSheetDialogFragment(), Dismissable{
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(CatalogViewModel::class.java)
-
+        sugar.addAll(viewModel.wineSugarList.value ?: emptyList())
         viewModel.wineSugarList.observe(viewLifecycleOwner, Observer(this::setFilter))
         resetButton.setOnClickListener {
             dryWineCheckBox.isChecked = false
@@ -52,13 +52,10 @@ class FilterSugarFragment : BottomSheetDialogFragment(), Dismissable{
         semiDryWineCheckBox.setOnClickListener { onCheckboxClicked() }
         semiSweetWineCheckBox.setOnClickListener { onCheckboxClicked() }
         sweetWineCheckBox.setOnClickListener { onCheckboxClicked() }
-        confirmButton.setOnClickListener{dismiss()}
-    }
-
-
-    override fun onPause() {
-        viewModel.wineSugarList.value = sugar
-        super.onPause()
+        confirmButton.setOnClickListener{
+            viewModel.wineSugarList.value = sugar
+            dismiss()
+        }
     }
 
     private fun setFilter(sugars: Set<WineSugar>){
@@ -67,10 +64,10 @@ class FilterSugarFragment : BottomSheetDialogFragment(), Dismissable{
                 WineSugar.DRY-> with(dryWineCheckBox) {
                     isChecked = true
                     typeface = CatalogFragment.typeface_normal }
-                WineSugar.SEMI_DRY -> with(semiDryWineCheckBox) {
+                WineSugar.MEDIUM_DRY -> with(semiDryWineCheckBox) {
                     isChecked = true
                     typeface = CatalogFragment.typeface_normal }
-                WineSugar.SEMI_SWEET -> with(semiSweetWineCheckBox) {
+                WineSugar.MEDIUM -> with(semiSweetWineCheckBox) {
                     isChecked = true
                     typeface = CatalogFragment.typeface_normal }
                 WineSugar.SWEET -> with(sweetWineCheckBox) {
@@ -89,18 +86,18 @@ class FilterSugarFragment : BottomSheetDialogFragment(), Dismissable{
         }
 
         if (semiDryWineCheckBox.isChecked) {
-            sugar.add(WineSugar.SEMI_DRY)
+            sugar.add(WineSugar.MEDIUM_DRY)
             semiDryWineCheckBox.typeface = CatalogFragment.typeface_normal
         } else {
-            sugar.remove(WineSugar.SEMI_DRY)
+            sugar.remove(WineSugar.MEDIUM_DRY)
             semiDryWineCheckBox.typeface = CatalogFragment.typeface_thin
         }
 
         if (semiSweetWineCheckBox.isChecked) {
-            sugar.add(WineSugar.SEMI_SWEET)
+            sugar.add(WineSugar.MEDIUM)
             semiSweetWineCheckBox.typeface = CatalogFragment.typeface_normal
         } else {
-            sugar.remove(WineSugar.SEMI_SWEET)
+            sugar.remove(WineSugar.MEDIUM)
             semiSweetWineCheckBox.typeface = CatalogFragment.typeface_thin
         }
 
