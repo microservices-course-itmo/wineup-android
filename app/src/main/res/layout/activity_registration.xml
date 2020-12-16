@@ -124,7 +124,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date_input" />
 
-    <EditText
+    <Spinner
         android:id="@+id/city_input"
         android:layout_width="match_parent"
         android:layout_marginHorizontal="72dp"
@@ -135,7 +135,6 @@
         android:textColorHint="@color/black_10"
         android:gravity="center"
         android:hint="@string/example_city"
-        android:inputType="text"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
