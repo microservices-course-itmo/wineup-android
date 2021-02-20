@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Button
 import android.view.View
+import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import com.itmo.wineup.MainActivity
 import com.itmo.wineup.R
@@ -42,6 +43,8 @@ class RegistrationActivity: AppCompatActivity() {
         var currentMonth = c.get(Calendar.MONTH)
         var currentDay = c.get(Calendar.DAY_OF_MONTH)
 
+        city_input.adapter = ArrayAdapter.createFromResource(this, R.array.cities_list, R.layout.support_simple_spinner_dropdown_item)
+
         name_input.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 if (s==null || s.length < 2 || s.length > 15) {
@@ -65,16 +68,16 @@ class RegistrationActivity: AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) { updateButtonState() }
         }
-        city_input.addTextChangedListener(watcher)
         date_input.addTextChangedListener(watcher)
         materialCheckBox.setOnCheckedChangeListener { _, _ -> updateButtonState() }
         enter_button.setOnClickListener {
             enter_progress.visibility = View.VISIBLE
             enter_button.enabled(false)
             val birthDate = date_input.text.toString()
-            val city = city_input.text.toString()
+            val city = city_input.selectedItemPosition + 1
             val name = name_input.text.toString()
-            UserRepository().register(intent.getStringExtra(EXTRA_FIREBASE_TOKEN)!!, birthDate, 0, name,
+            Log.d("UserAuth", "$birthDate $city $name")
+            UserRepository().register(intent.getStringExtra(EXTRA_FIREBASE_TOKEN)!!, birthDate, city, name,
             object : Callback<LoginResponse> {
                 override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
                     enter_button.enabled(true)
@@ -114,7 +117,7 @@ class RegistrationActivity: AppCompatActivity() {
     }
 
     fun updateButtonState() {
-        if (nameIsValid && date_input.text.isNotEmpty() && city_input.text.isNotEmpty() && materialCheckBox.isChecked) {
+        if (nameIsValid && date_input.text.isNotEmpty() && materialCheckBox.isChecked) {
             enter_button.enabled(true)
         }
         else enter_button.enabled(false)

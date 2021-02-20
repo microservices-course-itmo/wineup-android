@@ -3,12 +3,12 @@ package com.itmo.wineup.features.catalog.data
 import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.network.retrofit.WineRetrofitApi
 
-class WineListRepository(private val api: WineRetrofitApi) {
+class WineListRepository(private val api: WineRetrofitApi, private val searchParams: String) {
 
 
-    suspend fun getList() = getListFromApi()
+    suspend fun getList(positionStart: Int, positionEnd: Int) = getListFromApi(positionStart, positionEnd, searchParams)
 
-    private suspend fun getListFromApi() = api.getWineList()
+    private suspend fun getListFromApi(positionStart: Int, positionEnd: Int, searchParams: String) = api.getWinePositionList(positionStart, positionEnd, searchParams)
 
     fun getHardcodedList(): List<WineModel> {
         val wines = arrayListOf<WineModel>()
@@ -19,17 +19,21 @@ class WineListRepository(private val api: WineRetrofitApi) {
                     "Франция",
                     "красное",
                     "Сухое",
-                    "0.75л",
+                    0.75f,
                     85,
                     4.5F,
-                    2300,
+                    2300f,
+                    3000f,
                     15,
                     "https://kvz1926.com/img/2018/11/wine-isabella-red-semisweet.jpg",
                     "https://telegra.ph/file/3e1bd647ce4230fa995d9.jpg",
                     "Ароматный мир",
                     2011,
                     "Saubignon Blanc",
-                    false
+                    false,
+                    "",
+                    "",
+                    ""
                 )
             )
         }

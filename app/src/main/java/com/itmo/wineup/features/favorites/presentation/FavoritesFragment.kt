@@ -1,7 +1,9 @@
 package com.itmo.wineup.features.favorites.presentation
 
 import android.app.AlertDialog
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,13 +14,24 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.itmo.wineup.R
+import com.itmo.wineup.features.auth.USER_ACCESS_INFO
+import com.itmo.wineup.features.auth.USER_ACCESS_TOKEN
 import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
 import com.itmo.wineup.features.favorites.presentation.models.FavoriteSortModel
+import com.itmo.wineup.network.retrofit.user.FavoritesRepository
+import com.itmo.wineup.network.retrofit.user.UserService
 import kotlinx.android.synthetic.main.fragment_favorites.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Response
+import kotlin.coroutines.coroutineContext
 
 class FavoritesFragment : Fragment() {
 
@@ -48,6 +61,7 @@ class FavoritesFragment : Fragment() {
         
         viewModel.setWines()
         setListeners()
+
     }
 
     private fun renderVineList(vineList: List<WineModel>) {
@@ -64,7 +78,7 @@ class FavoritesFragment : Fragment() {
             AlertDialog.Builder(requireContext())
                 .setTitle(R.string.clear_alert_title)
                 .setPositiveButton(R.string.yes) { _, _ ->
-                    //todo: clear favorite list
+                    FavoritesRepository.clearFavorites()
                     viewModel.wineList.value = emptyList()
                 }
                 .setNegativeButton(R.string.no) { dialogInterface, _ ->
@@ -87,8 +101,10 @@ class FavoritesFragment : Fragment() {
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                if (newText.isNullOrBlank()) hideNothingFoundScreen()
-                else showNothingFoundScreen()
+                adapter.filter.filter(newText) {
+                    if (adapter.itemCount == 0) showNothingFoundScreen()
+                    else hideNothingFoundScreen()
+                }
                 return false
             }
         })

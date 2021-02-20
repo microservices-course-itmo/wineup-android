@@ -63,6 +63,7 @@
         android:id="@+id/vineListRecycler"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:scrollbars="vertical"
         app:layout_constraintTop_toBottomOf="@id/filters_container"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />

@@ -125,7 +125,11 @@
                 android:id="@+id/productName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingHorizontal="12dp"
                 android:layout_marginTop="6dp"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textAlignment="center"
                 android:text="ProductName"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -137,11 +141,13 @@
                 android:id="@+id/grapeName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
                 android:text="GrapeName"
                 android:textSize="20sp"
                 android:textStyle="bold"
+                android:ellipsize="end"
                 app:layout_constraintEnd_toStartOf="@+id/year"
-                app:layout_constraintHorizontal_bias="0.921"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/productName" />
 
@@ -149,20 +155,22 @@
                 android:id="@+id/year"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="108dp"
                 android:text="2011 г."
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/grapeName"
                 app:layout_constraintTop_toBottomOf="@+id/productName" />
 
             <TextView
                 android:id="@+id/productCountry"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="84dp"
                 android:layout_marginTop="14dp"
                 android:text="Country"
+                android:ellipsize="end"
+                app:layout_constraintEnd_toStartOf="@+id/productDescription"
+                app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/grapeName" />
 
@@ -170,9 +178,10 @@
                 android:id="@+id/productDescription"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginHorizontal="6dp"
                 android:layout_marginTop="14dp"
                 android:text="sugar, color"
+                app:layout_constraintEnd_toStartOf="@+id/productVolume"
                 app:layout_constraintStart_toEndOf="@+id/productCountry"
                 app:layout_constraintTop_toBottomOf="@+id/grapeName" />
 
@@ -183,7 +192,6 @@
                 android:layout_marginTop="14dp"
                 android:text="ProductVolume"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.105"
                 app:layout_constraintStart_toEndOf="@+id/productDescription"
                 app:layout_constraintTop_toBottomOf="@+id/year" />
 
@@ -227,11 +235,9 @@
                 android:id="@+id/shopImage"
                 android:layout_width="20dp"
                 android:layout_height="20dp"
-
                 android:layout_marginEnd="4dp"
-                android:layout_marginBottom="32dp"
                 android:contentDescription="shop"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/shop"
                 app:layout_constraintEnd_toStartOf="@+id/shop" />
 
             <TextView
@@ -239,9 +245,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="20dp"
                 android:layout_marginEnd="40dp"
-                android:layout_marginBottom="32dp"
+                android:layout_marginBottom="-6dp"
                 android:text="shop"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBottom_toBottomOf="@id/newPrice"
                 app:layout_constraintEnd_toEndOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
