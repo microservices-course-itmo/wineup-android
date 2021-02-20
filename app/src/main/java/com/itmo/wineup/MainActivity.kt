@@ -14,7 +14,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.messaging.FirebaseMessaging
 import com.itmo.wineup.features.auth.USER_ACCESS_INFO
+import com.itmo.wineup.features.auth.USER_ACCESS_TOKEN
 import com.itmo.wineup.features.auth.USER_CURRENT_ID
+import com.itmo.wineup.features.auth.USER_REFRESH_TOKEN
 import com.itmo.wineup.features.catalog.presentation.CatalogFragment
 import com.itmo.wineup.features.catalog.presentation.filters.FilterColorFragment
 import com.itmo.wineup.features.favorites.presentation.FavoritesFragment
@@ -42,7 +44,9 @@ class MainActivity : AppCompatActivity() {
                 Log.d("FCM", "Token for this app is ${task.result}")
             }
         }
-        val id = getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE).getInt(USER_CURRENT_ID, -1)
+        val prefs = getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE)
+        TokenMaster.init(prefs.getString(USER_ACCESS_TOKEN, "")!!, prefs.getString(USER_REFRESH_TOKEN, "")!!)
+        val id = prefs.getInt(USER_CURRENT_ID, -1)
         Toast.makeText(baseContext, "Logged in with user id $id", Toast.LENGTH_SHORT).show()
     }
 

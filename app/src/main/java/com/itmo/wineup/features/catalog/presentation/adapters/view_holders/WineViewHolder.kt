@@ -14,7 +14,11 @@ import com.bumptech.glide.request.target.Target
 import com.itmo.wineup.R
 import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.features.wine_info.WineInfoActivity
+import com.itmo.wineup.network.retrofit.user.FavoritesRepository
 import kotlinx.android.synthetic.main.item_wine.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
@@ -43,28 +47,40 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         with(itemView.context) {
             name.text = model.name
             description.text = getString(R.string.wine_item_description, model.amountOfSugar, model.color)
-            volume.text = model.volume
+            volume.text = getString(R.string.wine_item_volume, model.volume)
             personalMatch.text = getString(R.string.wine_item_relevance, model.personalMatch)
-            oldPrice.text = getString(R.string.wine_item_old_price, model.price)
+            if (model.oldPrice == 0f || model.oldPrice == model.price) {
+                discount.visibility = View.GONE
+                oldPrice.visibility = View.GONE
+            }
+            else {
+                oldPrice.text = getString(R.string.wine_item_old_price, model.oldPrice)
+                oldPrice.visibility = View.VISIBLE
+                discount.visibility = View.VISIBLE
+            }
             discount.text = getString(R.string.wine_item_discount, model.discount)
-            newPrice.text = getString(R.string.wine_item_price, (model.price - model.price * model.discount / 100))
+            newPrice.text = getString(R.string.wine_item_price, model.price)
             rating.rating = model.rate
             shop.text = model.shop
             sortOfGrape.text = model.sortOfGrape
             country.text = model.country
             year.text = getString(R.string.wine_item_year, model.year)
+            if (model.isFavorite) toFavorites.setImageResource(R.drawable.ic_like_red)
+            else toFavorites.setImageResource(R.drawable.ic_like)
         }
-        toFavorites.setOnClickListener(View.OnClickListener {
-            if(model.isFavorite){
+        toFavorites.setOnClickListener {
+            if (model.isFavorite) {
                 model.isFavorite = false
-                Glide.with(itemView.context).load(R.drawable.ic_like).into(toFavorites)
-            }
-            else{
+//                Glide.with(itemView.context).load(R.drawable.ic_like).into(toFavorites)
+                toFavorites.setImageResource(R.drawable.ic_like)
+                FavoritesRepository.removeFromFavorites(model.positionId)
+            } else {
                 model.isFavorite = true
-                Glide.with(itemView.context).load(R.drawable.ic_like_red).into(toFavorites)
+//                Glide.with(itemView.context).load(R.drawable.ic_like_red).into(toFavorites)
+                toFavorites.setImageResource(R.drawable.ic_like_red)
+                FavoritesRepository.addToFavorites(model.positionId)
             }
-
-        })
+        }
 
         oldPrice.paintFlags = Paint.STRIKE_THRU_TEXT_FLAG
 

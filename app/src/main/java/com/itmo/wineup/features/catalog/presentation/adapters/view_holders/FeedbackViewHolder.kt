@@ -34,10 +34,10 @@ class FeedbackViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             date.text = model.date
         }
 
-        itemView.setOnClickListener {
-            val intent = Intent(itemView.context, WineInfoActivity::class.java)
-            intent.putExtra(FEEDBACK_MODEL_TAG, model)
-            itemView.context.startActivity(intent)
-        }
+//        itemView.setOnClickListener {
+//            val intent = Intent(itemView.context, WineInfoActivity::class.java)
+//            intent.putExtra(FEEDBACK_MODEL_TAG, model)
+//            itemView.context.startActivity(intent)
+//        }
     }
 }

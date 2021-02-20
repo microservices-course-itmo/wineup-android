@@ -13,8 +13,9 @@
     <string name="left_image_description">leftImage</string>
     <string name="wine_item_description">%1$s, %2$s</string>
     <string name="wine_item_relevance">Подходит вам на %1$d%%</string>
-    <string name="wine_item_price">%1$d₽</string>
-    <string name="wine_item_old_price"><s>%1$d₽</s></string>
+    <string name="wine_item_price">%1$.2f₽</string>
+    <string name="wine_item_volume">%.2fл.</string>
+    <string name="wine_item_old_price"><s>%1$.2f₽</s></string>
     <string name="wine_item_discount">-%1$d%%</string>
     <string name="wine_item_year">%1$d г.</string>
     <string name="hint_search">Поиск..</string>
@@ -63,7 +64,7 @@
     <string name="date_format">03 05 1996</string>
     <string name="name">Введите ваше имя</string>
     <string name="example_name">Мария Павловна</string>
-    <string name="city">Введите ваш город</string>
+    <string name="city">Выберите ваш город</string>
     <string name="example_city">Москва</string>
     <string name="agreement">Даю согласие на <u>обработку персональных данных</u></string>
     <string name="enter">Войти</string>
@@ -94,5 +95,6 @@
     <string name="feedback">Отзывы</string>
     <string name="name_feedback">Марков Павел</string>
     <string name="more_feedback">Больше отзывов</string>
+    <string name="profile_exit">Выход</string>
 
 </resources>

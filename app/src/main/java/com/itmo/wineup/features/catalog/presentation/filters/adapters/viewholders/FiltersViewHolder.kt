@@ -10,12 +10,13 @@ import kotlinx.android.synthetic.main.item_filter.view.*
 class FiltersViewHolder(item: View) : RecyclerView.ViewHolder(item), DismissListener {
 
     private val filterName = item.chip
+    private var isChecked = false
 
     fun bind(model: String) {
         filterName.text = model
         filterName.isChecked = false
         filterName.setOnClickListener {
-            filterName.isChecked = true
+            filterName.isChecked = isChecked
             var fragment: BottomSheetDialogFragment? = when (model) {
                 "Рекомендованные" -> FilterRecommendFragment()
                 "Цена" -> FilterPriceFragment()
@@ -31,8 +32,13 @@ class FiltersViewHolder(item: View) : RecyclerView.ViewHolder(item), DismissList
         }
     }
 
+    fun setChecked(isChecked : Boolean) {
+        this.isChecked = isChecked
+        filterName.isChecked = isChecked
+    }
+
     override fun trigger() {
-        filterName.isChecked = false
+//        filterName.isChecked = false
     }
 
     private fun openFilterFragment(fragment: BottomSheetDialogFragment) {
