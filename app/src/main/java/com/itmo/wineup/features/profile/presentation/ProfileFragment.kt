@@ -35,7 +35,7 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
-        viewModel.phoneLiveData.observe(viewLifecycleOwner, Observer(profile_phone::setText))
+        //viewModel.phoneLiveData.observe(viewLifecycleOwner, Observer(profile_phone::setText))
         viewModel.nameLiveData.observe(viewLifecycleOwner, Observer(profile_name::setText))
         viewModel.currentUser()
         profile_exit_button.setOnClickListener {
