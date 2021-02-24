@@ -101,4 +101,6 @@
     <string name="profile_exit">Выйти из аккаунта</string>
     <string name="phone_number_hint">Номер телефона:</string>
     <string name="geo_hint">Город:</string>
+    <string name="Moscow">Москва</string>
+    <string name="Spb">Санкт-Петербург</string>
 </resources>

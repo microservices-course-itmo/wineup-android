@@ -12,6 +12,7 @@ class ProfileViewModel: ViewModel() {
 
     val phoneLiveData = MutableLiveData("")
     val nameLiveData = MutableLiveData("")
+    val cityLiveData = MutableLiveData(1)
 
     fun currentUser() {
         UserRepository().currentUser(object : Callback<UserResponse> {
@@ -21,6 +22,7 @@ class ProfileViewModel: ViewModel() {
                 if (response.isSuccessful) {
                     phoneLiveData.value = response.body()!!.phoneNumber
                     nameLiveData.value = response.body()!!.name
+                    cityLiveData.value = response.body()!!.cityId
                 }
             }
         })

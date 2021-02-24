@@ -35,12 +35,22 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
-        //viewModel.phoneLiveData.observe(viewLifecycleOwner, Observer(profile_phone::setText))
+        viewModel.phoneLiveData.observe(viewLifecycleOwner, Observer(profile_phone::setText))
         viewModel.nameLiveData.observe(viewLifecycleOwner, Observer(profile_name::setText))
+        viewModel.cityLiveData.observe(viewLifecycleOwner, Observer(this::setCity))
         viewModel.currentUser()
         profile_exit_button.setOnClickListener {
             showLogOutAlert()
         }
+    }
+
+    private fun setCity(cityId: Int) {
+        profile_geo.text = requireContext().getString(
+            when (cityId) {
+                1 -> R.string.Moscow
+                else -> R.string.Spb
+            }
+        )
     }
 
     private fun logOut() {
