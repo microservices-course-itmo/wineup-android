@@ -35,16 +35,46 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = ViewModelProvider(requireActivity()).get(ProfileViewModel::class.java)
-        viewModel.phoneLiveData.observe(viewLifecycleOwner, Observer(profile_phone::setText))
-        viewModel.nameLiveData.observe(viewLifecycleOwner, Observer(profile_name::setText))
+        viewModel.phoneLiveData.observe(viewLifecycleOwner, Observer(this::setPhone))
+        viewModel.nameLiveData.observe(viewLifecycleOwner, Observer(this::setName))
         viewModel.cityLiveData.observe(viewLifecycleOwner, Observer(this::setCity))
+        viewModel.nonAuthUser.observe(viewLifecycleOwner, Observer(this::showNonAuthScreen))
         viewModel.currentUser()
         profile_exit_button.setOnClickListener {
             showLogOutAlert()
         }
+        enter_button.setOnClickListener {
+            val preferences =
+                requireActivity().getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE)
+            preferences.edit().clear().apply()
+            val exitIntent = Intent(requireContext().applicationContext, AgeAccessActivity::class.java)
+            exitIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(exitIntent)
+        }
+    }
+
+    private fun showNonAuthScreen(show: Boolean) {
+        if (show) {
+            content_group.visibility = View.INVISIBLE
+            non_auth_alert.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setPhone(phone: String) {
+        content_group.visibility = View.VISIBLE
+        profile_phone.text = phone
+        non_auth_alert.visibility = View.INVISIBLE
+    }
+
+    private fun setName(name: String) {
+        content_group.visibility = View.VISIBLE
+        profile_name.text = name
+        non_auth_alert.visibility = View.INVISIBLE
     }
 
     private fun setCity(cityId: Int) {
+        content_group.visibility = View.VISIBLE
+        non_auth_alert.visibility = View.INVISIBLE
         profile_geo.text = requireContext().getString(
             when (cityId) {
                 1 -> R.string.Moscow

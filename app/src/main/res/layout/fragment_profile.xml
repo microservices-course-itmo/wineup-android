@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true">
@@ -12,11 +13,13 @@
         android:orientation="vertical">
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_info"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="124dp"
-            android:background="@drawable/profile_background">
+            android:background="@drawable/profile_background"
+            android:visibility="gone">
 
             <TextView
                 android:id="@+id/profile_name"
@@ -102,10 +105,12 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <FrameLayout
+            android:id="@+id/wine_logo"
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_marginTop="71dp"
             android:background="@drawable/wine_icon_bg"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -117,6 +122,48 @@
                 android:src="@drawable/wine_icon" />
 
         </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/non_auth_alert"
+            android:layout_width="340dp"
+            android:layout_height="200dp"
+            android:background="@drawable/profile_non_auth_alert_bg"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="54dp"
+                android:text="@string/non_auth_alert"
+                android:textAlignment="center"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/enter_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="69dp"
+                android:layout_marginTop="29dp"
+                android:background="@drawable/red_rounded_btn_bg"
+                android:text="@string/auth"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/content_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="
+            profile_info,
+            wine_logo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -103,4 +103,7 @@
     <string name="geo_hint">Город:</string>
     <string name="Moscow">Москва</string>
     <string name="Spb">Санкт-Петербург</string>
+
+    <string name="non_auth_alert">Вы ещё не вошли в аккаунт</string>
+    <string name="auth">Войти в аккаунт</string>
 </resources>
