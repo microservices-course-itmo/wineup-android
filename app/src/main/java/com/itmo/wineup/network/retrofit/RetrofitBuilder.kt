@@ -8,7 +8,7 @@ import java.util.concurrent.TimeUnit
 
 object RetrofitBuilder {
 
-    private const val BASE_URL = "http://77.234.215.138:48080/catalog-service/"
+    private const val BASE_URL = "http://77.234.215.138:18080/catalog-service/"
 
     val wineApi = getRetrofit()
         .create(WineRetrofitApi::class.java)

@@ -95,6 +95,15 @@
     <string name="feedback">Отзывы</string>
     <string name="name_feedback">Марков Павел</string>
     <string name="more_feedback">Больше отзывов</string>
-    <string name="profile_exit">Выход</string>
+    <string name="log_out_alert">Вы уверены, что хотите выйти из аккаунта?</string>
+    <string name="global_yes">Да</string>
+    <string name="global_no">Нет</string>
+    <string name="profile_exit">Выйти из аккаунта</string>
+    <string name="phone_number_hint">Номер телефона:</string>
+    <string name="geo_hint">Город:</string>
+    <string name="Moscow">Москва</string>
+    <string name="Spb">Санкт-Петербург</string>
 
+    <string name="non_auth_alert">Вы ещё не вошли в аккаунт</string>
+    <string name="auth">Войти в аккаунт</string>
 </resources>
