@@ -55,8 +55,8 @@ class WineInfoActivity : AppCompatActivity() {
     private fun populate() {
         Glide.with(leftImage).load(wineModel.imageUrl).into(leftImage)
         productName.text = wineModel.name
-        productDescription.text = getString(R.string.wine_item_description, wineModel.amountOfSugar, wineModel.color)
-        productVolume.text = getString(R.string.wine_item_volume, wineModel.volume)
+        val volumeString = getString(R.string.wine_item_volume, wineModel.volume).replace(',', '.')
+        productInfo.text = getString(R.string.wine_item_description, wineModel.country, wineModel.amountOfSugar, wineModel.color, volumeString)
         personalMatch.text = getString(R.string.wine_item_relevance, wineModel.personalMatch)
         if (wineModel.oldPrice == 0f || wineModel.oldPrice == wineModel.price) {
             discount.visibility = View.GONE
@@ -69,10 +69,8 @@ class WineInfoActivity : AppCompatActivity() {
         }
         discount.text = getString(R.string.wine_item_discount, wineModel.discount)
         newPrice.text = getString(R.string.wine_item_price, wineModel.price)
-        ratingBar.rating = wineModel.rate
         shop.text = wineModel.shop
         grapeName.text = wineModel.sortOfGrape
-        productCountry.text = wineModel.country
         year.text = getString(R.string.wine_item_year, wineModel.year)
         textAboutTaste.text = wineModel.description
         textAboutFood.text = wineModel.gastronomy

@@ -107,4 +107,5 @@
     <string name="non_auth_alert">Вы ещё не вошли в аккаунт</string>
     <string name="auth">Войти в аккаунт</string>
     <string name="similar">Мы подобрали для вас схожие вина:</string>
+    <string name="to_shop">В магазин</string>
 </resources>
