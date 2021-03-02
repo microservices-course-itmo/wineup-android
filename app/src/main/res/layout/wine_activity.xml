@@ -34,179 +34,19 @@
                 app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
 
-            <TextView
-                android:id="@+id/personalMatch"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="33dp"
-                android:text="personal match"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/topBackground" />
-
-            <ImageView
-                android:id="@+id/toFavorites"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="23dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/topBackground"
-                app:srcCompat="@drawable/ic_like" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/leftConstraint"
-                android:layout_width="292dp"
-                android:layout_height="229dp"
-                android:layout_margin="17dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/personalMatch">
-
-                <ImageView
-                    android:layout_width="292dp"
-                    android:layout_height="78dp"
-                    android:background="@drawable/logo"
-                    app:layout_constraintBottom_toBottomOf="@+id/leftImage"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/discount"
-                    android:layout_width="100dp"
-                    android:layout_height="45dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@drawable/discount_flag"
-                    android:gravity="center"
-                    android:textColor="@color/white"
-                    android:textSize="19sp"
-                    android:textStyle="italic"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="-20%" />
-
-                <ImageView
-                    android:id="@+id/leftImage"
-                    android:layout_width="89dp"
-                    android:layout_height="229dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <TextView
-                android:id="@+id/productName"
-                android:layout_width="wrap_content"
+            <include layout="@layout/wine_content"
+                android:id="@+id/content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="31dp"
-                android:ellipsize="end"
-                android:maxLines="2"
-                android:paddingHorizontal="12dp"
-                android:textAlignment="center"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/topBackground"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/leftConstraint"
-                tools:text="ProductName" />
-
-            <TextView
-                android:id="@+id/grapeName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="6dp"
-                android:ellipsize="end"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toStartOf="@+id/year"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productName"
-                tools:text="GrapeName" />
-
-            <TextView
-                android:id="@+id/year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/grapeName"
-                app:layout_constraintTop_toBottomOf="@+id/productName"
-                tools:text="2011 г." />
-
-            <TextView
-                android:id="@+id/productInfo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:ellipsize="end"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/grapeName"
-                tools:text="Country, sugar, color, volume" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/dop_param"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productInfo" />
-
-            <TextView
-                android:id="@+id/oldPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginStart="42dp"
-                android:layout_marginTop="13dp"
-                android:textStyle="italic"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6"
-                tools:text="OldPrice" />
-
-            <TextView
-                android:id="@+id/newPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="10dp"
-                android:layout_marginStart="54dp"
-                android:layout_marginTop="3dp"
-                android:textSize="23sp"
-                android:textStyle="bold|italic"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/oldPrice"
-                tools:text="Price" />
-
-            <TextView
-                android:id="@+id/shop"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginBottom="-6dp"
-                android:drawablePadding="7dp"
-                android:textStyle="italic"
-                app:drawableStartCompat="@drawable/ic_shop_geo"
-                app:layout_constraintBottom_toBottomOf="@id/newPrice"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="shop" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <Button
                 android:id="@+id/buyButton"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="52dp"
                 android:layout_marginHorizontal="32dp"
                 android:layout_marginTop="19dp"
                 android:background="@color/button_red"
@@ -218,7 +58,7 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/shop" />
+                app:layout_constraintTop_toBottomOf="@+id/content" />
 
 
             <TextView
@@ -232,7 +72,7 @@
                 android:textSize="12sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/buyButton" />
-            
+
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
@@ -302,7 +142,7 @@
                 android:gravity="center"
                 android:text="@string/similar"
                 android:textSize="20sp"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button_feedback" />

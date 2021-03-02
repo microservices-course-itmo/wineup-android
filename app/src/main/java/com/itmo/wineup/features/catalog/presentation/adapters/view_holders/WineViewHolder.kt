@@ -16,6 +16,8 @@ import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.features.wine_info.WineInfoActivity
 import com.itmo.wineup.network.retrofit.user.FavoritesRepository
 import kotlinx.android.synthetic.main.item_wine.view.*
+import kotlinx.android.synthetic.main.wine_content.view.*
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,7 +28,7 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         const val WINE_MODEL_TAG = "WINE_MODEL"
     }
 
-    private val image = itemView.leftImage
+    private val image = itemView.content.leftImage
 
     private val name = itemView.productName
     private val sortOfGrape = itemView.grapeName
@@ -51,7 +53,7 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 oldPrice.visibility = View.GONE
             }
             else {
-                oldPrice.text = getString(R.string.wine_item_old_price, model.oldPrice)
+                oldPrice.text = getString(R.string.wine_item_price, model.oldPrice)
                 oldPrice.visibility = View.VISIBLE
                 discount.visibility = View.VISIBLE
             }

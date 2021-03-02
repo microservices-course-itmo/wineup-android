@@ -1,0 +1,176 @@
+<androidx.constraintlayout.widget.ConstraintLayout android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingBottom="26dp"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <TextView
+        android:id="@+id/personalMatch"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_width="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="personal match" />
+
+    <ImageView
+        android:id="@+id/toFavorites"
+        android:layout_height="20dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginTop="21dp"
+        android:layout_width="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_like" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/white"
+        android:id="@+id/leftConstraint"
+        android:layout_height="229dp"
+        android:layout_margin="17dp"
+        android:layout_width="292dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/personalMatch">
+
+        <ImageView
+            android:background="@drawable/logo"
+            android:layout_height="78dp"
+            android:layout_width="292dp"
+            app:layout_constraintBottom_toBottomOf="@+id/leftImage"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:background="@drawable/discount_flag"
+            android:gravity="center"
+            android:id="@+id/discount"
+            android:layout_height="45dp"
+            android:layout_marginBottom="30dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="100dp"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="italic"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="-20%" />
+
+        <ImageView
+            android:id="@+id/leftImage"
+            android:layout_height="229dp"
+            android:layout_width="89dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:ellipsize="end"
+        android:id="@+id/productName"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="31dp"
+        android:layout_width="wrap_content"
+        android:maxLines="2"
+        android:paddingHorizontal="12dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leftConstraint"
+        tools:text="ProductName" />
+
+    <TextView
+        android:ellipsize="end"
+        android:id="@+id/grapeName"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="6dp"
+        android:layout_width="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/year"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productName"
+        tools:text="GrapeName" />
+
+    <TextView
+        android:id="@+id/year"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/grapeName"
+        app:layout_constraintTop_toBottomOf="@+id/productName"
+        tools:text="2011 г." />
+
+    <TextView
+        android:ellipsize="end"
+        android:id="@+id/productInfo"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_width="wrap_content"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/grapeName"
+        tools:text="Country, sugar, color, volume" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:text="@string/dop_param"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/productInfo" />
+
+    <TextView
+        android:id="@+id/oldPrice"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginStart="42dp"
+        android:layout_marginTop="13dp"
+        android:layout_width="wrap_content"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6"
+        tools:text="OldPrice" />
+
+    <TextView
+        android:id="@+id/newPrice"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="54dp"
+        android:layout_marginTop="3dp"
+        android:layout_width="wrap_content"
+        android:textSize="23sp"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oldPrice"
+        tools:text="2300,00₽" />
+
+    <TextView
+        android:drawablePadding="7dp"
+        android:id="@+id/shop"
+        android:layout_height="20dp"
+        android:layout_marginBottom="-6dp"
+        android:layout_marginEnd="40dp"
+        android:layout_width="wrap_content"
+        android:textStyle="italic"
+        app:drawableStartCompat="@drawable/ic_shop_geo"
+        app:layout_constraintTop_toTopOf="@id/newPrice"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="shop" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
