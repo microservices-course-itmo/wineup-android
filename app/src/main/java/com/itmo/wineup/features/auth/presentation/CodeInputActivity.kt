@@ -50,7 +50,12 @@ class CodeInputActivity : AppCompatActivity() {
         viewModel.accessStateLiveDate.observe(this, {
             hideProgress()
             when (it) {
-                CodeInputViewModel.AccessState.GRANTED -> startActivity(Intent(applicationContext, MainActivity::class.java))
+                CodeInputViewModel.AccessState.GRANTED -> {
+                    val loginIntent = Intent(applicationContext, MainActivity::class.java)
+                    loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                    loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    startActivity(loginIntent)
+                }
                 CodeInputViewModel.AccessState.UNAUTHORIZED -> {
                     val registrationIntent = Intent(applicationContext, RegistrationActivity::class.java)
                     registrationIntent.putExtra(RegistrationActivity.EXTRA_FIREBASE_TOKEN, viewModel.firebaseToken)
