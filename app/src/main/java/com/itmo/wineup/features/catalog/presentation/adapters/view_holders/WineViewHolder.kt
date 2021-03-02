@@ -39,7 +39,6 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val oldPrice = itemView.oldPrice
     private val newPrice = itemView.newPrice
     private val year = itemView.year
-    private val rating = itemView.ratingBar
     private val toFavorites = itemView.toFavorites
 
 
@@ -60,7 +59,6 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             }
             discount.text = getString(R.string.wine_item_discount, model.discount)
             newPrice.text = getString(R.string.wine_item_price, model.price)
-            rating.rating = model.rate
             shop.text = model.shop
             sortOfGrape.text = model.sortOfGrape
             country.text = model.country
