@@ -129,40 +129,16 @@
                 tools:text="2011 г." />
 
             <TextView
-                android:id="@+id/productCountry"
+                android:id="@+id/productInfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
                 android:ellipsize="end"
                 android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/productDescription"
-                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/grapeName"
-                tools:text="Country" />
-
-            <TextView
-                android:id="@+id/productDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="6dp"
-                android:layout_marginTop="14dp"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/productVolume"
-                app:layout_constraintStart_toEndOf="@+id/productCountry"
-                app:layout_constraintTop_toBottomOf="@+id/grapeName"
-                tools:text="sugar, color" />
-
-            <TextView
-                android:id="@+id/productVolume"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/productDescription"
-                app:layout_constraintTop_toBottomOf="@+id/year"
-                tools:text="ProductVolume" />
+                tools:text="Country, sugar, color, volume" />
 
             <TextView
                 android:id="@+id/textView6"
@@ -173,13 +149,13 @@
                 android:textSize="14sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productDescription" />
+                app:layout_constraintTop_toBottomOf="@+id/productInfo" />
 
             <TextView
                 android:id="@+id/oldPrice"
-                android:layout_marginHorizontal="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginStart="42dp"
                 android:layout_marginTop="13dp"
                 android:textStyle="italic"
@@ -191,10 +167,11 @@
                 android:id="@+id/newPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
                 android:layout_marginStart="54dp"
                 android:layout_marginTop="3dp"
-                android:textSize="20sp"
-                android:textStyle="bold"
+                android:textSize="23sp"
+                android:textStyle="bold|italic"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/oldPrice"
                 tools:text="Price" />

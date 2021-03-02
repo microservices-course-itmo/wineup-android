@@ -30,9 +30,7 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     private val name = itemView.productName
     private val sortOfGrape = itemView.grapeName
-    private val volume = itemView.productVolume
-    private val country = itemView.productCountry
-    private val description = itemView.productDescription
+    private val info = itemView.productInfo
     private val personalMatch = itemView.personalMatch
     private val shop = itemView.shop
     private val discount = itemView.discount
@@ -45,8 +43,8 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     fun bind(model: WineModel) {
         with(itemView.context) {
             name.text = model.name
-            description.text = getString(R.string.wine_item_description, model.amountOfSugar, model.color)
-            volume.text = getString(R.string.wine_item_volume, model.volume)
+            val volumeString = getString(R.string.wine_item_volume, model.volume).replace(',', '.')
+            info.text = getString(R.string.wine_item_description, model.country, model.amountOfSugar, model.color, volumeString)
             personalMatch.text = getString(R.string.wine_item_relevance, model.personalMatch)
             if (model.oldPrice == 0f || model.oldPrice == model.price) {
                 discount.visibility = View.GONE
@@ -61,7 +59,6 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             newPrice.text = getString(R.string.wine_item_price, model.price)
             shop.text = model.shop
             sortOfGrape.text = model.sortOfGrape
-            country.text = model.country
             year.text = getString(R.string.wine_item_year, model.year)
             if (model.isFavorite) toFavorites.setImageResource(R.drawable.ic_like_red)
             else toFavorites.setImageResource(R.drawable.ic_like)
@@ -69,12 +66,10 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         toFavorites.setOnClickListener {
             if (model.isFavorite) {
                 model.isFavorite = false
-//                Glide.with(itemView.context).load(R.drawable.ic_like).into(toFavorites)
                 toFavorites.setImageResource(R.drawable.ic_like)
                 FavoritesRepository.removeFromFavorites(model.positionId)
             } else {
                 model.isFavorite = true
-//                Glide.with(itemView.context).load(R.drawable.ic_like_red).into(toFavorites)
                 toFavorites.setImageResource(R.drawable.ic_like_red)
                 FavoritesRepository.addToFavorites(model.positionId)
             }
