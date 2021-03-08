@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.itmo.wineup.MainActivity
@@ -29,8 +30,12 @@ class AgeAccessActivity : AppCompatActivity() {
             startActivity(intent)
         }
         viewModel.accessStateLiveData.observe(this, Observer {
-            if (it == AgeAccessViewModel.AccessState.GRANTED)
-                startActivity(Intent(applicationContext, MainActivity::class.java))
+            if (it == AgeAccessViewModel.AccessState.GRANTED) {
+                val loginIntent = Intent(applicationContext, MainActivity::class.java)
+                loginIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                loginIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(loginIntent)
+            }
         })
         tryLogin()
     }

@@ -88,7 +88,7 @@ class ProfileFragment : Fragment() {
             requireActivity().getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE)
         preferences.edit().clear().apply()
         val exitIntent = Intent(requireContext().applicationContext, AgeAccessActivity::class.java)
-        exitIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+        exitIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
         startActivity(exitIntent)
     }
 

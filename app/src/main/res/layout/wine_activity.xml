@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -33,237 +34,31 @@
                 app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
 
-            <TextView
-                android:id="@+id/personalMatch"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="33dp"
-                android:text="personal match"
-                app:layout_constraintEnd_toEndOf="parent"
+            <include layout="@layout/wine_content"
+                android:id="@+id/content"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                app:layout_constraintTop_toBottomOf="@id/topBackground"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/topBackground" />
-
-            <ImageView
-                android:id="@+id/toFavorites"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="23dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/topBackground"
-                app:srcCompat="@drawable/ic_like" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/leftConstraint"
-                android:layout_width="292dp"
-                android:layout_height="229dp"
-                android:layout_margin="17dp"
-                android:background="@color/white"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/personalMatch">
-
-                <ImageView
-                    android:layout_width="292dp"
-                    android:layout_height="73dp"
-                    android:background="@drawable/logo"
-                    app:layout_constraintBottom_toBottomOf="@+id/leftImage"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="143dp"
-                    android:layout_height="143dp"
-                    android:background="@drawable/ellips"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/discount"
-                    android:layout_width="100dp"
-                    android:layout_height="45dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="30dp"
-                    android:background="@drawable/discount_flag"
-                    android:gravity="center"
-                    android:text="-20%"
-                    android:textColor="@color/white"
-                    android:textSize="12dp"
-                    android:textStyle="italic"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.512" />
-
-                <ImageView
-                    android:id="@+id/leftImage"
-                    android:layout_width="89dp"
-                    android:layout_height="229dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.502"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="1.0" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <RatingBar
-                android:id="@+id/ratingBar"
-                style="@style/RatingBar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="27dp"
-                android:numStars="5"
-                android:progressBackgroundTint="@color/gold"
-                android:progressTint="@color/gold"
-                android:rating="3"
-                android:secondaryProgressTint="@color/gold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/leftConstraint" />
-
-            <TextView
-                android:id="@+id/productName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="6dp"
-                android:paddingHorizontal="20dp"
-                android:textAlignment="center"
-                android:text="ProductName"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
-
-            <TextView
-                android:id="@+id/grapeName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GrapeName"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:layout_marginEnd="6dp"
-                app:layout_constraintEnd_toStartOf="@+id/year"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productName" />
-
-            <TextView
-                android:id="@+id/year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2011 г."
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/grapeName"
-                app:layout_constraintTop_toTopOf="@id/grapeName"
-                app:layout_constraintBaseline_toBaselineOf="@id/grapeName" />
-
-            <TextView
-                android:id="@+id/productCountry"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="Country"
-                app:layout_constraintEnd_toStartOf="@+id/productDescription"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/grapeName" />
-
-            <TextView
-                android:id="@+id/productDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="6dp"
-                android:layout_marginTop="14dp"
-                android:text="sugar, color"
-                app:layout_constraintEnd_toStartOf="@+id/productVolume"
-                app:layout_constraintStart_toEndOf="@+id/productCountry"
-                app:layout_constraintTop_toBottomOf="@+id/grapeName" />
-
-            <TextView
-                android:id="@+id/productVolume"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="14dp"
-                android:text="ProductVolume"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/productDescription"
-                app:layout_constraintTop_toBottomOf="@+id/year" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="@string/dop_param"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/productDescription" />
-
-            <TextView
-                android:id="@+id/newPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="50dp"
-                android:text="Price"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-            <TextView
-                android:id="@+id/oldPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="40dp"
-                android:layout_marginTop="10dp"
-                android:text="OldPrice"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/newPrice" />
-
-            <ImageView
-                android:id="@+id/shopImage"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="10dp"
-                android:contentDescription="shop"
-                app:layout_constraintEnd_toStartOf="@+id/shop"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
-
-            <TextView
-                android:id="@+id/shop"
-                android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="30dp"
-                android:layout_marginEnd="120dp"
-                android:text="shop"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView6" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <Button
                 android:id="@+id/buyButton"
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
-                android:layout_width="150dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="40dp"
+                android:layout_width="match_parent"
+                android:layout_height="52dp"
+                android:layout_marginHorizontal="32dp"
+                android:layout_marginTop="19dp"
                 android:background="@color/button_red"
                 android:fontFamily="serif-monospace"
-                android:text="В магазин"
+                android:text="@string/to_shop"
                 android:textAlignment="center"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                android:textAllCaps="false"
                 android:textColor="#FFFFFF"
+                android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/shop" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/content" />
 
 
             <TextView
@@ -278,26 +73,13 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/buyButton" />
 
-            <Button
-                android:id="@+id/buttonOpenText"
-                android:layout_width="wrap_content"
-                android:layout_height="15dp"
-                android:background="#00FFFFFF"
-                android:ellipsize="none"
-                android:text="Открыть полностью"
-                android:textAlignment="viewStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Small"
-                android:textSize="8sp"
-                app:layout_constraintStart_toStartOf="@+id/textAboutTaste"
-                app:layout_constraintTop_toBottomOf="@+id/textAboutTaste" />
-
             <ImageView
                 android:id="@+id/imageView4"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/buttonOpenText"
+                app:layout_constraintTop_toBottomOf="@id/textAboutTaste"
                 app:srcCompat="@drawable/auth_background" />
 
             <TextView
@@ -350,16 +132,31 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/feedbackRecyclerView" />
 
+            <TextView
+                android:id="@+id/titleSimilar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="70dp"
+                android:layout_marginTop="52dp"
+                android:layout_marginEnd="70dp"
+                android:gravity="center"
+                android:text="@string/similar"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/button_feedback" />
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/similarRecyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="9dp"
-                android:layout_marginTop="27dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginEnd="9dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/button_feedback" />
+                app:layout_constraintTop_toBottomOf="@+id/titleSimilar" />
 
             <ImageButton
                 android:id="@+id/button_back"

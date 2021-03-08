@@ -16,6 +16,8 @@ import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.features.wine_info.WineInfoActivity
 import com.itmo.wineup.network.retrofit.user.FavoritesRepository
 import kotlinx.android.synthetic.main.item_wine.view.*
+import kotlinx.android.synthetic.main.wine_content.view.*
+
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -26,44 +28,39 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         const val WINE_MODEL_TAG = "WINE_MODEL"
     }
 
-    private val image = itemView.leftImage
+    private val image = itemView.content.leftImage
 
     private val name = itemView.productName
     private val sortOfGrape = itemView.grapeName
-    private val volume = itemView.productVolume
-    private val country = itemView.productCountry
-    private val description = itemView.productDescription
+    private val info = itemView.productInfo
     private val personalMatch = itemView.personalMatch
     private val shop = itemView.shop
     private val discount = itemView.discount
     private val oldPrice = itemView.oldPrice
     private val newPrice = itemView.newPrice
     private val year = itemView.year
-    private val rating = itemView.ratingBar
     private val toFavorites = itemView.toFavorites
 
 
     fun bind(model: WineModel) {
         with(itemView.context) {
             name.text = model.name
-            description.text = getString(R.string.wine_item_description, model.amountOfSugar, model.color)
-            volume.text = getString(R.string.wine_item_volume, model.volume)
+            val volumeString = getString(R.string.wine_item_volume, model.volume).replace(',', '.')
+            info.text = getString(R.string.wine_item_description, model.country, model.amountOfSugar, model.color, volumeString)
             personalMatch.text = getString(R.string.wine_item_relevance, model.personalMatch)
             if (model.oldPrice == 0f || model.oldPrice == model.price) {
                 discount.visibility = View.GONE
                 oldPrice.visibility = View.GONE
             }
             else {
-                oldPrice.text = getString(R.string.wine_item_old_price, model.oldPrice)
+                oldPrice.text = getString(R.string.wine_item_price, model.oldPrice)
                 oldPrice.visibility = View.VISIBLE
                 discount.visibility = View.VISIBLE
             }
             discount.text = getString(R.string.wine_item_discount, model.discount)
             newPrice.text = getString(R.string.wine_item_price, model.price)
-            rating.rating = model.rate
             shop.text = model.shop
             sortOfGrape.text = model.sortOfGrape
-            country.text = model.country
             year.text = getString(R.string.wine_item_year, model.year)
             if (model.isFavorite) toFavorites.setImageResource(R.drawable.ic_like_red)
             else toFavorites.setImageResource(R.drawable.ic_like)
@@ -71,12 +68,10 @@ class WineViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         toFavorites.setOnClickListener {
             if (model.isFavorite) {
                 model.isFavorite = false
-//                Glide.with(itemView.context).load(R.drawable.ic_like).into(toFavorites)
                 toFavorites.setImageResource(R.drawable.ic_like)
                 FavoritesRepository.removeFromFavorites(model.positionId)
             } else {
                 model.isFavorite = true
-//                Glide.with(itemView.context).load(R.drawable.ic_like_red).into(toFavorites)
                 toFavorites.setImageResource(R.drawable.ic_like_red)
                 FavoritesRepository.addToFavorites(model.positionId)
             }
