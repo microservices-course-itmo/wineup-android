@@ -12,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:name="com.itmo.wineup.App">
         <activity android:name=".features.auth.presentation.PhoneNumberAccessActivity"/>
         <activity android:name=".features.auth.presentation.CodeInputActivity"/>
         <activity android:name=".features.auth.presentation.AgeAccessErrorActivity" />

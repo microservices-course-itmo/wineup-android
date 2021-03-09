@@ -14,12 +14,12 @@ class CatalogPagingSource (private val repository: WineListRepository) : PagingS
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, WineModel> {
         try {
             val page = params.key ?: 0
-            val result = repository.getHardcodedList()
+            val result = repository.getList(page, 5)
             for (wine in result) {
                 Log.d("Source", wine.toString())
             }
             return LoadResult.Page(
-                result,
+                WinePositionConverter.toWineModel(result),
                 prevKey = if (page == 0) null else page - 1,
                 nextKey = if (result.isEmpty()) null else page + 1
             )
