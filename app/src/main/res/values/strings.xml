@@ -97,7 +97,8 @@
     <string name="log_out_alert">Вы уверены, что хотите выйти из аккаунта?</string>
     <string name="global_yes">Да</string>
     <string name="global_no">Нет</string>
-    <string name="profile_exit">Выйти из аккаунта</string>
+    <string name="profile_exit"><u>Выйти из аккаунта</u></string>
+    <string name="profile_edit">Редактировать профиль</string>
     <string name="phone_number_hint">Номер телефона:</string>
     <string name="geo_hint">Город:</string>
     <string name="Moscow">Москва</string>

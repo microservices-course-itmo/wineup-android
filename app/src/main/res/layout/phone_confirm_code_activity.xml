@@ -36,7 +36,7 @@
             android:text="@string/incorrect_code"
             android:textColor="@color/button_age_denied"
             android:textSize="16sp"
-            app:drawableStartCompat="@drawable/X"
+            app:drawableStartCompat="@drawable/close_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
