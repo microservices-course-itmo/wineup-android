@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -15,9 +17,7 @@ import com.itmo.wineup.R
 import com.itmo.wineup.features.auth.USER_ACCESS_INFO
 import com.itmo.wineup.features.auth.presentation.AgeAccessActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.linking_phone_number.*
-import kotlinx.android.synthetic.main.linking_phone_number.view.*
-import kotlinx.android.synthetic.main.linking_phone_success.*
+
 
 class ProfileFragment : Fragment() {
 
@@ -27,6 +27,7 @@ class ProfileFragment : Fragment() {
     }
 
     private lateinit var viewModel: ProfileViewModel
+    private var inEditableMode = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,14 +48,19 @@ class ProfileFragment : Fragment() {
             showLogOutAlert()
         }
         profile_edit_button.setOnClickListener {
-            showChangePhoneAlert()
+            if (!inEditableMode) {
+                phoneChangeAvailability()
+            } else {
+                showChangePhoneAlert()
+            }
         }
 
         enter_button.setOnClickListener {
             val preferences =
                 requireActivity().getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE)
             preferences.edit().clear().apply()
-            val exitIntent = Intent(requireContext().applicationContext, AgeAccessActivity::class.java)
+            val exitIntent =
+                Intent(requireContext().applicationContext, AgeAccessActivity::class.java)
             exitIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(exitIntent)
         }
@@ -70,7 +76,7 @@ class ProfileFragment : Fragment() {
 
     private fun setPhone(phone: String) {
         content_group.visibility = View.VISIBLE
-        profile_phone.text = phone
+        profile_phone.setText(phone)
         non_auth_alert.visibility = View.INVISIBLE
     }
 
@@ -126,19 +132,30 @@ class ProfileFragment : Fragment() {
         }
     }
 
-/*
+    private fun phoneChangeAvailability() {
+        inEditableMode = !inEditableMode
+        profile_exit_button.isVisible = !inEditableMode
+        profile_edit_button.text =
+            getString(if (inEditableMode) R.string.save_changes else R.string.profile_edit)
+        with(profile_phone) {
+            isFocusable = inEditableMode
+            isFocusableInTouchMode = inEditableMode
+            if (inEditableMode) setKeyboardFocusViewImmediate()
+        }
+    }
+
     private fun showChangePhoneAlert() {
         val dialog = AlertDialog.Builder(requireContext())
-            .setMessage("Вы уверены, что хотите привязать другой номер телефона?")
+            .setMessage(requireContext().getString(R.string.linking_phone_number))
             .setCancelable(false)
             .setPositiveButton(
-                "Да",
+                requireContext().getString(R.string.global_yes),
                 { dialogInterface: DialogInterface, i: Int ->
                     dialogInterface.cancel()
-                    setPhone()
+                    phoneChangeAvailability()
                 })
             .setNegativeButton(
-                "Нет",
+                requireContext().getString(R.string.global_no),
                 { dialogInterface: DialogInterface, i: Int ->
                     dialogInterface.cancel()
                 })
@@ -152,34 +169,40 @@ class ProfileFragment : Fragment() {
             setTypeface(android.graphics.Typeface.DEFAULT, android.graphics.Typeface.BOLD)
         }
     }
-*/
 
-    private fun showChangePhoneAlert() {
-        val mDialogView = LayoutInflater.from(this).inflate((R.layout.linking_phone_number, null));
-
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-
-        val mAlertDialog =  mBuilder.show()
-
-        mAlertDialog.buttonYes.setOnClickListener {
-            showAccessChangePhoneAlert()
-            mAlertDialog.dismiss()
-        }
-
-        mDialogView.buttonNo.setOnClickListener {
-            mAlertDialog.dismiss()
-        }
-
-    }
-
-    private fun showAccessChangePhoneAlert() {
-        val mDialogView = LayoutInflater.from(this).inflate((R.layout.linking_phone_success, null));
-
-        val mBuilder = AlertDialog.Builder(this)
-            .setView(mDialogView)
-
-        val mAlertDialog = mBuilder.show()
-        mAlertDialog.dismiss()
+    private fun View.setKeyboardFocusViewImmediate() {
+        requestFocus()
+        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
     }
 }
+
+/* код кастомных алертов Славы, пока пусть закомментирован пусть будет
+private fun showChangePhoneAlert() {
+       val mDialogView = LayoutInflater.from(this).inflate((R.layout.linking_phone_number, null));
+
+       val mBuilder = AlertDialog.Builder(this)
+           .setView(mDialogView)
+
+       val mAlertDialog =  mBuilder.show()
+
+       mAlertDialog.buttonYes.setOnClickListener {
+           showAccessChangePhoneAlert()
+           mAlertDialog.dismiss()
+       }
+
+       mDialogView.buttonNo.setOnClickListener {
+           mAlertDialog.dismiss()
+       }
+
+   }
+
+   private fun showAccessChangePhoneAlert() {
+       val mDialogView = LayoutInflater.from(this).inflate((R.layout.linking_phone_success, null));
+
+       val mBuilder = AlertDialog.Builder(this)
+           .setView(mDialogView)
+
+       val mAlertDialog = mBuilder.show()
+       mAlertDialog.dismiss()
+   }*/

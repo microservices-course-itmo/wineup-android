@@ -115,5 +115,6 @@
     <string name="enter_confirmation_code">Введите код подтверждения</string>
     <string name="confirm">Подтвердить</string>
     <string name="resend_in">Отправить повторно через 0 с</string>
+    <string name="save_changes">Сохранить изменения</string>
 
 </resources>
