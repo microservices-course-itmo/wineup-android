@@ -30,4 +30,5 @@
     <color name="button_red">#931332</color>
     <color name="background_color">#F4F4F4</color>
     <color name="hint_color">#969696</color>
+    <color name="red_confirmation_btn">#CA93A1</color>
 </resources>
