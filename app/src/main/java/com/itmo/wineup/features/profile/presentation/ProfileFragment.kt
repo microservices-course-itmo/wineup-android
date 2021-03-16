@@ -15,6 +15,9 @@ import com.itmo.wineup.R
 import com.itmo.wineup.features.auth.USER_ACCESS_INFO
 import com.itmo.wineup.features.auth.presentation.AgeAccessActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.linking_phone_number.*
+import kotlinx.android.synthetic.main.linking_phone_number.view.*
+import kotlinx.android.synthetic.main.linking_phone_success.*
 
 class ProfileFragment : Fragment() {
 
@@ -43,6 +46,10 @@ class ProfileFragment : Fragment() {
         profile_exit_button.setOnClickListener {
             showLogOutAlert()
         }
+        profile_edit_button.setOnClickListener {
+            showChangePhoneAlert()
+        }
+
         enter_button.setOnClickListener {
             val preferences =
                 requireActivity().getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE)
@@ -51,6 +58,7 @@ class ProfileFragment : Fragment() {
             exitIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(exitIntent)
         }
+
     }
 
     private fun showNonAuthScreen(show: Boolean) {
@@ -118,4 +126,60 @@ class ProfileFragment : Fragment() {
         }
     }
 
+/*
+    private fun showChangePhoneAlert() {
+        val dialog = AlertDialog.Builder(requireContext())
+            .setMessage("Вы уверены, что хотите привязать другой номер телефона?")
+            .setCancelable(false)
+            .setPositiveButton(
+                "Да",
+                { dialogInterface: DialogInterface, i: Int ->
+                    dialogInterface.cancel()
+                    setPhone()
+                })
+            .setNegativeButton(
+                "Нет",
+                { dialogInterface: DialogInterface, i: Int ->
+                    dialogInterface.cancel()
+                })
+            .show()
+        with(dialog.getButton(AlertDialog.BUTTON_POSITIVE)) {
+            setTextColor(context.getColor(R.color.red))
+            setTypeface(android.graphics.Typeface.DEFAULT, android.graphics.Typeface.BOLD)
+        }
+        with(dialog.getButton(AlertDialog.BUTTON_NEGATIVE)) {
+            setTextColor(context.getColor(R.color.red))
+            setTypeface(android.graphics.Typeface.DEFAULT, android.graphics.Typeface.BOLD)
+        }
+    }
+*/
+
+    private fun showChangePhoneAlert() {
+        val mDialogView = LayoutInflater.from(this).inflate((R.layout.linking_phone_number, null));
+
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+
+        val mAlertDialog =  mBuilder.show()
+
+        mAlertDialog.buttonYes.setOnClickListener {
+            showAccessChangePhoneAlert()
+            mAlertDialog.dismiss()
+        }
+
+        mDialogView.buttonNo.setOnClickListener {
+            mAlertDialog.dismiss()
+        }
+
+    }
+
+    private fun showAccessChangePhoneAlert() {
+        val mDialogView = LayoutInflater.from(this).inflate((R.layout.linking_phone_success, null));
+
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+
+        val mAlertDialog = mBuilder.show()
+        mAlertDialog.dismiss()
+    }
 }
