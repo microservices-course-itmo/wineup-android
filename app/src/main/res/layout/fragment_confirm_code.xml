@@ -16,7 +16,8 @@
         android:background="@drawable/profile_background"
         android:visibility="gone">
 
-        <Button
+        <TextView
+            android:id="@+id/back"
             android:layout_width="24dp"
             android:layout_height="24dp"
             android:layout_margin="18dp"
@@ -28,7 +29,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/code_error"
+            android:id="@+id/wrong_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="90dp"
@@ -36,6 +37,7 @@
             android:text="@string/incorrect_code"
             android:textColor="@color/button_age_denied"
             android:textSize="16sp"
+            android:visibility="invisible"
             app:drawableStartCompat="@drawable/close_icon"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -51,10 +53,10 @@
             android:textSize="23sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/code_error" />
+            app:layout_constraintTop_toBottomOf="@id/wrong_code" />
 
-        <TextView
-            android:id="@+id/code_input"
+        <EditText
+            android:id="@+id/code_edit_text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="64dp"
@@ -64,10 +66,11 @@
             android:paddingVertical="14dp"
             android:textAlignment="center"
             android:textSize="18sp"
+            android:inputType="number"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/code_info"
-            tools:text="1 2 3 4 5 6" />
+            tools:hint="123 456" />
 
         <Button
             android:id="@+id/confirmation_button"
@@ -75,15 +78,15 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="64dp"
             android:layout_marginTop="32dp"
-            android:background="@color/red_confirmation_btn"
+            android:background="@color/button_red"
             android:text="@string/confirm"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/code_input" />
+            app:layout_constraintTop_toBottomOf="@id/code_edit_text" />
 
         <TextView
-            android:id="@+id/code_repeat"
+            android:id="@+id/timer_counter"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -94,7 +97,7 @@
             app:layout_constraintTop_toBottomOf="@id/confirmation_button" />
 
         <TextView
-            android:id="@+id/code_repeat_button"
+            android:id="@+id/button_resend_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
@@ -104,7 +107,7 @@
             android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/code_repeat" />
+            app:layout_constraintTop_toBottomOf="@id/timer_counter" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
