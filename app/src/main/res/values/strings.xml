@@ -107,4 +107,9 @@
     <string name="auth">Войти в аккаунт</string>
     <string name="similar">Мы подобрали для вас схожие вина:</string>
     <string name="to_shop">В магазин</string>
+    <string name="resend"><u>Отправить повторно</u></string>
+    <string name="incorrect_code">Код введён неверно</string>
+    <string name="enter_confirmation_code">Введите код подтверждения</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="resend_in">Отправить повторно через 0 с</string>
 </resources>
