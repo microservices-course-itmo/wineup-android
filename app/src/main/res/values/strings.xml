@@ -108,6 +108,9 @@
     <string name="auth">Войти в аккаунт</string>
     <string name="similar">Мы подобрали для вас схожие вина:</string>
     <string name="to_shop">В магазин</string>
+    <string name="linking_phone_number">Вы уверены, что хотите привязать <b>другой номер телефона</b>?</string>
+    <string name="alert_dialog_success">Изменения успешно сохранены</string>
+
     <string name="resend"><u>Отправить повторно</u></string>
     <string name="incorrect_code">Код введён неверно</string>
     <string name="enter_confirmation_code">Введите код подтверждения</string>
