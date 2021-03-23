@@ -37,7 +37,6 @@ class ProfileFragment : Fragment() {
     }
 
     private lateinit var viewModel: ProfileViewModel
-    private var inEditableMode = false
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,11 +57,7 @@ class ProfileFragment : Fragment() {
             showLogOutAlert()
         }
         profile_edit_button.setOnClickListener {
-            if (!inEditableMode) {
-                phoneChangeAvailability()
-            } else {
-                showChangePhoneAlert()
-            }
+            //todo
         }
 
         enter_button.setOnClickListener {
@@ -86,7 +81,7 @@ class ProfileFragment : Fragment() {
 
     private fun setPhone(phone: String) {
         content_group.visibility = View.VISIBLE
-        profile_phone.setText(phone)
+        profile_phone.text = phone
         non_auth_alert.visibility = View.INVISIBLE
     }
 
@@ -136,20 +131,8 @@ class ProfileFragment : Fragment() {
         }
     }
 
-    private fun phoneChangeAvailability() {
-        inEditableMode = !inEditableMode
-        profile_exit_button.isVisible = !inEditableMode
-        profile_edit_button.text =
-            getString(if (inEditableMode) R.string.save_changes else R.string.profile_edit)
-        with(profile_phone) {
-            isFocusable = inEditableMode
-            isFocusableInTouchMode = inEditableMode
-            if (inEditableMode) setKeyboardFocusViewImmediate()
-        }
-    }
-
-
-
+    /*
+    //todo: to edit info screen
     private fun showChangePhoneAlert() {
         val dialog = AlertDialog.Builder(requireContext())
             .setMessage(requireContext().getString(R.string.linking_phone_number))
@@ -169,13 +152,7 @@ class ProfileFragment : Fragment() {
             setTextColor(context.getColor(R.color.red))
             setTypeface(android.graphics.Typeface.DEFAULT, android.graphics.Typeface.BOLD)
         }
-    }
-
-    private fun View.setKeyboardFocusViewImmediate() {
-        requestFocus()
-        val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
-    }
+    }*/
 }
 
 /* код кастомных алертов Славы, пока пусть закомментирован пусть будет
