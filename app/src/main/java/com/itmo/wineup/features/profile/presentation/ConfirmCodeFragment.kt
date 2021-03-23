@@ -20,8 +20,11 @@ import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.gson.JsonNull
+import com.google.gson.JsonObject
 import com.itmo.wineup.MainActivity
 import com.itmo.wineup.R
+import com.itmo.wineup.network.retrofit.user.UserService
 import kotlinx.android.synthetic.main.fragment_confirm_code.*
 import java.util.concurrent.TimeUnit
 
@@ -94,13 +97,21 @@ class ConfirmCodeFragment : Fragment() {
         Firebase.auth.currentUser
             ?.updatePhoneNumber(PhoneAuthProvider.getCredential(verificationId, code_edit_text.text.toString()))
             ?.addOnCompleteListener { task ->
-                Toast.makeText(context, "Изменения успешно сохранены!", Toast.LENGTH_SHORT).show()
-                timer.cancel()
-                (activity as MainActivity).backFromConfirmCodeFragment()
-            }?.addOnFailureListener {
-                timer.cancel()
-                Toast.makeText(context, "Не удалось обновить номер!", Toast.LENGTH_SHORT).show()
-                (activity as MainActivity).backFromConfirmCodeFragment()
+                if (task.isSuccessful) {
+                    val stubUser = JsonObject().apply {
+                        add("birthday", JsonNull.INSTANCE)
+                        add("cityId", JsonNull.INSTANCE)
+                        add("name", JsonNull.INSTANCE)
+                        add("phoneNumber", JsonNull.INSTANCE)
+                    }
+                    UserService.api().patchUser(stubUser)
+                    Toast.makeText(context, "Изменения успешно сохранены!", Toast.LENGTH_SHORT).show()
+                    timer.cancel()
+                    (activity as MainActivity).backFromConfirmCodeFragment()
+                }
+                else {
+                    wrong_code.visibility = View.VISIBLE
+                }
             }
 
     }
@@ -156,6 +167,11 @@ class ConfirmCodeFragment : Fragment() {
                 )
             }
         }
+    }
+
+    override fun onDestroy() {
+        timer.cancel()
+        super.onDestroy()
     }
 
 
