@@ -9,7 +9,7 @@
         android:id="@+id/navigation_catalog"
         android:name="com.itmo.wineup.features.catalog.presentation.CatalogFragment"
         android:label="@string/catalog_title"
-        tools:layout="@layout/fragment_catalog"/>
+        tools:layout="@layout/fragment_catalog" />
     <fragment
         android:id="@+id/navigation_favorites"
         android:name="com.itmo.wineup.features.favorites.presentation.FavoritesFragment"
@@ -24,5 +24,29 @@
         android:id="@+id/navigation_profile"
         android:name="com.itmo.wineup.features.profile.presentation.ProfileFragment"
         android:label="@string/profile_title"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_navigation_profile_to_profile_data_edit_fragment"
+            app:destination="@id/profileDataEdit" />
+    </fragment>
+    <fragment
+        android:id="@+id/confirmCodeFragment"
+        android:name="com.itmo.wineup.features.profile.presentation.ConfirmCodeFragment"
+        android:label="ConfirmCodeFragment">
+        <argument
+            android:name="phone"
+            app:argType="string" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/profileDataEdit"
+        android:name="com.itmo.wineup.features.profile.presentation.ProfileDataEditFragment"
+        android:label="ProfileDataEditFragment">
+        <argument
+            android:name="profile"
+            app:argType="com.itmo.wineup.features.profile.model.Profile" />
+        <action
+            android:id="@+id/action_navigation_profile_to_confirm_code_fragment"
+            app:destination="@id/confirmCodeFragment" />
+    </fragment>
 </navigation>

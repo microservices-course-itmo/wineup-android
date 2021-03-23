@@ -27,6 +27,12 @@ interface UserServiceApi {
         @Header("Authorization") accessToken: String = "Bearer ${TokenMaster.accessToken}"
     ) : Call<UserResponse>
 
+    @PATCH("users/me")
+    fun patchUser(
+        @Body updatedUser: JsonObject,
+        @Header("Authorization") accessToken: String = "Bearer ${TokenMaster.accessToken}"
+    ) : Call<UserResponse>
+
     @GET("favorites/list")
     suspend fun favoritesList(
         @Header("Authorization") accessToken: String = "Bearer ${TokenMaster.accessToken}"

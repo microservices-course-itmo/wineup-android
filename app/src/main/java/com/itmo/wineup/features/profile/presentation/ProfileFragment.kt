@@ -11,10 +11,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.itmo.wineup.MainActivity
 import com.itmo.wineup.R
 import com.itmo.wineup.features.auth.USER_ACCESS_INFO
 import com.itmo.wineup.features.auth.presentation.AgeAccessActivity
 import kotlinx.android.synthetic.main.fragment_profile.*
+
 
 class ProfileFragment : Fragment() {
 
@@ -43,14 +45,24 @@ class ProfileFragment : Fragment() {
         profile_exit_button.setOnClickListener {
             showLogOutAlert()
         }
+        profile_edit_button.setOnClickListener {
+            (activity as MainActivity).openProfileDataEditFragment(
+                profile_name.text.toString(),
+                profile_phone.text.toString(),
+                viewModel.getCurrentCityId()
+            )
+        }
+
         enter_button.setOnClickListener {
             val preferences =
                 requireActivity().getSharedPreferences(USER_ACCESS_INFO, Context.MODE_PRIVATE)
             preferences.edit().clear().apply()
-            val exitIntent = Intent(requireContext().applicationContext, AgeAccessActivity::class.java)
+            val exitIntent =
+                Intent(requireContext().applicationContext, AgeAccessActivity::class.java)
             exitIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(exitIntent)
         }
+
     }
 
     private fun showNonAuthScreen(show: Boolean) {
@@ -96,17 +108,11 @@ class ProfileFragment : Fragment() {
         val dialog = AlertDialog.Builder(requireContext())
             .setMessage(requireContext().getString(R.string.log_out_alert))
             .setCancelable(false)
-            .setPositiveButton(
-                requireContext().getString(R.string.global_yes),
-                { dialogInterface: DialogInterface, i: Int ->
-                    dialogInterface.cancel()
+            .setPositiveButton(requireContext().getString(R.string.global_yes)) { dialogInterface: DialogInterface, i: Int -> dialogInterface.cancel()
                     logOut()
-                })
-            .setNegativeButton(
-                requireContext().getString(R.string.global_no),
-                { dialogInterface: DialogInterface, i: Int ->
-                    dialogInterface.cancel()
-                })
+            }
+            .setNegativeButton(requireContext().getString(R.string.global_no)) { dialogInterface: DialogInterface, i: Int -> dialogInterface.cancel()
+            }
             .show()
         with(dialog.getButton(AlertDialog.BUTTON_POSITIVE)) {
             setTextColor(context.getColor(R.color.red))
