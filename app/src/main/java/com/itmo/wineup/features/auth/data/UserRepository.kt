@@ -37,4 +37,8 @@ class UserRepository {
     fun currentUser(callback: Callback<UserResponse>) =
         UserService.api().currentUser().enqueue(callback)
 
+    fun patchUser(updatedUser: JsonObject, callback: Callback<UserResponse>) =
+        UserService.api().patchUser(updatedUser).enqueue(callback)
+
+
 }
