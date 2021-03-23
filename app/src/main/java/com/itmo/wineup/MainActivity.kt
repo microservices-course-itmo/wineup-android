@@ -61,8 +61,12 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
-    fun openConfirmCodeFragment(phone: String) {
-        val bundle = bundleOf("phone" to phone)
+    fun openConfirmCodeFragment(
+        name: String?,
+        phone: String,
+        cityId: Int?
+    ) {
+        val bundle = bundleOf("profileToConfirmScreen" to Profile(name, phone, cityId))
         navigationController.navigate(
             R.id.action_navigation_profile_to_confirm_code_fragment,
             bundle
