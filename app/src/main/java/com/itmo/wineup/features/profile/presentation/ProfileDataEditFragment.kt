@@ -99,7 +99,7 @@ class ProfileDataEditFragment : Fragment() {
         val stubUser = JsonObject().apply {
             add("birthday", JsonNull.INSTANCE)
             add("cityId", if (oldCityId == cityId) JsonNull.INSTANCE else JsonPrimitive(cityId))
-            add("name", if (oldName == name) JsonNull.INSTANCE else JsonParser.parseString(name))
+            add("name", if (oldName == name) JsonNull.INSTANCE else JsonPrimitive(name))
             add("phoneNumber", JsonNull.INSTANCE)
         }
         viewModel.patchUser(stubUser)

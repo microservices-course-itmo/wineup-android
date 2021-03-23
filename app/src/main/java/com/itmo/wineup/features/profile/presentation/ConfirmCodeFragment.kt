@@ -104,9 +104,9 @@ class ConfirmCodeFragment : Fragment() {
                 if (task.isSuccessful) {
                     val stubUser = JsonObject().apply {
                         add("birthday", JsonNull.INSTANCE)
-                        add("cityId", if (profile.cityId == null )JsonNull.INSTANCE else JsonPrimitive(profile.cityId))
-                        add("name", if (profile.name == null) JsonNull.INSTANCE else JsonParser.parseString(profile.name))
-                        add("phoneNumber", JsonNull.INSTANCE)
+                        add("cityId", if (profile.cityId == null) JsonNull.INSTANCE else JsonPrimitive(profile.cityId))
+                        add("name", if (profile.name == null) JsonNull.INSTANCE else JsonPrimitive(profile.name))
+                        add("phoneNumber", JsonPrimitive(phone))
                     }
                     UserService.api().patchUser(stubUser)
                     Toast.makeText(context, "Изменения успешно сохранены!", Toast.LENGTH_SHORT).show()
