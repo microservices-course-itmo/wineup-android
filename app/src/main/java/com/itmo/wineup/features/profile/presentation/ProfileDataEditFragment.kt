@@ -1,11 +1,14 @@
 package com.itmo.wineup.features.profile.presentation
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
+import com.itmo.wineup.MainActivity
 import com.itmo.wineup.R
 import com.itmo.wineup.features.profile.model.Profile
 import kotlinx.android.synthetic.main.profile_data_change_fragment.*
@@ -31,25 +34,21 @@ class ProfileDataEditFragment : Fragment() {
             userPhone.setText(phone)
             city_input.setSelection(cityId - 1)
         }
+        profile_edit_button.setOnClickListener {
+            showChangePhoneAlert()
+        }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
-}
-
-/*
-    //todo: to edit info screen
     private fun showChangePhoneAlert() {
         val dialog = AlertDialog.Builder(requireContext())
             .setMessage(requireContext().getString(R.string.linking_phone_number))
             .setCancelable(false)
-            .setPositiveButton(requireContext().getString(R.string.global_yes)) { dialogInterface: DialogInterface, i: Int -> dialogInterface.cancel()
-                (activity as MainActivity).openConfirmCodefragment(profile_phone.text.toString())
-                phoneChangeAvailability()
+            .setPositiveButton(requireContext().getString(R.string.global_yes)) { dialogInterface: DialogInterface, i: Int ->
+                dialogInterface.cancel()
+                (activity as MainActivity).openConfirmCodeFragment(userPhone.text.toString())
             }
-            .setNegativeButton(requireContext().getString(R.string.global_no)) { dialogInterface: DialogInterface, i: Int -> dialogInterface.cancel()
+            .setNegativeButton(requireContext().getString(R.string.global_no)) { dialogInterface: DialogInterface, i: Int ->
+                dialogInterface.cancel()
             }
             .show()
         with(dialog.getButton(AlertDialog.BUTTON_POSITIVE)) {
@@ -60,7 +59,11 @@ class ProfileDataEditFragment : Fragment() {
             setTextColor(context.getColor(R.color.red))
             setTypeface(android.graphics.Typeface.DEFAULT, android.graphics.Typeface.BOLD)
         }
-    }*/
+    }
+
+
+}
+
 
 /* код кастомных алертов Славы, пока пусть закомментирован пусть будет
 private fun showChangePhoneAlert() {
