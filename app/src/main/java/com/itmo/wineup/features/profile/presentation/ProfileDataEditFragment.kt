@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import com.itmo.wineup.R
 import com.itmo.wineup.features.profile.model.Profile
@@ -20,10 +21,20 @@ class ProfileDataEditFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val profileData = arguments?.getSerializable("profile") as Profile
-        with (profileData){
+        city_input.adapter = ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.cities_list,
+            R.layout.support_simple_spinner_dropdown_item
+        )
+        with(profileData) {
             userName.setText(name)
             userPhone.setText(phone)
+            city_input.setSelection(cityId - 1)
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
     }
 
 }
