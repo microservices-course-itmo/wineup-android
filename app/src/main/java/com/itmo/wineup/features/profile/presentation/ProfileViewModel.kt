@@ -9,11 +9,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ProfileViewModel: ViewModel() {
+class ProfileViewModel : ViewModel() {
+
+    companion object {
+        const val DEFAULT_CITY_ID = 1
+    }
 
     val phoneLiveData = MutableLiveData("")
     val nameLiveData = MutableLiveData("")
-    val cityLiveData = MutableLiveData(1)
+    val cityLiveData = MutableLiveData(DEFAULT_CITY_ID)
     val nonAuthUser = MutableLiveData(false)
 
     fun currentUser() {
@@ -27,11 +31,13 @@ class ProfileViewModel: ViewModel() {
                     phoneLiveData.value = response.body()!!.phoneNumber
                     nameLiveData.value = response.body()!!.name
                     cityLiveData.value = response.body()!!.cityId
-                } else if (response.code() == 403){
+                } else if (response.code() == 403) {
                     nonAuthUser.value = true
                 }
             }
         })
     }
+
+    fun getCurrentCityId() = cityLiveData.value ?: DEFAULT_CITY_ID
 
 }
