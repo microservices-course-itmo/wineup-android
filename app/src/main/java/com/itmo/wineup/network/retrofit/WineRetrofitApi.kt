@@ -8,15 +8,6 @@ import retrofit2.http.*
 
 interface WineRetrofitApi {
 
-//    @Headers("accessToken: 123")
-    @GET("wine/true/")
-    suspend fun getWineList(
-        @Query("from") from: Int,
-        @Query("to") to: Int,
-        @Header("Authorization") accessToken: String = "Bearer ${TokenMaster.accessToken}"
-    ): List<WineResponse>
-
-//    @Headers("accessToken: 123")
     @GET("position/true/trueSettings")
     suspend fun getWinePositionList(
         @Query("page") page: Int,
