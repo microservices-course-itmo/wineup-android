@@ -17,11 +17,11 @@ interface WineRetrofitApi {
     ): List<WineResponse>
 
 //    @Headers("accessToken: 123")
-    @GET("position/true/")
+    @GET("position/true/trueSettings")
     suspend fun getWinePositionList(
-        @Query("from") from: Int,
-        @Query("to") to: Int,
-        @Query("searchParameters") params: String,
+        @Query("page") page: Int,
+        @Query("amount") amount: Int,
+        @Query("filterBy") params: String,
         @Header("Authorization") accessToken: String = "Bearer ${TokenMaster.accessToken}"
     ): List<WinePositionResponse>
 

@@ -6,9 +6,9 @@ import com.itmo.wineup.network.retrofit.WineRetrofitApi
 class WineListRepository(private val api: WineRetrofitApi, private val searchParams: String) {
 
 
-    suspend fun getList(positionStart: Int, positionEnd: Int) = getListFromApi(positionStart, positionEnd, searchParams)
+    suspend fun getList(page: Int, amount: Int) = getListFromApi(page, amount, searchParams)
 
-    private suspend fun getListFromApi(positionStart: Int, positionEnd: Int, searchParams: String) = api.getWinePositionList(positionStart, positionEnd, searchParams)
+    private suspend fun getListFromApi(page: Int, amount: Int, searchParams: String) = api.getWinePositionList(page, amount, searchParams)
 
     fun getHardcodedList(): List<WineModel> {
         val wines = arrayListOf<WineModel>()
