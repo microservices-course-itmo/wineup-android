@@ -10,9 +10,10 @@
         android:id="@+id/error_503_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:alpha="0.25"
-        android:scaleType="centerCrop"
-        android:src="@drawable/error_503_background"
+        android:alpha="0.1"
+        android:scaleY="1.2"
+        android:scaleX="1.2"
+        android:translationX="20dp"
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp" />
 
