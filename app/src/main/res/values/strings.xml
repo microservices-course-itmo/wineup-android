@@ -119,5 +119,11 @@
     <string name="phone_number">Номер телефона:</string>
     <string name="city2">Город:</string>
     <string name="save_changes">Сохранить изменения</string>
+    <string name="Error">Ошибка</string>
+    <string name="error_503">503</string>
+    <string name="description_503">В настоящее время сервер недоступен <br>из-за технического обслуживания</br></string>
+    <string name="go_to_main_page">Перейти на главную страницу</string>
+    <string name="error_404">404</string>
+    <string name="description_404">Страница не найдена. <br>Ссылка на эту страницу</br> <br>может быть неверной или уставревшей.</br></string>
 
 </resources>
