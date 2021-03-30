@@ -109,6 +109,7 @@
     <string name="similar">Мы подобрали для вас схожие вина:</string>
     <string name="to_shop">В магазин</string>
     <string name="linking_phone_number">Вы уверены, что хотите привязать <b>другой номер телефона</b>?</string>
+    <string name="change_info_alert">Вы уверены, что хотите изменить данные о себе?</string>
     <string name="alert_dialog_success">Изменения успешно сохранены</string>
     <string name="resend"><u>Отправить повторно</u></string>
     <string name="incorrect_code">Код введён неверно</string>
@@ -125,5 +126,8 @@
     <string name="go_to_main_page">Перейти на главную страницу</string>
     <string name="error_404">404</string>
     <string name="description_404">Страница не найдена. <br>Ссылка на эту страницу</br> <br>может быть неверной или уставревшей.</br></string>
+    <string name="page_not_found">Страница не найдена</string>
+    <string name="page_not_found_exception">Ссылка на эту страницу <br> может быть неверной или устаревшей</br></string>
+    <string name="go_back">Вернуться назад</string>
 
 </resources>

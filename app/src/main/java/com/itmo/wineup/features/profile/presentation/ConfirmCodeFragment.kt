@@ -20,8 +20,14 @@ import com.google.firebase.auth.PhoneAuthOptions
 import com.google.firebase.auth.PhoneAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import com.google.gson.JsonNull
+import com.google.gson.JsonObject
+import com.google.gson.JsonParser
+import com.google.gson.JsonPrimitive
 import com.itmo.wineup.MainActivity
 import com.itmo.wineup.R
+import com.itmo.wineup.features.profile.model.Profile
+import com.itmo.wineup.network.retrofit.user.UserService
 import kotlinx.android.synthetic.main.fragment_confirm_code.*
 import java.util.concurrent.TimeUnit
 
@@ -51,7 +57,8 @@ class ConfirmCodeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        phone = arguments?.getString("phone")
+        val profile = arguments?.getSerializable("profileToConfirmScreen") as Profile
+        phone = profile.phone
         phone?.let {
             authOptions = PhoneAuthOptions.newBuilder(Firebase.auth)
                 .setPhoneNumber(it) // Phone number to verify
@@ -62,7 +69,7 @@ class ConfirmCodeFragment : Fragment() {
             PhoneAuthProvider.verifyPhoneNumber(authOptions)
             initTimer()
             startTimer()
-            setListeners()
+            setListeners(profile)
         }
 
     }
@@ -90,29 +97,37 @@ class ConfirmCodeFragment : Fragment() {
         }
     }
 
-    fun confirmChange() {
+    fun confirmChange(profile: Profile) {
         Firebase.auth.currentUser
             ?.updatePhoneNumber(PhoneAuthProvider.getCredential(verificationId, code_edit_text.text.toString()))
             ?.addOnCompleteListener { task ->
-                Toast.makeText(context, "Изменения успешно сохранены!", Toast.LENGTH_SHORT).show()
-                timer.cancel()
-                (activity as MainActivity).backFromConfirmCodeFragment()
-            }?.addOnFailureListener {
-                timer.cancel()
-                Toast.makeText(context, "Не удалось обновить номер!", Toast.LENGTH_SHORT).show()
-                (activity as MainActivity).backFromConfirmCodeFragment()
+                if (task.isSuccessful) {
+                    val stubUser = JsonObject().apply {
+                        add("birthday", JsonNull.INSTANCE)
+                        add("cityId", if (profile.cityId == null) JsonNull.INSTANCE else JsonPrimitive(profile.cityId))
+                        add("name", if (profile.name == null) JsonNull.INSTANCE else JsonPrimitive(profile.name))
+                        add("phoneNumber", JsonPrimitive(phone))
+                    }
+                    UserService.api().patchUser(stubUser)
+                    Toast.makeText(context, "Изменения успешно сохранены!", Toast.LENGTH_SHORT).show()
+                    timer.cancel()
+                    (activity as MainActivity).backFromConfirmCodeFragment()
+                }
+                else {
+                    wrong_code.visibility = View.VISIBLE
+                }
             }
 
     }
 
 
 
-    private fun setListeners() {
+    private fun setListeners(profile: Profile) {
         back.setOnClickListener {
             timer.cancel()
             (activity as MainActivity).backFromConfirmCodeFragment()
         }
-        confirmation_button.setOnClickListener { confirmChange() }
+        confirmation_button.setOnClickListener { confirmChange(profile) }
         button_resend_code.setOnClickListener { resendCode() }
 
         code_edit_text.addTextChangedListener(object : TextWatcher {
@@ -156,6 +171,11 @@ class ConfirmCodeFragment : Fragment() {
                 )
             }
         }
+    }
+
+    override fun onDestroy() {
+        timer.cancel()
+        super.onDestroy()
     }
 
 
