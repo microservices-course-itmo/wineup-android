@@ -10,11 +10,14 @@ class WineListRepository(private val api: WineRetrofitApi, private val searchPar
 
     private suspend fun getListFromApi(page: Int, amount: Int, searchParams: String) = api.getWinePositionList(page, amount, searchParams)
 
+    suspend fun getRecommendationList(id: String) = api.getRecommendationList(id)
+
     fun getHardcodedList(): List<WineModel> {
         val wines = arrayListOf<WineModel>()
         for (i in 0..9) {
             wines.add(
                 WineModel(
+                    "id1",
                     "Canti Merlot",
                     "Франция",
                     "красное",

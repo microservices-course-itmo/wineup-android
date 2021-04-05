@@ -22,4 +22,10 @@ interface WineRetrofitApi {
         @Header("Authorization") accessToken: String = "Bearer ${TokenMaster.accessToken}"
     ): List<WinePositionResponse>
 
+    @GET("rec/true/byId/{id}")
+    suspend fun getRecommendationList(
+        @Path("id") id: String,
+        @Header("Authorization") accessToken: String = "Bearer ${TokenMaster.accessToken}"
+    ): List<WinePositionResponse>
+
 }

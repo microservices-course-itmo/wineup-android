@@ -12,4 +12,6 @@ class GetWineListUseCase {
     //todo: remove, just for test
     fun getHardcodedList() = wineListRepository.getHardcodedList()
 
+    suspend fun getRecommendationList(id: String) = wineListRepository.getRecommendationList(id)
+
 }
