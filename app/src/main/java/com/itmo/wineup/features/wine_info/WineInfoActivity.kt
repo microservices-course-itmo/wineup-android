@@ -4,6 +4,8 @@ import android.graphics.Paint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.itmo.wineup.R
@@ -13,7 +15,6 @@ import com.itmo.wineup.features.catalog.models.FeedbackModel
 import com.itmo.wineup.features.catalog.models.WineModel
 import com.itmo.wineup.features.catalog.presentation.adapters.FeedbackAdapter
 import com.itmo.wineup.features.catalog.presentation.adapters.WinesAdapter
-import kotlinx.android.synthetic.main.fragment_filter_price.*
 import kotlinx.android.synthetic.main.wine_activity.*
 import kotlinx.android.synthetic.main.wine_content.*
 
@@ -23,6 +24,8 @@ class WineInfoActivity : AppCompatActivity() {
         const val FEEDBACK_MODEL_TAG = "FEEDBACK_MODEL"
     }
 
+    private lateinit var viewModel: WineInfoViewModel
+    
     private var current: Int = 0
     private var currentFeedback: Int = 0
 
@@ -37,15 +40,16 @@ class WineInfoActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        viewModel = ViewModelProvider(this).get(WineInfoViewModel::class.java)
+        viewModel.recommendationList.observe(this, Observer(this::renderRecommendationList))
         setContentView(R.layout.wine_activity)
-
         wineModel = intent.getSerializableExtra(WINE_MODEL_TAG) as WineModel
+        viewModel.getRecommendationList(wineModel.id)
         populate()
         similarRecyclerView.layoutManager =
             LinearLayoutManager(baseContext, LinearLayoutManager.HORIZONTAL, false)
         similarRecyclerView.adapter = adapter
         similarRecyclerView.isNestedScrollingEnabled = false
-        renderVineList(getWineListUseCase.getHardcodedList())
         button_back.alpha = 0.25F
         setSimilarListeners()
 
@@ -111,7 +115,7 @@ class WineInfoActivity : AppCompatActivity() {
         }
     }
 
-    private fun renderVineList(vineList: List<WineModel>) {
+    private fun renderRecommendationList(vineList: List<WineModel>) {
         adapter.updateList(vineList)
     }
 
