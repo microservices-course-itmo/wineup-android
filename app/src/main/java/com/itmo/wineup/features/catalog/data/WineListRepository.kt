@@ -8,7 +8,8 @@ class WineListRepository(private val api: WineRetrofitApi, private val searchPar
 
     suspend fun getList(page: Int, amount: Int) = getListFromApi(page, amount, searchParams)
 
-    private suspend fun getListFromApi(page: Int, amount: Int, searchParams: String) = api.getWinePositionList(page, amount, searchParams)
+    private suspend fun getListFromApi(page: Int, amount: Int, searchParams: String) =
+        api.getWinePositionList(page, amount, searchParams)
 
     suspend fun getRecommendationList(id: String) = api.getRecommendationList(id)
 
@@ -43,5 +44,4 @@ class WineListRepository(private val api: WineRetrofitApi, private val searchPar
         return wines
 
     }
-
 }
