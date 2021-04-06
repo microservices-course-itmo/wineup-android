@@ -12,7 +12,7 @@ object WinePositionConverter {
             Log.d("Wine", response.wine.name)
             res.add(
                 WineModel(
-                    id = response.wine.wineId,
+                    id = response.winePositionId,
                     name = response.wine.name,
                     color = response.wine.color,
                     country = response.wine.region.firstOrNull()?.country ?: "",//todo
