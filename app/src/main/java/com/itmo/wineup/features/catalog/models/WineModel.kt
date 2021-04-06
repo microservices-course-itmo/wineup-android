@@ -3,6 +3,7 @@ package com.itmo.wineup.features.catalog.models
 import java.io.Serializable
 
 data class WineModel(
+    val id: String,
     val name: String,
     val country: String,
     val color: String,
